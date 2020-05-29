@@ -1,0 +1,4 @@
+.item-list {
+    grid-area: ItemList;
+    background-color: lightseagreen;
+}
