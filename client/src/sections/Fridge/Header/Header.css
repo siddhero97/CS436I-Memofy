@@ -1,0 +1,5 @@
+.header {
+    grid-area: Header;
+    display: flex;
+    background-color: lightblue;
+}

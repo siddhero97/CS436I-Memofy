@@ -1,0 +1,4 @@
+.sidebar {
+    grid-area: Sidebar;
+    background-color: lightpink;
+}

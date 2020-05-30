@@ -1,0 +1,4 @@
+.navbar {
+    grid-area: Navbar;
+    background-color: lightcoral;
+}
