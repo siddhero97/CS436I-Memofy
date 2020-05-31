@@ -1,4 +1,22 @@
 .sidebar {
     grid-area: Sidebar;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    
     background-color: lightpink;
+    height: 80%
+}
+
+.category {
+    border-radius: 25px;
+    border: 2px solid black;
+    background: white;
+    margin: 5px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.category:hover {
+    background-color: teal;
 }
