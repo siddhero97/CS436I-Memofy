@@ -9,6 +9,21 @@
     margin-top: 2rem;
 }
 
+<<<<<<< HEAD
 .category:last-of-type {
     margin-bottom: 2rem;
 }
+=======
+.category:hover  {
+    background-color: teal;
+}
+
+.category:focus {
+    background-color: yellow;
+}
+
+.close {
+    cursor:pointer;
+    float: right;
+  }
+>>>>>>> add delete cateogry and highlight active category functionality
