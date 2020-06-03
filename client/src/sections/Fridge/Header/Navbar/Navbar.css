@@ -1,4 +1,29 @@
-.navbar {
-    grid-area: Navbar;
-    background-color: lightcoral;
+/*.navbar {*/
+/*    grid-area: Navbar;*/
+/*    background-color: lightcoral;*/
+/*}*/
+.horizontal-nav{
+    background-color:blue ;
+    overflow: hidden;
+    width: 100%;
+}
+.horizontal-nav a {
+    color: red;
+    width: 100%;
+    /*position: fixed;*/
+    text-align: center;
+    padding: 40px 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+.horizontal-nav a:hover{
+    color: blue;
+    background-color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    .horizontal-nav a:not(:first-child) {display: none;}
+    .horizontal-nav a.icon {
+        float: right;
+        display: block;
+    }
 }
