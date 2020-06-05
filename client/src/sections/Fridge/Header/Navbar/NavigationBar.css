@@ -1,5 +1,5 @@
 /*.navbar {*/
-/*    grid-area: Navbar;*/
+/*    grid-area: NavigationBar;*/
 /*    background-color: lightcoral;*/
 /*}*/
 .horizontal-nav{
@@ -12,7 +12,7 @@
     width: 100%;
     /*position: fixed;*/
     text-align: center;
-    padding: 40px 40px;
+    /*padding: 40px 40px;*/
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 .horizontal-nav a:hover{
