@@ -1,8 +1,6 @@
-<<<<<<< HEAD:client/src/sections/Fridge/Header/Navbar/NavigationBar.css
-<<<<<<< HEAD:client/src/sections/Fridge/Header/Navbar/NavigationBar.css
 
 /*.navbar {*/
-/*    grid-area: NavigationBar;*/
+/*    grid-area: NavBar;*/
 /*    background-color: lightcoral;*/
 /*}*/
 .horizontal-nav{
@@ -15,7 +13,7 @@
     width: 100%;
     /*position: fixed;*/
     text-align: center;
-    /*padding: 40px 40px;*/
+    padding: 40px 40px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 .horizontal-nav a:hover{
@@ -32,14 +30,9 @@
         float: right;
         display: block;
     }
-=======
-.navbar {
-    grid-area: Navbar;
-    background-color: lightcoral;
->>>>>>> parent of 440cc55... MVP Navbar:client/src/sections/Fridge/Header/Navbar/Navbar.css
-=======
-.navbar {
-    grid-area: Navbar;
-    background-color: lightcoral;
->>>>>>> parent of 440cc55... MVP Navbar:client/src/sections/Fridge/Header/Navbar/Navbar.css
 }
+
+/*.navbar {*/
+/*    grid-area: Navbar;*/
+/*    background-color: lightcoral;*/
+/*}*/
