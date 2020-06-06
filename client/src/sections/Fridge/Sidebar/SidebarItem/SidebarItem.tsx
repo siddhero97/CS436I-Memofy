@@ -6,11 +6,15 @@ import './SidebarItem.css';
 interface Props {
   category: string;
   buttonPressed: boolean;
+  edit: boolean;
+  onDelete: (category: string) => void;
 }
 
 export default function SidebarItem({
   category,
-  buttonPressed = false
+  buttonPressed = false,
+  edit,
+  onDelete,
 }: Props) {
   const [pressed, setPressed] = useState<boolean>(buttonPressed);
 
@@ -18,8 +22,15 @@ export default function SidebarItem({
     setPressed(!pressed);
   }
 
+  const destructiveButtonMarkup = edit ? (
+    <Button onClick={() => onDelete(category)} destructive>X</Button>
+  ) : null;
+
   return (
-    <Button pressed={pressed} onClick={handleClick}>{category}</Button>
+    <div className='sidebar-item'>
+      <Button pressed={pressed} onClick={handleClick}>{category}</Button>
+      {destructiveButtonMarkup}
+    </div>
   );
 }
 

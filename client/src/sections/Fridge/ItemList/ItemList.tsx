@@ -42,8 +42,12 @@ const items: Item[] = [
 
 export default function ItemList() {
 
-  const itemListMarkup = items.map(({name, expiry}) => {
-    return <Item name={name} expiry={expiry}/>;
+  const itemListMarkup = items.map(({name, expiry}, id) => {
+    return (
+      <div key={id}>
+        <Item name={name} expiry={expiry}/>
+      </div>
+    );
   })
 
   return (
