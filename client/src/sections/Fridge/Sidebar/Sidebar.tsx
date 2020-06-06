@@ -58,6 +58,7 @@ export default function Sidebar() {
               onAction: handleEditMode,
             }
           ]}
+          title='Filter categories'
         >
           {categoriesMarkup}
           <div className="modal-button">
