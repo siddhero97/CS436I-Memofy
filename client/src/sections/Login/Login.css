@@ -1,0 +1,11 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 49rem;
+    background-color: #B4E1FA;
+}
+
+.logo {
+    margin: 2rem;
+}
