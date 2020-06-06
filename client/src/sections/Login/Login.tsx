@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Card, Heading, ButtonGroup } from '@shopify/polaris';
-import logo from './logo.jpg';
+import logo from 'icons/logo.jpg';
 
 import './Login.css';
 
