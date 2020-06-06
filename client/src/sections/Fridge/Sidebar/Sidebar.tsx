@@ -8,6 +8,7 @@ const mockCategories = [
   "Meats", "Fruits", "Veggies"
 ]
 
+// NEED TO REFACTOR
 export default function Sidebar() {
   const [editMode, setEditMode] = useState(false);
   const [showModal, setShowModal] = useState(false);
