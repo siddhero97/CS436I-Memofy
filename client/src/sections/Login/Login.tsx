@@ -14,13 +14,17 @@ export default function Login() {
 
   return (
     <div className='login'>
-      <Heading element='h1'>Memofy</Heading>
-      <img src={logo} className="logo" alt={'Not found'} />
-      <Card sectioned title='Please choose a login option:'>
-        <ButtonGroup fullWidth>
-          <Button primary onClick={handleLogin}>Login with Google</Button>
-          <Button primary onClick={handleLogin}>Login with Facebook</Button>
-        </ButtonGroup>
+      <Card>
+        <div className='login-heading'>
+          <Heading element='h1'>Memofy</Heading>
+          <img src={logo} className="logo" alt={'Not found'} />
+        </div>
+        <Card sectioned title='Please choose a login option:'>
+          <ButtonGroup fullWidth>
+            <Button primary onClick={handleLogin}>Login with Google</Button>
+            <Button primary onClick={handleLogin}>Login with Facebook</Button>
+          </ButtonGroup>
+        </Card>
       </Card>
     </div>
   );

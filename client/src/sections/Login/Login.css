@@ -2,10 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 49rem;
-    background-color: #B4E1FA;
+    padding: 43rem;
 }
 
 .logo {
     margin: 2rem;
+}
+
+.login-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
 }
