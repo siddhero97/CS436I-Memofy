@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/src/sections/Fridge/Header/Navbar/NavigationBar.css
 
 /*.navbar {*/
 /*    grid-area: NavigationBar;*/
@@ -30,4 +31,9 @@
         float: right;
         display: block;
     }
+=======
+.navbar {
+    grid-area: Navbar;
+    background-color: lightcoral;
+>>>>>>> parent of 440cc55... MVP Navbar:client/src/sections/Fridge/Header/Navbar/Navbar.css
 }
