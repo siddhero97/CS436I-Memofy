@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card } from '@shopify/polaris';
+import {Card } from '@shopify/polaris';
 import {SidebarItem} from './components';
 
 import './Sidebar.css';
@@ -16,6 +16,16 @@ export default function Sidebar() {
       </div>
     );
   })
+
+  const handleDeleteCategory = (categoryToDelete: string) => {
+    setCategories(categories.filter((category) => {return category !== categoryToDelete}));
+  }
+  
+  const handleAddCategory = (categoryToAdd: string) => {
+    if (categoryToAdd !== "") {
+      setCategories([...categories, categoryToAdd]);
+    }
+  }
 
   return (
       <div className='sidebar'>
