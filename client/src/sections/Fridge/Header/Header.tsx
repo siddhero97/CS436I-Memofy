@@ -11,7 +11,7 @@ export default function Header() {
   return (
       <div className='header'>
         <div className='header-title'>
-          <img src={logo} className='logo' />
+          <img src={logo} className='logo' alt={'Not found'} />
           <div className='heading'>
             <Heading>Memofy</Heading>
           </div>
