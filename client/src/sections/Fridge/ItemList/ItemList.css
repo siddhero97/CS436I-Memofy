@@ -1,4 +1,18 @@
 .item-list {
     grid-area: ItemList;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
     background-color: lightseagreen;
+    padding: 3rem;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    min-width: 30rem;
+    min-height: 18rem;
 }
