@@ -1,6 +1,11 @@
 import React from 'react';
-import Fridge from 'sections/Fridge';
+import {BrowserRouter} from 'react-router-dom';
+import {Routes} from './components';
 
 export default function App() {
-  return <Fridge />;
+  return (
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  );
 }
