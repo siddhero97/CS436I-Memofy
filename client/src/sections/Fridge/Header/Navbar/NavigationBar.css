@@ -1,3 +1,4 @@
+
 /*.navbar {*/
 /*    grid-area: NavigationBar;*/
 /*    background-color: lightcoral;*/
@@ -21,7 +22,10 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .horizontal-nav a:not(:first-child) {display: none;}
+    .horizontal-nav a:not(:first-child) {
+        display: none;
+    }
+
     .horizontal-nav a.icon {
         float: right;
         display: block;
