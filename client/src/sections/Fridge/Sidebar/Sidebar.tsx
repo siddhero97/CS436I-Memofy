@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
- 
+import { Button, Card } from '@shopify/polaris';
+import {SidebarItem} from './components';
 
 import './Sidebar.css';
 
 export default function Sidebar() {
-
   const [categories, setCategories] = useState([
     "Meats", "Fruits", "Veggies"
   ])
 
+  const categoriesMarkup = categories.map((category, i) => {
+    return (
+      <div className="category" key={i}>
+        <SidebarItem category={category} buttonPressed={true} />
+      </div>
+    );
+  })
+
   return (
       <div className='sidebar'>
-        {categories.map( i => (
-          <div className="category" key={i}>{i}</div>
-          )
-        )}
-        <div className="category" onClick={() => setCategories(categories => [...categories, "apple"])}>+</div>
+        <Card>
+          {categoriesMarkup}
+          <div className="category">
+            <SidebarItem category='Add new category' buttonPressed={false} />
+          </div>
+        </Card>
       </div>
   );
 }

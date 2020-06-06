@@ -3,20 +3,12 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    
-    background-color: lightpink;
-    height: 80%
 }
 
 .category {
-    border-radius: 25px;
-    border: 2px solid black;
-    background: white;
-    margin: 5px;
-    height: 30px;
-    cursor: pointer;
+    margin-top: 2rem;
 }
 
-.category:hover {
-    background-color: teal;
+.category:last-of-type {
+    margin-bottom: 2rem;
 }
