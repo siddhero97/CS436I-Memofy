@@ -75,8 +75,7 @@ export default function ItemList() {
 
   return (
       <div className='item-list'>
-        {itemListMarkup}
-        <div className='item'>
+         <div className='item'>
           <Card sectioned>
             <Card.Section title="Can't find your item?">
               <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
@@ -102,6 +101,7 @@ export default function ItemList() {
             </Card.Section>
           </Card>
         </div>
+        {itemListMarkup}
       </div>
   );
 }
