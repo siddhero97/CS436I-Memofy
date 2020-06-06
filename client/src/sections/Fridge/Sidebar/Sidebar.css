@@ -1,4 +1,14 @@
 .sidebar {
     grid-area: Sidebar;
-    background-color: lightpink;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.category {
+    margin-top: 2rem;
+}
+
+.category:last-of-type {
+    margin-bottom: 2rem;
 }
