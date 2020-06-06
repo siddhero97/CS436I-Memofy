@@ -28,7 +28,7 @@ export default function SidebarItem({
 
   return (
     <div className='sidebar-item'>
-      <Button pressed={pressed} onClick={handleClick}>{category}</Button>
+      <Button pressed={pressed && !edit} disabled={edit} onClick={handleClick}>{category}</Button>
       {destructiveButtonMarkup}
     </div>
   );

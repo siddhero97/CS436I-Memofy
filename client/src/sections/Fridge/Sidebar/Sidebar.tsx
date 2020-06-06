@@ -43,7 +43,7 @@ export default function Sidebar() {
 
   const categoriesMarkup = categories.map((category, i) => {
     return (
-      <div className="category" key={i}>
+      <div key={i}>
         <SidebarItem category={category} buttonPressed={true} edit={editMode} onDelete={handleDeleteCategory} />
       </div>
     );
@@ -60,7 +60,7 @@ export default function Sidebar() {
           ]}
         >
           {categoriesMarkup}
-          <div className="category">
+          <div className="modal-button">
             <Button primary onClick={toggleShowModal}>+</Button>
             <Modal
               open={showModal}

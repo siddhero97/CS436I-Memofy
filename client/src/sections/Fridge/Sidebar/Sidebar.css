@@ -5,10 +5,7 @@
     flex-direction: column;
 }
 
-.category {
+.modal-button {
     margin-top: 2rem;
-}
-
-.category:last-of-type {
     margin-bottom: 2rem;
 }
