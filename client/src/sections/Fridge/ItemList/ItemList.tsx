@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import {Card, Button, Modal, TextField} from '@shopify/polaris';
-import {Item} from './components';
+import {Card} from '@shopify/polaris';
+import {Item, AddItemModal} from './components';
 
 import './ItemList.css';
 
@@ -40,30 +40,23 @@ const mockItems: Item[] = [
   }
 ]
 
-// NEED TO REFACTOR
 export default function ItemList() {
-  const [showModal, setShowModal] = useState(false);
   const [items, setItems] = useState(mockItems);
   const [value, setValue] = useState('');
-
-  const toggleShowModal = useCallback(() => {
-    setValue('');
-    setShowModal(!showModal);
-  }, [showModal]);
 
   const handleTextChange = useCallback((newValue) => {
     setValue(newValue);
   }, []);
     
-  const handleAddFoodItem = useCallback(() => {
+  const handleAddItem = useCallback(() => {
     const newItem = {
       name: value,
       expiry: '05/02/2020',
     }
 
     setItems([...items, newItem]);
-    toggleShowModal();
-  }, [items, value, toggleShowModal]);
+    setValue('');
+  }, [items, value]);
 
   const itemListMarkup = items.map(({name, expiry}, id) => {
     return (
@@ -77,28 +70,11 @@ export default function ItemList() {
       <div className='item-list'>
          <div className='item'>
           <Card sectioned>
-            <Card.Section title="Can't find your item?">
-              <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
-              <Modal
-                open={showModal}
-                onClose={toggleShowModal}
-                title='Add new food item'
-                primaryAction={{
-                  content: 'Add',
-                  onAction: handleAddFoodItem,
-                }}
-                secondaryActions={[
-                  {
-                    content: 'Cancel',
-                    onAction: toggleShowModal,
-                  }
-                ]}
-              >
-                <Modal.Section>
-                  <TextField label="Food name" value={value} onChange={handleTextChange} />
-                </Modal.Section>
-              </Modal>
-            </Card.Section>
+            <AddItemModal
+              value={value}
+              onValueChange={handleTextChange}
+              onAdd={handleAddItem}
+            />
           </Card>
         </div>
         {itemListMarkup}
