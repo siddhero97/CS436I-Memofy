@@ -22,13 +22,12 @@ export default function SidebarItem({
     setPressed(!pressed);
   }
 
-  const destructiveButtonMarkup = edit ? (
-    <Button onClick={() => onDelete(category)} destructive>X</Button>
-  ) : null;
+  const destructiveButtonMarkup = edit 
+    ? <Button onClick={() => onDelete(category)} destructive>{category} X</Button>
+    : <Button pressed={pressed && !edit} disabled={edit} onClick={handleClick}>{category}</Button>;
 
   return (
     <div className='sidebar-item'>
-      <Button pressed={pressed && !edit} disabled={edit} onClick={handleClick}>{category}</Button>
       {destructiveButtonMarkup}
     </div>
   );

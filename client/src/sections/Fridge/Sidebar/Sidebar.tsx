@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
-import {Card, Button, Modal, TextField } from '@shopify/polaris';
-import {SidebarItem} from './components';
+import React, {useState, useCallback} from 'react';
+import {Card, Button} from '@shopify/polaris';
+import {SidebarItem, AddCategoryModal} from './components';
 
 import './Sidebar.css';
 
@@ -8,25 +8,14 @@ const mockCategories = [
   "Meats", "Fruits", "Veggies"
 ]
 
-// NEED TO REFACTOR
 export default function Sidebar() {
   const [editMode, setEditMode] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [value, setValue] = useState('');
   const [categories, setCategories] = useState(mockCategories);
+  const [value, setValue] = useState('');
 
   const handleEditMode = useCallback(() => {
     setEditMode(!editMode);
   }, [editMode]);
-
-  const toggleShowModal = useCallback(() => {
-    setValue('');
-    setShowModal(!showModal);
-  }, [showModal]);
-
-  const handleTextChange = useCallback((newValue) => {
-    setValue(newValue);
-  }, []);
 
   const handleDeleteCategory = useCallback((categoryToDelete: string) => {
     const newCategories = categories.filter((category) => {return category !== categoryToDelete});
@@ -34,12 +23,16 @@ export default function Sidebar() {
     setCategories(newCategories);
   }, [categories]);
   
-  const handleAddCategory = useCallback(() => {
+  const handleAddCategory = useCallback((value) => {
     setCategories([...categories, value]);
-    toggleShowModal();
-  }, [categories, value, toggleShowModal]);
+    setValue('');
+  }, [categories]);
 
-  const actionContent = editMode ? 'Close edit' : 'Edit';
+  const handleTextChange = useCallback((newValue) => {
+    setValue(newValue);
+  }, []);
+
+  const editMarkup = editMode ? 'Done edit' : 'Edit';
 
   const categoriesMarkup = categories.map((category, i) => {
     return (
@@ -51,38 +44,14 @@ export default function Sidebar() {
 
   return (
       <div className='sidebar'>
-        <Card
-          actions={[
-            {
-              content: actionContent,
-              onAction: handleEditMode,
-            }
-          ]}
-          title='Filter categories'
-        >
-          {categoriesMarkup}
-          <div className="modal-button">
-            <Button primary onClick={toggleShowModal}>+</Button>
-            <Modal
-              open={showModal}
-              onClose={toggleShowModal}
-              title='Add new category'
-              primaryAction={{
-                content: 'Add',
-                onAction: handleAddCategory,
-              }}
-              secondaryActions={[
-                {
-                  content: 'Cancel',
-                  onAction: toggleShowModal,
-                }
-              ]}
-            >
-              <Modal.Section>
-                <TextField label="Category name" value={value} onChange={handleTextChange} />
-              </Modal.Section>
-            </Modal>
-          </div>
+        <Card title='Filter categories'>
+          <Card.Section>
+            {categoriesMarkup}
+          </Card.Section>
+          <Card.Section>
+            <Button onClick={handleEditMode}>{editMarkup}</Button>
+            <AddCategoryModal isEdit={editMode} value={value} onValueChange={handleTextChange} onAdd={handleAddCategory} />
+          </Card.Section>
         </Card>
       </div>
   );
