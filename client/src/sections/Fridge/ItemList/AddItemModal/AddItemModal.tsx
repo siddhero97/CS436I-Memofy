@@ -23,24 +23,24 @@ export default function AddItemModal({value, onValueChange, onAdd}: Props) {
     <Card.Section title="Can't find your item?">
       <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
       <Modal
-      open={showModal}
-      onClose={toggleShowModal}
-      title='Add new food item'
-      primaryAction={{
+        open={showModal}
+        onClose={toggleShowModal}
+        title='Add new food item'
+        primaryAction={{
           content: 'Add',
           disabled: value === '',
           onAction: handleSubmit,
-      }}
-      secondaryActions={[
+        }}
+        secondaryActions={[
           {
-          content: 'Cancel',
-          onAction: toggleShowModal,
+            content: 'Cancel',
+            onAction: toggleShowModal,
           }
-      ]}
+        ]}
       >
-      <Modal.Section>
+        <Modal.Section>
           <TextField label="Food name" value={value} onChange={onValueChange} />
-      </Modal.Section>
+        </Modal.Section>
       </Modal>
     </Card.Section>
   );

@@ -26,24 +26,24 @@ export default function AddCategoryModal({isEdit, value, onValueChange, onAdd}: 
     <div className='add-category-modal'>
       <Button primary disabled={isEdit} onClick={toggleShowModal}>+</Button>
       <Modal
-          open={showModal}
-          onClose={toggleShowModal}
-          title='Add new category'
-          primaryAction={{
+        open={showModal}
+        onClose={toggleShowModal}
+        title='Add new category'
+        primaryAction={{
           content: 'Add',
           disabled: value === '',
           onAction: handleSubmit,
-          }}
-          secondaryActions={[
+        }}
+        secondaryActions={[
           {
-              content: 'Cancel',
-              onAction: toggleShowModal,
+            content: 'Cancel',
+            onAction: toggleShowModal,
           }
-          ]}
+        ]}
       >
-          <Modal.Section>
+        <Modal.Section>
           <TextField label="Category name" value={value} onChange={onValueChange} />
-          </Modal.Section>
+        </Modal.Section>
       </Modal>
     </div>
   );

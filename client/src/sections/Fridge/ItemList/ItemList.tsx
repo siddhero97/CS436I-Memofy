@@ -47,7 +47,7 @@ export default function ItemList() {
   const handleTextChange = useCallback((newValue) => {
     setValue(newValue);
   }, []);
-    
+
   const handleAddItem = useCallback(() => {
     const newItem = {
       name: value,
@@ -67,17 +67,17 @@ export default function ItemList() {
   })
 
   return (
-      <div className='item-list'>
-         <div className='item'>
-          <Card sectioned>
-            <AddItemModal
-              value={value}
-              onValueChange={handleTextChange}
-              onAdd={handleAddItem}
-            />
-          </Card>
-        </div>
-        {itemListMarkup}
+    <div className='item-list'>
+      <div className='item'>
+        <Card sectioned>
+          <AddItemModal
+            value={value}
+            onValueChange={handleTextChange}
+            onAdd={handleAddItem}
+          />
+        </Card>
       </div>
+      {itemListMarkup}
+    </div>
   );
 }
