@@ -20,7 +20,7 @@ export default function AddCategoryModal({isEdit, value, onValueChange, onAdd}: 
   const handleSubmit = useCallback(() => {
     onAdd(value);
     toggleShowModal();
-  }, [onAdd, toggleShowModal]);
+  }, [value, onAdd, toggleShowModal]);
 
   return (
     <div className='add-category-modal'>

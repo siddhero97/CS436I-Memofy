@@ -17,7 +17,7 @@ export default function AddItemModal({value, onValueChange, onAdd}: Props) {
   const handleSubmit = useCallback(() => {
     onAdd(value);
     toggleShowModal();
-  }, [onAdd, toggleShowModal]);
+  }, [value, onAdd, toggleShowModal]);
 
   return (
     <Card.Section title="Can't find your item?">
