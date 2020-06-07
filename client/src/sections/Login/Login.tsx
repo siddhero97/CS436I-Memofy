@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, Card, Heading, ButtonGroup } from '@shopify/polaris';
+import {useHistory} from 'react-router-dom';
+import {Button, Card, Heading, ButtonGroup} from '@shopify/polaris';
 import logo from 'icons/logo.jpg';
 
 import './Login.css';
@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleLogin = () => {
     history.push('/home');
-  }
+  };
 
   return (
     <div className='login'>

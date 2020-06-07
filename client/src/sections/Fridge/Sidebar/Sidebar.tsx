@@ -6,7 +6,7 @@ import './Sidebar.css';
 
 const mockCategories = [
   "Meats", "Fruits", "Veggies"
-]
+];
 
 export default function Sidebar() {
   const [editMode, setEditMode] = useState(false);
@@ -18,7 +18,7 @@ export default function Sidebar() {
   }, [editMode]);
 
   const handleDeleteCategory = useCallback((categoryToDelete: string) => {
-    const newCategories = categories.filter((category) => {return category !== categoryToDelete});
+    const newCategories = categories.filter((category) => {return category !== categoryToDelete;});
 
     setCategories(newCategories);
   }, [categories]);
@@ -40,7 +40,7 @@ export default function Sidebar() {
         <SidebarItem category={category} buttonPressed={true} edit={editMode} onDelete={handleDeleteCategory} />
       </div>
     );
-  })
+  });
 
   return (
     <div className='sidebar'>

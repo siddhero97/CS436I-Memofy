@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {Button} from '@shopify/polaris';
 
 import './SidebarItem.css';
@@ -20,9 +20,9 @@ export default function SidebarItem({
 
   const handleClick = () => {
     setPressed(!pressed);
-  }
+  };
 
-  const destructiveButtonMarkup = edit 
+  const destructiveButtonMarkup = edit
     ? <Button onClick={() => onDelete(category)} destructive>{category} X</Button>
     : <Button pressed={pressed && !edit} disabled={edit} onClick={handleClick}>{category}</Button>;
 
