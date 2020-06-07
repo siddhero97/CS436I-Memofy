@@ -9,17 +9,17 @@ import './Header.css';
 
 export default function Header() {
   return (
-      <div className='header'>
-        <div className='header-title'>
-          <img src={logo} className='logo' alt={'Not found'} />
-          <div className='heading'>
-            <Heading>Memofy</Heading>
-          </div>
-          <Navbar />
+    <div className='header'>
+      <div className='header-title'>
+        <img src={logo} className='logo' alt={'Not found'} />
+        <div className='heading'>
+          <Heading>Memofy</Heading>
         </div>
-        <div className='profile-icon'>
-          <Icon source={ProfileMajorMonotone} />
-        </div>
+        <Navbar />
       </div>
+      <div className='profile-icon'>
+        <Icon source={ProfileMajorMonotone} />
+      </div>
+    </div>
   );
 }

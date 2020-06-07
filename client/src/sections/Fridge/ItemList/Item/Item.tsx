@@ -11,12 +11,12 @@ interface Props {
 export default function Item({name, expiry}: Props) {
   return (
     <div className='item'>
-      <Card 
-          sectioned
-          primaryFooterAction={{
+      <Card
+        sectioned
+        primaryFooterAction={{
           content: 'Details',
-          onAction: () => console.log('Remove!'),
-          }}
+          onAction: () => null,
+        }}
       >
         <Card.Section title={name}>
           <List>

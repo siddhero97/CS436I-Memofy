@@ -22,7 +22,7 @@ export default function Sidebar() {
 
     setCategories(newCategories);
   }, [categories]);
-  
+
   const handleAddCategory = useCallback((value) => {
     setCategories([...categories, value]);
     setValue('');
@@ -43,17 +43,17 @@ export default function Sidebar() {
   })
 
   return (
-      <div className='sidebar'>
-        <Card title='Filter categories'>
-          <Card.Section>
-            {categoriesMarkup}
-          </Card.Section>
-          <Card.Section>
-            <Button onClick={handleEditMode}>{editMarkup}</Button>
-            <AddCategoryModal isEdit={editMode} value={value} onValueChange={handleTextChange} onAdd={handleAddCategory} />
-          </Card.Section>
-        </Card>
-      </div>
+    <div className='sidebar'>
+      <Card title='Filter categories'>
+        <Card.Section>
+          {categoriesMarkup}
+        </Card.Section>
+        <Card.Section>
+          <Button onClick={handleEditMode}>{editMarkup}</Button>
+          <AddCategoryModal isEdit={editMode} value={value} onValueChange={handleTextChange} onAdd={handleAddCategory} />
+        </Card.Section>
+      </Card>
+    </div>
   );
 }
 

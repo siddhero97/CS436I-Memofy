@@ -16,30 +16,30 @@ export default function Navbar() {
   }
 
   return (
-      <div className='navbar'>
-        <ButtonGroup fullWidth>
-          <div className='button'>
-            <Button primary onClick={handleHomeClick}>Home</Button>
-          </div>
-          <div className='button'>
-            <Button disabled>WIP</Button>
-          </div>
-          <div className='button'>
-            <Button disabled>WIP</Button>
-          </div>
-          <div className='button'>
-            <Button disabled>WIP</Button>
-          </div>
-          <div className='button'>
-            <Button disabled>WIP</Button>
-          </div>
-          <div className='button'>
-            <Button disabled>WIP</Button>
-          </div>
-          <div className='button'>
-            <Button destructive onClick={handleLogoutClick}>Logout</Button>
-          </div>
-        </ButtonGroup>
-      </div>
+    <div className='navbar'>
+      <ButtonGroup fullWidth>
+        <div className='button'>
+          <Button primary onClick={handleHomeClick}>Home</Button>
+        </div>
+        <div className='button'>
+          <Button disabled>WIP</Button>
+        </div>
+        <div className='button'>
+          <Button disabled>WIP</Button>
+        </div>
+        <div className='button'>
+          <Button disabled>WIP</Button>
+        </div>
+        <div className='button'>
+          <Button disabled>WIP</Button>
+        </div>
+        <div className='button'>
+          <Button disabled>WIP</Button>
+        </div>
+        <div className='button'>
+          <Button destructive onClick={handleLogoutClick}>Logout</Button>
+        </div>
+      </ButtonGroup>
+    </div>
   );
 }
