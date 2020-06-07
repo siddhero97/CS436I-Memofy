@@ -2,6 +2,7 @@
     display: grid;
     grid-template-areas:
     "Header  Header"
-    "Sidebar ItemList";
-    grid-template-columns: 10% auto;
+    "Sidebar ItemList"
+    "Sidebar       .";
+    grid-template-columns: 20rem auto;
 }
