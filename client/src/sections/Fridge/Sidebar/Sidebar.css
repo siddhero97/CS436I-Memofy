@@ -3,9 +3,5 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-}
-
-.modal-button {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
