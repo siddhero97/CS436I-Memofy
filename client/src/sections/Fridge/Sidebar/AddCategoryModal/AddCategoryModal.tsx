@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, {useState, useCallback} from 'react';
 import {Button, Modal, TextField} from '@shopify/polaris';
 
 import './AddCategoryModal.css';

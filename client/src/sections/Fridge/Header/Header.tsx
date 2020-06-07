@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileMajorMonotone} from '@shopify/polaris-icons';
-import { Icon, Heading } from '@shopify/polaris';
+import {Icon, Heading} from '@shopify/polaris';
 import {Navbar} from './components';
 
 import logo from 'icons/logo.jpg';
