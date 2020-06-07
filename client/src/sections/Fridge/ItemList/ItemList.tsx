@@ -1,47 +1,13 @@
 import React, {useState, useCallback} from 'react';
+import {useSelector} from 'react-redux';
 import {Card} from '@shopify/polaris';
+import {selectItems} from 'store/item/selectors';
 import {Item, AddItemModal} from './components';
 
 import './ItemList.css';
 
-interface Item {
-  name: string;
-  expiry: string;
-}
-
-const mockItems: Item[] = [
-  {
-    name: 'Apples',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Oranges',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Milk',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Steak',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Avocados',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Grapes',
-    expiry: '05/02/2020',
-  },
-  {
-    name: 'Lettuce',
-    expiry: '05/02/2020',
-  }
-];
-
 export default function ItemList() {
-  const [items, setItems] = useState(mockItems);
+  const [items, setItems] = useState(useSelector(selectItems));
   const [value, setValue] = useState('');
 
   const handleTextChange = useCallback((newValue) => {
@@ -50,8 +16,13 @@ export default function ItemList() {
 
   const handleAddItem = useCallback(() => {
     const newItem = {
+      // this will come from the database once setup
+      id: items.length,
       name: value,
-      expiry: '05/02/2020',
+      // this will come from the database once setup
+      category: 'Fruits',
+      count: 1,
+      expiry: new Date().toLocaleDateString(),
     };
 
     setItems([...items, newItem]);
