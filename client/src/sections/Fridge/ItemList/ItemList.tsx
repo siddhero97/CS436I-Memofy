@@ -9,17 +9,17 @@ import './ItemList.css';
 export default function ItemList() {
   const items = useSelector(selectItems);
 
-  const itemListMarkup = items.map(({name, expiry}, id) => {
+  const itemListMarkup = items.map((item) => {
     return (
-      <div key={id}>
-        <Item name={name} expiry={expiry}/>
+      <div key={item.name}>
+        <Item item={item} />
       </div>
     );
   });
 
   return (
     <div className='item-list'>
-      <div className='item'>
+      <div className='item-add'>
         <Card sectioned>
           <AddItemModal />
         </Card>

@@ -19,6 +19,7 @@ export default function AddItemModal() {
       // this will come from the database once setup
       category: 'Fruits',
       count: 1,
+      icon: null,
       expiry: new Date().toLocaleDateString(),
     };
 

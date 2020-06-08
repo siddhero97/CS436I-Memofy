@@ -8,11 +8,13 @@
     padding: 1rem;
 }
 
-.item {
+.item-add {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
-    min-width: 30rem;
-    min-height: 18rem;
+}
+
+.item-logo {
+  width: 10rem;
 }
