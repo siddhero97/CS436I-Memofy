@@ -1,6 +1,7 @@
 export interface Item {
   name: string;
   category: string;
+  icon: string | null;
   count: number;
   expiry: string;
 }
