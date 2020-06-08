@@ -1,5 +1,4 @@
 export interface Item {
-  id: number;
   name: string;
   category: string;
   count: number;
@@ -16,7 +15,7 @@ interface AddItemAction {
 
 interface DeleteItemAction {
   type: typeof DELETE_ITEM;
-  payload: number;
+  payload: string;
 }
 
 export type ItemActionTypes = AddItemAction | DeleteItemAction;

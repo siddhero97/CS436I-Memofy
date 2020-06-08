@@ -7,9 +7,9 @@ export function addItem(newItem: Item): ItemActionTypes {
   };
 }
 
-export function deleteItem(id: number): ItemActionTypes {
+export function deleteItem(name: string): ItemActionTypes {
   return {
     type: DELETE_ITEM,
-    payload: id,
+    payload: name,
   };
 }
