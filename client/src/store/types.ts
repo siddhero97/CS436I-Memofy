@@ -1,3 +1,9 @@
-import {rootReducer} from './index';
+import {Item} from "./item/types";
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = {
+  item: ItemState;
+};
+
+export interface ItemState {
+  items: Item[];
+}

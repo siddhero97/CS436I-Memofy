@@ -1,23 +1,35 @@
 import React, {useState, useCallback} from 'react';
+import {useDispatch} from 'react-redux';
 import {Button, Modal, TextField, Card} from '@shopify/polaris';
+import {addItem} from 'store/item/actions';
 
-interface Props {
-  value: string;
-  onValueChange: (value: string) => void;
-  onAdd: (value: string) => void;
-}
+export default function AddItemModal() {
+  const dispatch = useDispatch();
 
-export default function AddItemModal({value, onValueChange, onAdd}: Props) {
   const [showModal, setShowModal] = useState(false);
+  const [value, setValue] = useState('');
 
   const toggleShowModal = useCallback(() => {
     setShowModal(!showModal);
   }, [showModal]);
 
   const handleSubmit = useCallback(() => {
-    onAdd(value);
+    const newItem = {
+      name: value,
+      // this will come from the database once setup
+      category: 'Fruits',
+      count: 1,
+      icon: null,
+      expiry: new Date().toLocaleDateString(),
+    };
+
+    dispatch(addItem(newItem));
     toggleShowModal();
-  }, [value, onAdd, toggleShowModal]);
+  }, [value, toggleShowModal]);
+
+  const handleTextChange = useCallback((newValue) => {
+    setValue(newValue);
+  }, []);
 
   return (
     <Card.Section title="Can't find your item?">
@@ -39,7 +51,7 @@ export default function AddItemModal({value, onValueChange, onAdd}: Props) {
         ]}
       >
         <Modal.Section>
-          <TextField label="Food name" value={value} onChange={onValueChange} />
+          <TextField label="Food name" value={value} onChange={handleTextChange} />
         </Modal.Section>
       </Modal>
     </Card.Section>
