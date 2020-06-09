@@ -3,7 +3,7 @@ import {ProfileMajorMonotone} from '@shopify/polaris-icons';
 import {Icon, Heading} from '@shopify/polaris';
 import {Navbar} from './components';
 
-import logo from 'icons/logo.jpg';
+import logo from 'icons/logo.png';
 
 import './Header.css';
 
