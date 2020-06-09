@@ -35,7 +35,7 @@ export default function Login() {
           </ButtonGroup>
         </Card>
       </Card>
-      <LoginModal email={email} password={password} active={active} handleChange={handleChange} 
+      <LoginModal email={email} password={password} active={active} handleChange={handleChange}
         handleLogin={handleLogin} handleEmailLogin={handleEmailLogin} handlePasswordLogin={handlePasswordLogin}></LoginModal>
     </div>
   );
