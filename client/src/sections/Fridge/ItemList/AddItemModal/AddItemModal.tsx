@@ -25,7 +25,7 @@ export default function AddItemModal() {
 
     dispatch(addItem(newItem));
     toggleShowModal();
-  }, [value, toggleShowModal]);
+  }, [dispatch, value, toggleShowModal]);
 
   const handleTextChange = useCallback((newValue) => {
     setValue(newValue);
