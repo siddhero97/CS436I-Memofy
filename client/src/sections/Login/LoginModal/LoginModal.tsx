@@ -7,11 +7,10 @@ interface Props {
   handleChange: () => void;
 }
 
-export default function LoginModal({ active, handleChange }: Props) {
+export default function LoginModal({active, handleChange}: Props) {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
   const handleLogin = () => {
     history.push('/home');
   };
