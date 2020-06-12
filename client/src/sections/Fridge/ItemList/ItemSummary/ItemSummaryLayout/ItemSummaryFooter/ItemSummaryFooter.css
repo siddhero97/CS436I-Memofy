@@ -1,0 +1,8 @@
+.project-summary-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #DFE3E8;
+  padding: 2rem 11rem;
+  width: 100%;
+}
