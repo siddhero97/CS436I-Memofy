@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 25rem;
+    /* width: 5rem; */
 }
 
 .logo {
@@ -15,4 +16,8 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+}
+
+.Polaris-Card {
+    width: 20rem;
 }

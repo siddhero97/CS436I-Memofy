@@ -6,8 +6,8 @@ import './Login.css';
 import LoginModal from './LoginModal/LoginModal';
 
 export default function Login() {
-  const [showModal, toggleShowModal] = useState(false);
-  const handleChange = useCallback(() => toggleShowModal(!showModal), [showModal]);
+  const [showModal, setShowModal] = useState(false);
+  const handleChange = useCallback(() => setShowModal(!showModal), [showModal]);
 
   return (
     <div className='login'>
@@ -16,7 +16,7 @@ export default function Login() {
           <Heading element='h1'>Memofy</Heading>
           <img src={logo} className="logo" alt={'Not found'} />
         </div>
-        <Card sectioned title='Please choose a login option:'>
+        <Card sectioned>
           <ButtonGroup fullWidth>
             <Button primary onClick={handleChange}>Login</Button>
           </ButtonGroup>

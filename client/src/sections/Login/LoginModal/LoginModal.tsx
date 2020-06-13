@@ -16,10 +16,10 @@ export default function LoginModal({active, handleChange}: Props) {
   };
 
   const handleEmailChange  = useCallback((value) => setEmail(value), []);
-  const handlePasswordLogin = useCallback((value) => setPassword(value), []);
+  const handlePasswordChange = useCallback((value) => setPassword(value), []);
 
   return (
-    <div className='loginModal'>
+    <div className='login-modal'>
       <Modal
         open={active}
         onClose={handleChange}
@@ -44,7 +44,7 @@ export default function LoginModal({active, handleChange}: Props) {
           />
           <TextField
             value={password}
-            onChange={handlePasswordLogin}
+            onChange={handlePasswordChange}
             label="Password"
             type="password"
           />
