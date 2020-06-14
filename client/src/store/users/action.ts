@@ -7,9 +7,9 @@ export function login(user: User): UserActionTypes {
     };
 }
 
-export function logout(userName: string):UserActionTypes {
+export function logout():UserActionTypes {
     return {
         type: LOGOUT,
-        payload: userName,
+        payload: null
     };
 }

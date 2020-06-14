@@ -16,7 +16,7 @@ interface LoginAction {
 }
 interface LogoutAction {
     type: typeof LOGOUT;
-    payload: string;
+    payload: null;
 }
 
 export type UserActionTypes = LoginAction  | LogoutAction;

@@ -14,9 +14,10 @@ const initialUsers: User[] = [
     }
 ];
 
-const initialState: UserState = {
+export const initialState: UserState = {
    users: initialUsers,
     isLoggedIn: false,
+    currUser: null,
 };
 
 export function userReducer(
@@ -27,12 +28,15 @@ export function userReducer(
         case LOGIN:
             return {
                 users: [...state.users, action.payload],
-                isLoggedIn: true
+                isLoggedIn: true,
+                currUser: action.payload
             };
         case LOGOUT:
+            console.log("Inside Logout");
             return {
                 users: [...state.users].filter(({userName}) => userName !== action.payload),
-                isLoggedIn: isLoggedIn(state.users)
+                isLoggedIn: isLoggedIn(state.users),
+                currUser: null
             };
         default:
             return state;
