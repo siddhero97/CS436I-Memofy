@@ -7,7 +7,7 @@ import LoginModal from './LoginModal/LoginModal';
 
 export default function Login() {
   const [showModal, setShowModal] = useState(false);
-  const handleChange = useCallback(() => setShowModal(!showModal), [showModal]);
+  const toggleShowModal = useCallback(() => setShowModal(!showModal), [showModal]);
 
   return (
     <div className='login'>
@@ -17,12 +17,14 @@ export default function Login() {
           <img src={logo} className="logo" alt={'Not found'} />
         </div>
         <Card sectioned>
-          <ButtonGroup fullWidth>
-            <Button primary onClick={handleChange}>Login</Button>
-          </ButtonGroup>
+          <div className="login-button-group">
+            <ButtonGroup fullWidth>
+              <Button primary onClick={toggleShowModal}>Login</Button>
+            </ButtonGroup>
+          </div>
         </Card>
       </Card>
-      <LoginModal active={showModal} handleChange={handleChange} />
+      <LoginModal active={showModal} handleChange={toggleShowModal} />
     </div>
   );
 }
