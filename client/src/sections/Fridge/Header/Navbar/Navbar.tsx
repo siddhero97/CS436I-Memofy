@@ -3,8 +3,11 @@ import {useHistory} from 'react-router-dom';
 import {Button, ButtonGroup} from '@shopify/polaris';
 
 import './Navbar.css';
+import {useDispatch} from 'react-redux';
+import {logout} from 'store/user/actions';
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleHomeClick = () => {
@@ -12,6 +15,7 @@ export default function Navbar() {
   };
 
   const handleLogoutClick = () => {
+    dispatch(logout());
     history.push('./login');
   };
 
