@@ -3,6 +3,7 @@ import {Item} from "./item/types";
 export type RootState = {
   item: ItemState;
   user: UserState;
+  app: AppState;
 };
 
 export interface ItemState {
@@ -11,4 +12,8 @@ export interface ItemState {
 
 export interface UserState {
   email: string | null;
+}
+
+export interface AppState {
+  isLoggedIn: boolean;
 }
