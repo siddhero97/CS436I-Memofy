@@ -1,4 +1,4 @@
-import {Modal, TextField} from '@shopify/polaris';
+import {Modal, TextField, Banner} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -11,12 +11,26 @@ export default function LoginModal({active, handleChange}: Props) {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
+
   const handleLogin = () => {
-    history.push('/home');
+    if (email === "" || password === "") {
+      setShowWarning(true);
+    } else {
+      history.push('/home');
+    }
   };
 
   const handleEmailChange  = useCallback((value) => setEmail(value), []);
   const handlePasswordChange = useCallback((value) => setPassword(value), []);
+
+  const warningMarkup = showWarning ? (
+    <Banner status="warning">
+      <p>
+        Please enter all fields.
+      </p>
+    </Banner>
+  ) : null;
 
   return (
     <div className='login-modal'>
@@ -49,6 +63,7 @@ export default function LoginModal({active, handleChange}: Props) {
             type="password"
           />
         </Modal.Section>
+        {warningMarkup}
       </Modal>
     </div>
   );
