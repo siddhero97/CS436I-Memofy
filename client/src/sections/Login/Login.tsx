@@ -1,16 +1,13 @@
-import React from 'react';
-import {useHistory} from 'react-router-dom';
+import React, {useState, useCallback} from 'react';
 import {Button, Card, Heading, ButtonGroup} from '@shopify/polaris';
-import logo from 'icons/logo.jpg';
+import logo from 'icons/logo.png';
 
 import './Login.css';
+import LoginModal from './LoginModal/LoginModal';
 
 export default function Login() {
-  const history = useHistory();
-
-  const handleLogin = () => {
-    history.push('/home');
-  };
+  const [showModal, setShowModal] = useState(false);
+  const toggleShowModal = useCallback(() => setShowModal(!showModal), [showModal]);
 
   return (
     <div className='login'>
@@ -19,13 +16,15 @@ export default function Login() {
           <Heading element='h1'>Memofy</Heading>
           <img src={logo} className="logo" alt={'Not found'} />
         </div>
-        <Card sectioned title='Please choose a login option:'>
-          <ButtonGroup fullWidth>
-            <Button primary onClick={handleLogin}>Login with Google</Button>
-            <Button primary onClick={handleLogin}>Login with Facebook</Button>
-          </ButtonGroup>
+        <Card sectioned>
+          <div className="login-button-group">
+            <ButtonGroup fullWidth>
+              <Button primary onClick={toggleShowModal}>Login</Button>
+            </ButtonGroup>
+          </div>
         </Card>
       </Card>
+      <LoginModal active={showModal} handleChange={toggleShowModal} />
     </div>
   );
 }
