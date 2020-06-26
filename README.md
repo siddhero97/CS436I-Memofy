@@ -34,6 +34,7 @@ Provide an application for grocery shoppers that will help track their kitchen i
 **Project task requirements:**
 
 - **Minimal requirements**
+  - Landing Page
   - Login page
   - Users can add/remove items
   - Users can see their items
