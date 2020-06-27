@@ -11,7 +11,12 @@ export default function Login() {
 
   return (
     <div className='login'>
-      <Card>
+      <div className='top-bar'>
+        <img src={logo} className="logo" alt={'Not found'} />
+        <div className="title">Memofy</div>
+      </div>
+
+      {/* <Card>
         <div className='login-heading'>
           <Heading element='h1'>Memofy</Heading>
           <img src={logo} className="logo" alt={'Not found'} />
@@ -24,7 +29,7 @@ export default function Login() {
           </div>
         </Card>
       </Card>
-      <LoginModal active={showModal} handleChange={toggleShowModal} />
+      <LoginModal active={showModal} handleChange={toggleShowModal} /> */}
     </div>
   );
 }
