@@ -22,9 +22,53 @@
     align-items: center;
 }
 
+.main-page {
+    display: flex;
+    /* align-items: center; */
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 10rem;
+    height: 100%;
+}
+
+.text-content {
+    margin-right: 15%;
+    margin-left: 5%;
+    width: 50%;
+}
+
+.example-content {
+    width: 60%;
+}
+
+.intro {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.main-content {
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    min-height: 40px;
+    overflow-wrap: break-word;
+    line-height: 44px;
+}
+
+.additional-content {
+    font-size: 24px;
+    margin-bottom: 75px;
+    
+}
+
 .logo {
     margin: 2rem;
     height: 8rem;
+}
+
+.app-example {
+    width: 75%;
 }
 
 .login-heading {
