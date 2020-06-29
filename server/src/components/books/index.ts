@@ -1,0 +1,1 @@
+export {default as BookRoutes} from './bookRoutes';
