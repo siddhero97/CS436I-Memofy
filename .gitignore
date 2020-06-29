@@ -1,0 +1,3 @@
+server/node_modules
+server/dist
+server/src/utils/constants.ts
