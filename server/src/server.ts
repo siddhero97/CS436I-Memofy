@@ -2,9 +2,11 @@ import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
 import {PORT} from './utils/constants';
+import {ItemRoutes} from './components/items';
 import {BookRoutes} from './components/books';
 import {MongoClient} from 'mongodb';
 import {connect, connection, Document, Model, model, Schema, Types} from 'mongoose';
+
 let ObjectId = Schema.Types.ObjectId;
 let String = Schema.Types.String;
 let Number = Schema.Types.Number;
@@ -41,16 +43,17 @@ export default class Server {
   private routes(): void {
     //example routes
     this.app.use('/books', new BookRoutes().router);
+    this.app.use('/items', new ItemRoutes().router);
   }
 
   private mongo(): void {
     // let MongoClient = require('mongodb').MongoClient;
     const uri = "mongodb+srv://memofy:hireUsNow@cluster0.ovue1.mongodb.net/MemofyDatabase?retryWrites=true&w=majority";
-    connect(uri, {useNewUrlParser: true})
+    connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(r => {
               console.log("Connection Is Successful");
               this.UserModel = model("User", new Schema<any>({id: ObjectId, email: String, password:  String, items: [ObjectId] }), "Users");
-              this.ItemModel = model("Item", new Schema<any>({id: ObjectId, user_id: ObjectId, count: Number, name: String, category: String, icon: String, expiryDate: [Date]}), "Items");
+              // this.ItemModel = model("Item", new Schema<any>({id: ObjectId, user_id: ObjectId, count: Number, name: String, category: String, icon: String, expiryDate: [Date]}), "Items");
               //   let userModel = new this.UserModel({
               //   email: "Bob goes sledding"// assign the _id from the our author Bob. This ID is created by default!
               // });
