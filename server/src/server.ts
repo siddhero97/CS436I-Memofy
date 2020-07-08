@@ -2,6 +2,7 @@ import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
 import {PORT} from './utils/constants';
+import {mongoUri} from './utils/constants';
 import {ItemRoutes} from './components/items';
 import {BookRoutes} from './components/books';
 import {MongoClient} from 'mongodb';
@@ -48,8 +49,7 @@ export default class Server {
 
   private mongo(): void {
     // let MongoClient = require('mongodb').MongoClient;
-    const uri = "mongodb+srv://memofy:hireUsNow@cluster0.ovue1.mongodb.net/MemofyDatabase?retryWrites=true&w=majority";
-    connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
+    connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(r => {
               console.log("Connection Is Successful");
               this.UserModel = model("User", new Schema<any>({id: ObjectId, email: String, password:  String, items: [ObjectId] }), "Users");
