@@ -27,6 +27,7 @@ export default class ItemService {
       await item.save();
       return res.status(200).json({item: 'Item created'});
     } catch (err) {
+      console.log(err)
       return res.status(500).json({item: err});
     }
   }
