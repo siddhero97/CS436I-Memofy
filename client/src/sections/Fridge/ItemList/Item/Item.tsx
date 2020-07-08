@@ -31,6 +31,7 @@ export default function Item({
     if (showDetails) {
       onHideDetails();
     }
+    console.log(name);
     dispatch(deleteItem(name));
   }, [dispatch, name, showDetails, onHideDetails]);
 

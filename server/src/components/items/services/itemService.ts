@@ -52,7 +52,7 @@ export default class ItemService {
 
   public async deleteItem(req: Request, res: Response, next: NextFunction) {
     try {
-      const itemDelete = await itemSchema.deleteOne({_id: req.body._id});
+      const itemDelete = await itemSchema.deleteOne({name: req.body.name});
       console.log(itemDelete);
       if(itemDelete) {
           return res.status(200).json({item: 'Successfully deleted'});
