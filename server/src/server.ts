@@ -6,6 +6,7 @@ import {ItemRoutes} from './components/items';
 import {BookRoutes} from './components/books';
 import {MongoClient} from 'mongodb';
 import {connect, connection, Document, Model, model, Schema, Types} from 'mongoose';
+import UserRoutes from './components/users/userRoutes';
 
 let ObjectId = Schema.Types.ObjectId;
 let String = Schema.Types.String;
@@ -44,6 +45,7 @@ export default class Server {
     //example routes
     this.app.use('/books', new BookRoutes().router);
     this.app.use('/items', new ItemRoutes().router);
+    this.app.use('/users', new UserRoutes().router);
   }
 
   private mongo(): void {
@@ -52,7 +54,7 @@ export default class Server {
     connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(r => {
               console.log("Connection Is Successful");
-              this.UserModel = model("User", new Schema<any>({id: ObjectId, email: String, password:  String, items: [ObjectId] }), "Users");
+              // this.UserModel = model("User", new Schema<any>({id: ObjectId, email: String, password:  String, items: [ObjectId] }), "Users");
               // this.ItemModel = model("Item", new Schema<any>({id: ObjectId, user_id: ObjectId, count: Number, name: String, category: String, icon: String, expiryDate: [Date]}), "Items");
               //   let userModel = new this.UserModel({
               //   email: "Bob goes sledding"// assign the _id from the our author Bob. This ID is created by default!

@@ -1,3 +1,4 @@
+export {};
 let mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 

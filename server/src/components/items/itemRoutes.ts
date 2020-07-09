@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import {ItemService} from './services';
 
-export default class BookRoutes {
+export default class ItemRoutes {
   public router: Router;
   public itemService: ItemService = new ItemService();
 
