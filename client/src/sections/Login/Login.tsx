@@ -4,10 +4,13 @@ import logo from 'icons/logo.png';
 
 import './Login.css';
 import LoginModal from './LoginModal/LoginModal';
+import RegisterModal from "./RegisterModal";
 
 export default function Login() {
-  const [showModal, setShowModal] = useState(false);
-  const toggleShowModal = useCallback(() => setShowModal(!showModal), [showModal]);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const toggleShowLoginModal = useCallback(() => setShowLoginModal(!showLoginModal), [showLoginModal]);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const toggleShowRegisterModal = useCallback(() => setShowRegisterModal(!showRegisterModal), [showRegisterModal]);
 
   return (
     <div className='login'>
@@ -19,12 +22,13 @@ export default function Login() {
         <Card sectioned>
           <div className="login-button-group">
             <ButtonGroup fullWidth>
-              <Button primary onClick={toggleShowModal}>Login</Button>
+              <Button primary onClick={toggleShowLoginModal}>Login</Button>
+              <Button primary onClick={toggleShowRegisterModal}>Register</Button>
             </ButtonGroup>
           </div>
         </Card>
       </Card>
-      <LoginModal active={showModal} handleChange={toggleShowModal} />
+      <LoginModal active={showLoginModal} handleChange={toggleShowLoginModal} />
+      <RegisterModal active={showRegisterModal} handleChange={toggleShowRegisterModal} />
     </div>
-  );
-}
+  );}

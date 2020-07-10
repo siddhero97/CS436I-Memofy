@@ -1,4 +1,4 @@
-import {UserActionTypes, LOGIN, LOGOUT} from './types';
+import {LOGIN, LOGOUT, REGISTER, UserActionTypes} from './types';
 import {UserState} from 'store/types';
 
 const initialState: UserState =
@@ -12,10 +12,15 @@ export function userReducer(
 ): UserState {
   switch (action.type) {
     case LOGIN:
+      console.log("action,.payload ", action.payload);
       return action.payload;
     case LOGOUT:
       return {
         email: null
+      };
+    case REGISTER:
+      return {
+        email: action.payload.email
       };
     default:
       return state;
