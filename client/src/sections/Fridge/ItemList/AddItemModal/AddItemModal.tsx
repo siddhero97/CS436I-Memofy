@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, Modal, TextField, Card} from '@shopify/polaris';
 import {addItem} from 'store/item/actions';
+import notFound from 'icons/not-found.svg';
 
 export default function AddItemModal() {
   const dispatch = useDispatch();
@@ -19,11 +20,10 @@ export default function AddItemModal() {
       // this will come from the database once setup
       category: 'Fruits',
       count: 1,
-      icon: "icon-url",
-      expiry: new Date().toLocaleDateString(),
+      icon: notFound,
+      expiryDate: new Date().toLocaleDateString(),
     };
-    console.log(newItem);
- 
+
     dispatch(addItem(newItem));
     toggleShowModal();
   }, [dispatch, value, toggleShowModal]);

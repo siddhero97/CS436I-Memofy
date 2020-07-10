@@ -10,7 +10,7 @@ import configureStore from 'store/configureStore';
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider i18n={enTranslations}>
-      <Provider store={configureStore()}> 
+      <Provider store={configureStore()}>
         <App />
       </Provider>
     </AppProvider>
