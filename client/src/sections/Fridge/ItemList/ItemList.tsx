@@ -1,14 +1,22 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {Card} from '@shopify/polaris';
 import {selectItems} from 'store/item/selectors';
 import {Item as ItemType} from 'store/item/types';
 import {Item, AddItemModal} from './components';
+import {getItems} from 'store/item/actions';
+import {useDispatch} from 'react-redux';
 
 import './ItemList.css';
 import ItemSummary from './ItemSummary';
 
 export default function ItemList() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
+
   const items = useSelector(selectItems);
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
   const isOpen = selectedItem !== null;
