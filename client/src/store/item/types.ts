@@ -1,9 +1,9 @@
 export interface Item {
   name: string;
   category: string;
-  icon: string | null;
+  icon: string | undefined;
   count: number;
-  expiry: string;
+  expiryDate: string;
 }
 
 export const ADD_ITEM = 'ADD_ITEM';

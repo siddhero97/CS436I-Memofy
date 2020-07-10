@@ -14,9 +14,8 @@ export default function ItemList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItems())
-    console.log("Behavior before the component is added to the DOM");
-  }, [dispatch])
+    dispatch(getItems());
+  }, [dispatch]);
 
   const items = useSelector(selectItems);
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
