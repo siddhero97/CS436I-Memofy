@@ -22,9 +22,18 @@ export const addItem = (newItem: Item) : any => async (
   }
 }
 
-export function deleteItem(name: string): ItemActionTypes {
-  return {
-    type: DELETE_ITEM,
-    payload: name,
-  };
+export const deleteItem = (body: string): any => async (
+  dispatch: any) => {
+  try {
+    let response = await axios.delete('http://localhost:4000/items/deleteItem', {
+      data: {name: body}
+    });
+    console.log(response)
+    dispatch({
+      type: DELETE_ITEM,
+      payload: body,
+    })
+  } catch (err) {
+    console.log(err);
+  }
 }
