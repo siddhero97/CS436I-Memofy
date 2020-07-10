@@ -8,6 +8,8 @@ export interface Item {
 
 export const ADD_ITEM = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const GET_ITEMS = 'GET_ITEMS';
+export const EDIT_ITEM = 'EDIT_ITEM';
 
 interface AddItemAction {
   type: typeof ADD_ITEM;
@@ -19,4 +21,13 @@ interface DeleteItemAction {
   payload: string;
 }
 
-export type ItemActionTypes = AddItemAction | DeleteItemAction;
+interface GetItemsAction {
+  type: typeof GET_ITEMS;
+  payload: Item[];
+}
+
+interface EditItemAction {
+  type: typeof EDIT_ITEM;
+}
+
+export type ItemActionTypes = AddItemAction | DeleteItemAction | GetItemsAction | EditItemAction;

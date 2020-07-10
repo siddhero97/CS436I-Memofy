@@ -1,4 +1,4 @@
-import {Item, ItemActionTypes, ADD_ITEM, DELETE_ITEM} from './types';
+import {Item, ItemActionTypes, ADD_ITEM, DELETE_ITEM, GET_ITEMS} from './types';
 import {ItemState} from 'store/types';
 import apple from 'icons/apple.svg';
 import orange from 'icons/orange.svg';
@@ -66,7 +66,7 @@ const initialState: ItemState = {
 };
 
 export function itemReducer(
-  state = initialState,
+  state = {items:[]},
   action: ItemActionTypes,
 ): ItemState {
   switch (action.type) {
@@ -77,6 +77,10 @@ export function itemReducer(
     case DELETE_ITEM:
       return {
         items: [...state.items].filter(({name}) => name !== action.payload),
+      };
+    case GET_ITEMS:
+      return {
+        items: action.payload
       };
     default:
       return state;

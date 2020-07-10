@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {Card} from '@shopify/polaris';
 import {deleteItem} from 'store/item/actions';
 import {Item as ItemType} from 'store/item/types';
+import apple from '../../../../icons/apple.svg';
 
 import notFound from 'icons/not-found.svg';
 
@@ -53,7 +54,8 @@ export default function Item({
         ]}
       >
         <div className='item-section'>
-          <img className='item-logo' src={icon || notFound} alt='appleLogo' />
+          {/* <img className='item-logo' src={'../../../../icons/apple.svg'} alt='appleLogo' /> */}
+          <object data='../../../../icons/apple.svg' type='image/svg+xml' />
         </div>
       </Card>
     </div>
