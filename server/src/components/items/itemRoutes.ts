@@ -1,9 +1,12 @@
 import {Router} from 'express';
-import {ItemService} from './services';
+import {CreateItemService, FetchItemService, DeleteItemService, UpdateItemService} from './services';
 
 export default class BookRoutes {
   public router: Router;
-  public itemService: ItemService = new ItemService();
+  public createItemService: CreateItemService = new CreateItemService();
+  public fetchItemService: FetchItemService = new FetchItemService();
+  public deleteItemService: DeleteItemService = new DeleteItemService();
+  public updateItemService: UpdateItemService = new UpdateItemService();
 
   constructor() {
     this.router = Router();
@@ -11,9 +14,9 @@ export default class BookRoutes {
   }
 
   routes() {
-    this.router.get('/getItems', this.itemService.getItem);
-    this.router.post('/createItem', this.itemService.postItem);
-    this.router.put('/editItem', this.itemService.putItem);
-    this.router.delete('/deleteItem', this.itemService.deleteItem);
+    this.router.get('/get', this.fetchItemService.execute);
+    this.router.post('/post', this.createItemService.execute);
+    this.router.put('/put', this.updateItemService.execute);
+    this.router.delete('/del', this.deleteItemService.execute);
   }
 }

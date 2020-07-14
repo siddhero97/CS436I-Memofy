@@ -1,24 +1,12 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import compression from 'compression';
 import cors from 'cors';
-import {PORT} from './utils/constants';
-import {mongoUri} from './utils/constants';
+import {PORT, MONGO_URL} from './utils/constants';
 import {ItemRoutes} from './components/items';
-import {BookRoutes} from './components/books';
-import {MongoClient} from 'mongodb';
-import {connect, connection, Document, Model, model, Schema, Types} from 'mongoose';
 
-let ObjectId = Schema.Types.ObjectId;
-let String = Schema.Types.String;
-let Number = Schema.Types.Number;
-let Date  = Schema.Types.Date;
-// import ObjectId from 'Schema.Types.ObjectId';
-// import ObjectId = module
 export default class Server {
   public app: express.Application;
-  private UserModel: Model<Document> | undefined;
-  private ItemModel: Model<Document> | undefined;
-
 
   constructor() {
     this.app = express();
@@ -42,24 +30,49 @@ export default class Server {
   }
 
   private routes(): void {
-    //example routes
-    this.app.use('/books', new BookRoutes().router);
     this.app.use('/items', new ItemRoutes().router);
   }
 
   private mongo(): void {
-    // let MongoClient = require('mongodb').MongoClient;
-    connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
-        .then(r => {
-              console.log("Connection Is Successful");
-        }
+    const {connection} = mongoose;
 
-        )
-        .catch(e => {
-          console.error("Connection Failed", e);
-        })
-    //Get the default connection
+    connection.on('connected', () => {
+      console.log('Mongo Connection Established');
+    })
 
-//Bind connection to error event (to get notification of connection errors)
+    connection.on('reconnected', () => {
+      console.log('Mongo Connection Restablished');
+    })
+
+    connection.on('disconnected', () => {
+      console.log('Mongo Connection Disconnected');
+      console.log('Trying to reconnect to Mongo...');
+      setTimeout(() => {
+        mongoose.connect(MONGO_URL, {
+          keepAlive: true,
+          socketTimeoutMS: 3000,
+          connectTimeoutMS: 3000,
+          useUnifiedTopology: true,
+          useNewUrlParser: true,
+        });
+      }, 3000);
+    })
+    connection.on('close', () => {
+      console.log('Mongo Connection Closed');
+    });
+
+    connection.on('error', (error: Error) => {
+      console.log(`Mongo Connection Error: ${error}`);
+    });
+
+    const run = async () => {
+      await mongoose.connect(MONGO_URL, {
+        keepAlive: true,
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      });
+    };
+
+    run().catch(error => console.error(error));
   }
 }
