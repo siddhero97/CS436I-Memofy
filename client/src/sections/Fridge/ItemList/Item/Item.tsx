@@ -30,7 +30,7 @@ export default function Item({
       onHideDetails();
     }
     dispatch(thunkDeleteItem(_id));
-  }, [dispatch, name, showDetails, onHideDetails]);
+  }, [dispatch, showDetails, _id, onHideDetails]);
 
   return (
     <div className='item'>
