@@ -6,7 +6,7 @@ export default class FetchItemService {
     try {
       const items = await findItem();
 
-      res.status(200).json(items);
+      res.status(200).json({items});
     } catch (error) {
       res.status(500).send(error);
     }

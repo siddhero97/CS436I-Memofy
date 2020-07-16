@@ -1,7 +1,7 @@
 import {Document, Schema, Model, model} from 'mongoose';
 
 export interface IItem extends Document {
-  fridge_id: String;
+  fridgeId: String;
   count: String;
   name: String;
   category: String;
@@ -10,7 +10,7 @@ export interface IItem extends Document {
 }
 
 export const ItemSchema = new Schema({
-  fridge_id: {
+  fridgeId: {
     type: String,
     required: true
   },
@@ -31,11 +31,11 @@ export const ItemSchema = new Schema({
     required: true
   },
   expiryDate: {
-    type: String,
+    type: Date,
     required: true
   }
 })
 
-const Item: Model<IItem> = model<IItem>("user", ItemSchema);
+const Item: Model<IItem> = model<IItem>("items", ItemSchema);
 
 export default Item;

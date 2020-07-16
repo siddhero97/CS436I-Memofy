@@ -4,7 +4,7 @@ import {Card} from '@shopify/polaris';
 import {selectItems} from 'store/item/selectors';
 import {Item as ItemType} from 'store/item/types';
 import {Item, AddItemModal} from './components';
-import {getItems} from 'store/item/actions';
+import {thunkFetchItems} from 'store/item/actions';
 import {useDispatch} from 'react-redux';
 
 import './ItemList.css';
@@ -14,7 +14,7 @@ export default function ItemList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(thunkFetchItems());
   }, [dispatch]);
 
   const items = useSelector(selectItems);

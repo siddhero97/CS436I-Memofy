@@ -6,7 +6,7 @@ import './ItemSummaryContent.css';
 interface Props {
   category: string;
   count: number;
-  expiryDate: string;
+  expiryDate: Date;
 }
 
 export default function ItemSummaryContent({
@@ -17,7 +17,7 @@ export default function ItemSummaryContent({
   const rows = [
     ['Category', category],
     ['Count', count],
-    ['Expiry date', expiryDate]
+    ['Expiry date', new Date(expiryDate).toLocaleDateString()]
   ];
 
   return (
