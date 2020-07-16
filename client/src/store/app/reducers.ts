@@ -2,6 +2,7 @@ import {AppState} from '../types';
 import {LOGIN, LOGOUT, UserActionTypes} from '../user/types';
 
 export const initialState: AppState = {
+  token: undefined,
   isLoggedIn: false
 };
 
@@ -12,10 +13,14 @@ export function appReducer(
   switch (action.type) {
     case LOGIN:
       return {
+        ...state,
+        token: action.payload.token,
         isLoggedIn: true,
       };
     case LOGOUT:
       return {
+        ...state,
+        token: undefined,
         isLoggedIn: false,
       };
     default:

@@ -1,21 +1,33 @@
-import {UserActionTypes, LOGIN, LOGOUT} from './types';
+import {UserActionTypes, LOGIN, LOGOUT, WILL_LOGIN, DID_LOGIN} from './types';
 import {UserState} from 'store/types';
 
-const initialState: UserState =
-  {
-    email: 'rijeonghyeok@korea.com'
-  };
+const intialState: UserState = {
+  isLoading: false,
+};
 
 export function userReducer(
-  state = initialState,
+  state = intialState,
   action: UserActionTypes,
 ): UserState {
   switch (action.type) {
     case LOGIN:
-      return action.payload;
+      return {
+        ...state,
+        ...action.payload.user
+      };
     case LOGOUT:
       return {
-        email: null
+        ...state
+      };
+    case WILL_LOGIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case DID_LOGIN:
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;

@@ -7,3 +7,8 @@ export const selectIsLoggedIn = createSelector(
   selectAppState,
   (app: AppState) => app.isLoggedIn
 );
+
+export const selectToken = createSelector(
+  selectAppState,
+  (app: AppState) => app.token
+);
