@@ -1,0 +1,6 @@
+server/node_modules
+server/dist
+server/src/utils/constants.ts
+node_modules
+
+server/node_modules/.bin/concurrently

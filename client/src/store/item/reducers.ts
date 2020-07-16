@@ -1,68 +1,23 @@
-import {Item, ItemActionTypes, ADD_ITEM, DELETE_ITEM} from './types';
+import {
+  ItemActionTypes,
+  ADD_ITEM,
+  DELETE_ITEM,
+  FETCH_ITEMS,
+  WILL_FETCH_ITEMS,
+  DID_FETCH_ITEMS,
+  WILL_ADD_ITEM,
+  WILL_DEL_ITEM,
+  WILL_EDIT_ITEM,
+  DID_ADD_ITEM,
+  DID_DEL_ITEM,
+  DID_EDIT_ITEM,
+  EDIT_ITEM
+} from './types';
 import {ItemState} from 'store/types';
-import apple from 'icons/apple.svg';
-import orange from 'icons/orange.svg';
-import avocado from 'icons/avocado.svg';
-import milk from 'icons/milk.svg';
-import steak from 'icons/steak.svg';
-import grapes from 'icons/grapes.svg';
-import lettuce from 'icons/lettuce.svg';
-
-
-const initialItems: Item[] = [
-  {
-    name: 'Apples',
-    category: 'Fruits',
-    count: 5,
-    icon: apple,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Oranges',
-    category: 'Fruits',
-    count: 2,
-    icon: orange,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Milk',
-    category: 'Dairy',
-    count: 1,
-    icon: milk,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Steak',
-    category: 'Meat',
-    count: 1,
-    icon: steak,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Avocados',
-    category: 'Fruits',
-    count: 6,
-    icon: avocado,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Grapes',
-    category: 'Fruits',
-    count: 2,
-    icon: grapes,
-    expiry: new Date().toLocaleDateString(),
-  },
-  {
-    name: 'Lettuce',
-    category: 'Vegetable',
-    count: 1,
-    icon: lettuce,
-    expiry: new Date().toLocaleDateString(),
-  }
-];
 
 const initialState: ItemState = {
-  items: initialItems
+  items: [],
+  isLoading: false
 };
 
 export function itemReducer(
@@ -72,11 +27,34 @@ export function itemReducer(
   switch (action.type) {
     case ADD_ITEM:
       return {
+        ...state,
         items: [...state.items, action.payload],
       };
     case DELETE_ITEM:
       return {
-        items: [...state.items].filter(({name}) => name !== action.payload),
+
+        ...state,
+        items: [...state.items].filter(({_id}) => _id !== action.payload),
+      };
+    case FETCH_ITEMS:
+      return {
+        ...state,
+        items: action.payload
+      };
+    case EDIT_ITEM:
+      return {
+        ...state,
+        items: [...state.items.filter(({_id}) => _id !== action.payload._id), action.payload]
+      };
+    case WILL_FETCH_ITEMS || WILL_ADD_ITEM || WILL_DEL_ITEM || WILL_EDIT_ITEM:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case DID_FETCH_ITEMS || DID_ADD_ITEM || DID_DEL_ITEM || DID_EDIT_ITEM:
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;

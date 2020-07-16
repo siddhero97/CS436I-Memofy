@@ -1,10 +1,8 @@
 import React, {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {Card} from '@shopify/polaris';
-import {deleteItem} from 'store/item/actions';
+import {thunkDeleteItem} from 'store/item/actions';
 import {Item as ItemType} from 'store/item/types';
-
-import notFound from 'icons/not-found.svg';
 
 import './Item.css';
 interface Props {
@@ -21,7 +19,7 @@ export default function Item({
   onHideDetails
 }: Props) {
   const dispatch = useDispatch();
-  const {name, icon} = item;
+  const {_id, name, icon} = item;
 
   const handleShowDetails = useCallback(() =>
     onShowDetails(item), [item, onShowDetails]
@@ -31,7 +29,7 @@ export default function Item({
     if (showDetails) {
       onHideDetails();
     }
-    dispatch(deleteItem(name));
+    dispatch(thunkDeleteItem(_id));
   }, [dispatch, name, showDetails, onHideDetails]);
 
   return (
@@ -52,7 +50,7 @@ export default function Item({
         ]}
       >
         <div className='item-section'>
-          <img className='item-logo' src={icon || notFound} alt='appleLogo' />
+          <img className='item-logo' src={icon} alt='appleLogo' />
         </div>
       </Card>
     </div>

@@ -7,6 +7,7 @@ export type RootState = {
 };
 
 export interface ItemState {
+  isLoading: boolean;
   items: Item[];
 }
 
