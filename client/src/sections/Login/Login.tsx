@@ -6,13 +6,23 @@ import example from '../example.png';
 import './Login.css';
 import LoginModal from './LoginModal/LoginModal';
 import RegisterModal from './RegisterModal/RegisterModal';
+import {selectToken} from 'store/app/selectors';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 export default function Login() {
+  // the below 2 lines should not be here, we need to rethink the structure of our app
+  const token = useSelector(selectToken);
+  const history = useHistory();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const toggleShowLoginModal = useCallback(() => setShowLoginModal(!showLoginModal), [showLoginModal]);
-
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+  const toggleShowLoginModal = useCallback(() => setShowLoginModal(!showLoginModal), [showLoginModal]);
   const toggleShowRegisterModal = useCallback(() => setShowRegisterModal(!showRegisterModal), [showRegisterModal]);
+
+  if (token) {
+    history.push('/home');
+  }
 
   return (
     <div className='login'>

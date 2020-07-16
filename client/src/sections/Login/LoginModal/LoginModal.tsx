@@ -1,8 +1,7 @@
 import {Modal, TextField, Banner} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
-import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {login} from 'store/user/actions';
+import {thunkLogin} from 'store/user/actions';
 
 interface Props {
   active: boolean;
@@ -11,7 +10,6 @@ interface Props {
 
 export default function LoginModal({active, handleChange}: Props) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showWarning, setShowWarning] = useState(false);
@@ -20,8 +18,7 @@ export default function LoginModal({active, handleChange}: Props) {
     if (email === "" || password === "") {
       setShowWarning(true);
     } else {
-      dispatch(login({email}));
-      history.push('/home');
+      dispatch(thunkLogin(email, password));
     }
   };
 

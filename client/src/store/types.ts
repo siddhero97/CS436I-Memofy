@@ -12,9 +12,14 @@ export interface ItemState {
 }
 
 export interface UserState {
-  email: string | null;
+  _id?: string;
+  isLoading: boolean;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
 }
 
 export interface AppState {
+  token?: string;
   isLoggedIn: boolean;
 }
