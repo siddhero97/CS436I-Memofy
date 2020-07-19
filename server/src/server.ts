@@ -5,6 +5,7 @@ import cors from 'cors';
 import {PORT, MONGO_URL} from './utils/constants';
 import {ItemRoutes} from './components/items';
 import {UserRoutes} from './components/users';
+import { FridgeRoutes } from './components/fridges';
 
 export default class Server {
   public app: express.Application;
@@ -33,6 +34,7 @@ export default class Server {
   private routes(): void {
     this.app.use('/users', new UserRoutes().router);
     this.app.use('/items', new ItemRoutes().router);
+    this.app.use('/fridges', new FridgeRoutes().router);
   }
 
   private mongo(): void {

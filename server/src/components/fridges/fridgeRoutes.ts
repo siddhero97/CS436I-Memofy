@@ -1,9 +1,9 @@
 import {Router} from 'express';
-import passport from 'passport';
-import '../../middlewares/passport';
+import {CreateFridgeService} from './services';
 
 export default class FridgeRoutes {
     public router: Router;
+    public createFridgeService: CreateFridgeService = new CreateFridgeService();
     // will fill in rest of services
 
     constructor() {
@@ -12,8 +12,8 @@ export default class FridgeRoutes {
     }
 
     routes() {
-        this.router.get('/get');
-        this.router.post('/post');
-        this.router.delete('/delete');
+        // this.router.get('/get');
+        this.router.post('/post', this.createFridgeService.execute);
+        // this.router.delete('/delete');
     }
 }
