@@ -5,6 +5,7 @@ import cors from 'cors';
 import {PORT, MONGO_URL} from './utils/constants';
 import {ItemRoutes} from './components/items';
 import {UserRoutes} from './components/users';
+import * as path from "path";
 
 export default class Server {
   public app: express.Application;
@@ -31,6 +32,12 @@ export default class Server {
   }
 
   private routes(): void {
+    if(process.env.NODE_ENV === "production") {
+      this.app.use(express.static("client/build"));
+      this.app.get("*",(req,res) => {
+        res.sendFile(path.resolve(__dirname, "client","build","index.html"));
+      });
+    }
     this.app.use('/users', new UserRoutes().router);
     this.app.use('/items', new ItemRoutes().router);
   }
@@ -40,11 +47,11 @@ export default class Server {
 
     connection.on('connected', () => {
       console.log('Mongo Connection Established');
-    })
+    });
 
     connection.on('reconnected', () => {
       console.log('Mongo Connection Restablished');
-    })
+    });
 
     connection.on('disconnected', () => {
       console.log('Mongo Connection Disconnected');
@@ -58,7 +65,7 @@ export default class Server {
           useNewUrlParser: true,
         });
       }, 3000);
-    })
+    });
     connection.on('close', () => {
       console.log('Mongo Connection Closed');
     });
