@@ -1,10 +1,11 @@
 import {Router} from 'express';
-import {CreateFridgeService} from './services';
+import {CreateFridgeService, FetchFridgeService, DeleteFridgeService} from './services';
 
 export default class FridgeRoutes {
     public router: Router;
     public createFridgeService: CreateFridgeService = new CreateFridgeService();
-    // will fill in rest of services
+    public fetchFridgeService: FetchFridgeService = new FetchFridgeService();
+    public deleteFridgeService: DeleteFridgeService = new DeleteFridgeService();
 
     constructor() {
       this.router = Router();
@@ -12,8 +13,8 @@ export default class FridgeRoutes {
     }
 
     routes() {
-        // this.router.get('/get');
+        this.router.get('/get', this.fetchFridgeService.execute);
         this.router.post('/post', this.createFridgeService.execute);
-        // this.router.delete('/delete');
+        this.router.delete('/delete', this.deleteFridgeService.execute);
     }
 }

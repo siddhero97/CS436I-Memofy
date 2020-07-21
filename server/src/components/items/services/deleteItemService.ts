@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {deleteItem} from '../DALs';
 
-export default class FetchItemService {
+export default class DeleteItemService {
   public async execute(req: Request, res: Response): Promise<void> {
     const {body: {id}} = req;
 
