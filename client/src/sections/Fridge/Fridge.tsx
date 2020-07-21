@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header, Sidebar, ItemList} from './components';
+import {Header, Sidebar, ItemList, Fridgebar} from './components';
 
 import './Fridge.css';
 import {useSelector} from 'react-redux';
@@ -19,6 +19,7 @@ export default function Fridge() {
       <Header />
       <Sidebar />
       <ItemList />
+      <Fridgebar />
     </div>
   );
 }
