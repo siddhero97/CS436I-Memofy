@@ -7,19 +7,18 @@ export default function AddItemModal() {
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
-  const [value, setValue] = useState('');
   const [name, setName] = useState('');
-  const [fridge, setFridge] = useState('My fridge');
+  const [fridge, setFridge] = useState('0');
   const fridges = [
-    {label: 'My fridge', value: 'today'},
-    {label: 'Home fridge', value: 'yesterday'},
-    {label: 'Dorm fridge', value: 'lastWeek'},
+    {label: 'My fridge', value: '0'},
+    {label: 'Home fridge', value: '1'},
+    {label: 'Dorm fridge', value: '2'},
   ];
-  const [category, setCategory] = useState('Categories');
+  const [category, setCategory] = useState('meats');
   const categories = [
-    {label: 'Meats', value: 'today'},
-    {label: 'Fruits', value: 'yesterday'},
-    {label: 'Veggies', value: 'lastWeek'},
+    {label: 'Meats', value: 'meats'},
+    {label: 'Fruits', value: 'fruits'},
+    {label: 'Veggies', value: 'veggies'},
   ];
   const [count, setCount] = useState('0');
   const [{month, year}, setDate] = useState({
@@ -27,8 +26,8 @@ export default function AddItemModal() {
     year: 2020,
   });
   const [selectedDates, setSelectedDates] = useState({
-    start: new Date('Tues Jul 22 2020 00:00:00 GMT-0500 (EST)'),
-    end: new Date('Tues Jul 22 2020 00:00:00 GMT-0500 (EST)'),
+    start: new Date(),
+    end: new Date(),
   });
   const [icon, setIcon] = useState('');
 
@@ -38,22 +37,26 @@ export default function AddItemModal() {
 
   const handleSubmit = useCallback(() => {
     const newItem = {
-      fridgeId: 1234,
+      fridgeId: +fridge,
       count: +count,
       name: name,
       // this will come from the database once setup
-      category: 'Fruits',
-      icon: 'url',
-      expiryDate: new Date(),
+      category: category,
+      icon: icon,
+      expiryDate: selectedDates.end,
     };
 
     dispatch(thunkAddItem(newItem));
     toggleShowModal();
-  }, [dispatch, value, toggleShowModal]);
+    setName('');
+    setFridge('0');
+    setCategory('meats');
+    setCount('0');
+    setDate({month: 6, year: 2020});
+    setSelectedDates({start: new Date(), end: new Date()});
+    setIcon('');
+  }, [dispatch, name, fridge, category, count, month, year, selectedDates, icon, toggleShowModal]);
 
-  const handleTextChange = useCallback((newValue) => {
-    setValue(newValue);
-  }, []);
   const handleNameChange = useCallback((name) => setName(name), []);
   const handleFridgeChange = useCallback((fridge) => setFridge(fridge), []);
   const handleCategoryChange  = useCallback((category) => setCategory(category), []);
@@ -73,7 +76,7 @@ export default function AddItemModal() {
         title='Add new food item'
         primaryAction={{
           content: 'Add',
-          disabled: value === '',
+          disabled: name === '',
           onAction: handleSubmit,
         }}
         secondaryActions={[
@@ -90,7 +93,7 @@ export default function AddItemModal() {
           <TextField label="Count" type="number" value={count} onChange={handleCountChange} />
           <header>Expiry date</header>
           <DatePicker month={month} year={year} onChange={setSelectedDates} onMonthChange={handleMonthChange}
-          selected={selectedDates} />
+          selected={selectedDates} allowRange={false} />
           <TextField label="Icon" value={icon} onChange={handleIconChange} />
         </Modal.Section>
       </Modal>
