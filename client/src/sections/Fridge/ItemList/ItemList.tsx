@@ -1,11 +1,10 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Card} from '@shopify/polaris';
 import {selectItems} from 'store/item/selectors';
 import {Item as ItemType} from 'store/item/types';
 import {Item, AddItemModal} from './components';
 import {thunkFetchItems} from 'store/item/actions';
-import {useDispatch} from 'react-redux';
 
 import './ItemList.css';
 import ItemSummary from './ItemSummary';

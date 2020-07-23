@@ -15,11 +15,11 @@ import {
 import {AppThunk} from 'store';
 
 interface FetchFridgeResponse {
-  Fridges: Fridge[];
+  fridges: Fridge[];
 }
 
 interface AddFridgeResponse {
-  Fridge: Fridge;
+  fridge: Fridge;
 }
 
 interface DeleteFridgeResponse {
@@ -31,10 +31,10 @@ function willFetchFridges(): FridgeActionTypes {
     type: WILL_FETCH_FRIDGES,
   };
 }
-function fetchFridges(Fridges: Fridge[]): FridgeActionTypes {
+function fetchFridges(fridges: Fridge[]): FridgeActionTypes {
   return {
     type: FETCH_FRIDGES,
-    payload: Fridges,
+    payload: fridges,
   };
 }
 function didFetchFridges(): FridgeActionTypes {
@@ -48,10 +48,10 @@ function willAddFridge(): FridgeActionTypes {
     type: WILL_ADD_FRIDGE,
   };
 }
-function addFridge(Fridge: Fridge): FridgeActionTypes {
+function addFridge(fridge: Fridge): FridgeActionTypes {
   return {
     type: ADD_FRIDGE,
-    payload: Fridge,
+    payload: fridge,
   };
 }
 function didAddFridge(): FridgeActionTypes {
@@ -80,18 +80,16 @@ function didDeleteFridge(): FridgeActionTypes {
 export const thunkFetchFridges = (): AppThunk => async dispatch => {
   dispatch(willFetchFridges());
 
-  const {data: {Fridges}} = await axios.get<FetchFridgeResponse>('http://localhost:4000/fridges/get');
+  const {data: {fridges}} = await axios.get<FetchFridgeResponse>('http://localhost:4000/fridges/get');
 
-  dispatch(fetchFridges(Fridges));
+  dispatch(fetchFridges(fridges));
   dispatch(didFetchFridges());
 };
 
 export const thunkAddFridge = (newFridge: Partial<Fridge>): AppThunk => async dispatch => {
   dispatch(willAddFridge());
-  console.log('ihi')
-  const {data: {Fridge}} = await axios.post<AddFridgeResponse>('http://localhost:4000/fridges/post', newFridge);
-  console.log('done')
-  dispatch(addFridge(Fridge));
+  const {data: {fridge}} = await axios.post<AddFridgeResponse>('http://localhost:4000/fridges/post', newFridge);
+  dispatch(addFridge(fridge));
   dispatch(didAddFridge());
 };
 
