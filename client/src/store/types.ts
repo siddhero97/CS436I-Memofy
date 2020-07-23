@@ -1,10 +1,17 @@
 import {Item} from "./item/types";
+import {Fridge} from './fridge/types';
 
 export type RootState = {
   item: ItemState;
   user: UserState;
   app: AppState;
+  fridge: FridgeState;
 };
+
+export interface FridgeState {
+  isLoading: boolean;
+  fridges: Fridge[];
+}
 
 export interface ItemState {
   isLoading: boolean;
