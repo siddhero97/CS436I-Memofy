@@ -1,13 +1,24 @@
 import React from 'react';
 import {ProfileMajorMonotone} from '@shopify/polaris-icons';
-import {Icon, Heading} from '@shopify/polaris';
+import {Button, Heading} from '@shopify/polaris';
 import {Navbar} from './components';
 
 import logo from 'icons/logo.png';
 
 import './Header.css';
+import Profile from 'sections/Profile';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { userInfo } from 'os';
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleProfileClick = () => {
+  // console.log(useSelectorS(userInfo));
+  history.push('./profile');
+  };
   return (
     <div className='header'>
       <div className='header-title'>
@@ -18,8 +29,11 @@ export default function Header() {
         <Navbar />
       </div>
       <div className='profile-icon'>
-        <Icon source={ProfileMajorMonotone} />
+        <Button icon={ProfileMajorMonotone} onClick={handleProfileClick
+        }/>
       </div>
     </div>
   );
+
+  
 }
