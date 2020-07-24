@@ -1,0 +1,20 @@
+.item-list {
+    grid-area: ItemList;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #5C6AC4;
+    padding: 1rem;
+}
+
+.item-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.item-logo {
+  width: 10rem;
+}

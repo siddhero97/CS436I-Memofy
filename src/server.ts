@@ -1,4 +1,5 @@
 import express from 'express';
+import * as path from 'path';
 import mongoose from 'mongoose';
 import compression from 'compression';
 import cors from 'cors';
@@ -28,11 +29,15 @@ export default class Server {
     this.app.use(express.urlencoded({extended: false}));
     this.app.use(compression());
     this.app.use(cors());
+    this.app.use(express.static(path.join(__dirname, '/../client/build')))
   }
 
   private routes(): void {
     this.app.use('/api/users', new UserRoutes().router);
     this.app.use('/api/items', new ItemRoutes().router);
+    this.app.get('*', (_req, res) => {
+      res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+    })
   }
 
   private mongo(): void {

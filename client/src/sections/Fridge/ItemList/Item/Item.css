@@ -1,0 +1,23 @@
+.Polaris-Card {
+  border-radius: 4rem;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  min-width: 22.5rem;
+}
+
+.item-button {
+  margin-left: 7rem;
+  margin-top: 2rem;
+}
+
+.item-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 18rem;
+}
