@@ -6,6 +6,7 @@ export interface IUser extends Document {
   lastName: String;
   email: String;
   password: String;
+  fridgeIds: [String];
   isValidPassword(password: String): Promise<boolean>;
 }
 
@@ -26,6 +27,10 @@ export const UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  fridgeIds: {
+    type: [String],
+    required: true,
   }
 })
 

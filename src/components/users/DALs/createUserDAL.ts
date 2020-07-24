@@ -6,5 +6,5 @@ export default async function(
   email: String,
   password: String
   ) {
-  return await User.create({firstName, lastName, email, password});
+  return await User.create({fridgeIds: [], firstName, lastName, email, password});
 }
