@@ -1,11 +1,11 @@
 import express from 'express';
+import * as path from 'path';
 import mongoose from 'mongoose';
 import compression from 'compression';
 import cors from 'cors';
-import {PORT, MONGO_URL} from './utils/constants';
+import {MONGO_URL} from './utils/constants';
 import {ItemRoutes} from './components/items';
 import {UserRoutes} from './components/users';
-import * as path from "path";
 
 export default class Server {
   public app: express.Application;
@@ -24,22 +24,20 @@ export default class Server {
   }
 
   private config(): void {
-    this.app.set('port', PORT);
+    this.app.set('port', process.env.PORT || 5000);
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended: false}));
     this.app.use(compression());
     this.app.use(cors());
+    this.app.use(express.static(path.join(__dirname, '/../client/build')))
   }
 
   private routes(): void {
-    if(process.env.NODE_ENV === "production") {
-      this.app.use(express.static("client/build"));
-      this.app.get("*",(req,res) => {
-        res.sendFile(path.resolve(__dirname, "client","build","index.html"));
-      });
-    }
-    this.app.use('/users', new UserRoutes().router);
-    this.app.use('/items', new ItemRoutes().router);
+    this.app.use('/api/users', new UserRoutes().router);
+    this.app.use('/api/items', new ItemRoutes().router);
+    this.app.get('*', (_req, res) => {
+      res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+    })
   }
 
   private mongo(): void {

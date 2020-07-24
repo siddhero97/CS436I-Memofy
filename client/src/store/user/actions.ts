@@ -1,5 +1,5 @@
 import {UserActionTypes, LOGOUT, LOGIN, WILL_LOGIN, DID_LOGIN, User, WILL_CREATE_USER, DID_CREATE_USER} from './types';
-import {AppThunk} from 'store';
+import {AppThunk} from '..';
 import axios from 'axios';
 
 export interface CreateUserResponse {
@@ -47,14 +47,14 @@ export const thunkCreateUser = (
 ): AppThunk => async dispatch => {
   dispatch(willCreateUser());
 
-  await axios.post<CreateUserResponse>('http://localhost:4000/users/signup', {
+  await axios.post<CreateUserResponse>('/api/users/signup', {
     firstName,
     lastName,
     email,
     password
   });
 
-  const {data} = await axios.post<LoginResponse>('http://localhost:4000/users/login', {
+  const {data} = await axios.post<LoginResponse>('/api/users/login', {
     email,
     password
   });
@@ -66,7 +66,7 @@ export const thunkCreateUser = (
 export const thunkLogin = (email: string, password: string): AppThunk => async dispatch => {
   dispatch(willLogin());
 
-  const {data} = await axios.post<LoginResponse>('http://localhost:4000/users/login', {
+  const {data} = await axios.post<LoginResponse>('/api/users/login', {
     email,
     password
   });

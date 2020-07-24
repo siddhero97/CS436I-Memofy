@@ -5,7 +5,7 @@ import {AppProvider} from '@shopify/polaris';
 import {Provider} from 'react-redux';
 import {App} from './foundation';
 import * as serviceWorker from './serviceWorker';
-import configureStore from 'configureStore';
+import configureStore from './configureStore';
 
 ReactDOM.render(
   <React.StrictMode>

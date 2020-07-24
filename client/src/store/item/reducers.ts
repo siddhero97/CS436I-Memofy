@@ -13,7 +13,7 @@ import {
   DID_EDIT_ITEM,
   EDIT_ITEM
 } from './types';
-import {ItemState} from 'store/types';
+import {ItemState} from '../types';
 
 const initialState: ItemState = {
   items: [],

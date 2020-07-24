@@ -1,7 +1,7 @@
 import {Modal, TextField, Banner} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {thunkLogin} from 'store/user/actions';
+import {thunkLogin} from '../../../store/user/actions';
 
 interface Props {
   active: boolean;

@@ -15,7 +15,7 @@ import {
   WILL_EDIT_ITEM,
   DID_EDIT_ITEM
 } from './types';
-import {AppThunk} from 'store';
+import {AppThunk} from '..';
 
 interface FetchItemResponse {
   items: Item[];
@@ -104,7 +104,7 @@ function didEditItem(): ItemActionTypes {
 export const thunkFetchItems = (): AppThunk => async dispatch => {
   dispatch(willFetchItems());
 
-  const {data: {items}} = await axios.get<FetchItemResponse>('http://localhost:4000/items/get');
+  const {data: {items}} = await axios.get<FetchItemResponse>('/api/items/get');
 
   dispatch(fetchItems(items));
   dispatch(didFetchItems());
@@ -113,7 +113,7 @@ export const thunkFetchItems = (): AppThunk => async dispatch => {
 export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async dispatch => {
   dispatch(willAddItem());
 
-  const {data: {item}} = await axios.post<AddItemResponse>('http://localhost:4000/items/post', newItem);
+  const {data: {item}} = await axios.post<AddItemResponse>('/api/items/post', newItem);
 
   dispatch(addItem(item));
   dispatch(didAddItem());
@@ -122,7 +122,7 @@ export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async dispatch
 export const thunkDeleteItem = (id: string): AppThunk => async dispatch => {
   dispatch(willDeleteItem());
 
-  const {data: {id: deletedId}} = await axios.delete<DeleteItemResponse>('http://localhost:4000/items/del', {
+  const {data: {id: deletedId}} = await axios.delete<DeleteItemResponse>('/api/items/del', {
     data: {id}
   });
 
@@ -133,7 +133,7 @@ export const thunkDeleteItem = (id: string): AppThunk => async dispatch => {
 export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async dispatch => {
   dispatch(willEditItem());
 
-  const {data: {item}} = await axios.put<EditItemResponse>('http://localhost:4000/items/put', updatedItem);
+  const {data: {item}} = await axios.put<EditItemResponse>('/api/items/put', updatedItem);
 
   dispatch(editItem(item));
   dispatch(didEditItem());

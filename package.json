@@ -1,12 +1,39 @@
 {
-  "name": "memofy",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix server && npm run build --prefix server && npm install --prefix client && npm run build --prefix client"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon -x ts-node src/index.ts",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/compression": "^1.7.0",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/mongodb": "^3.5.25",
+    "@types/mongoose": "^5.7.28",
+    "@types/node": "^14.0.24",
+    "@types/passport": "^1.0.4",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/passport-local": "^1.0.33",
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.20",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
 }

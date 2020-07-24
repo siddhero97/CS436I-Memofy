@@ -1,6 +1,6 @@
 import React from 'react';
 import {Heading, Scrollable} from '@shopify/polaris';
-import {Item} from 'store/item/types';
+import {Item} from '../../../../../store/item/types';
 
 import './ItemSummaryLayout.css';
 import {ItemSummaryContent, ItemSummaryFooter} from './components';

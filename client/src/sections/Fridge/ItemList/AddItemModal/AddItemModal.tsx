@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, Modal, TextField, Card} from '@shopify/polaris';
-import {thunkAddItem} from 'store/item/actions';
+import {thunkAddItem} from '../../../../store/item/actions';
 
 export default function AddItemModal() {
   const dispatch = useDispatch();

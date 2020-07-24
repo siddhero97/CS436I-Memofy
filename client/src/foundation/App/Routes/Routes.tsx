@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, RouteProps, Switch} from 'react-router-dom';
-import {Fridge, Login} from 'sections';
+import {Fridge, Login} from '../../../sections';
 
 interface StrictRouteProp {
   path: string;

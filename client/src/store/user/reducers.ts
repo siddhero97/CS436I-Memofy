@@ -1,5 +1,5 @@
 import {UserActionTypes, LOGIN, LOGOUT, WILL_LOGIN, DID_LOGIN} from './types';
-import {UserState} from 'store/types';
+import {UserState} from '../types';
 
 const intialState: UserState = {
   isLoading: false,

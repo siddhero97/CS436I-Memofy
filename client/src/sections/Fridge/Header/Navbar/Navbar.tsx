@@ -4,7 +4,7 @@ import {Button, ButtonGroup} from '@shopify/polaris';
 
 import './Navbar.css';
 import {useDispatch} from 'react-redux';
-import {logout} from 'store/user/actions';
+import {logout} from '../../../../store/user/actions';
 
 export default function Navbar() {
   const dispatch = useDispatch();

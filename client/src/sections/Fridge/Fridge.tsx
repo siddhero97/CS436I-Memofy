@@ -3,7 +3,7 @@ import {Header, Sidebar, ItemList} from './components';
 
 import './Fridge.css';
 import {useSelector} from 'react-redux';
-import {selectIsLoggedIn} from 'store/app/selectors';
+import {selectIsLoggedIn} from '../../store/app/selectors';
 import {useHistory} from 'react-router-dom';
 
 export default function Fridge() {
