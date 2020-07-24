@@ -1,0 +1,30 @@
+{
+  "name": "CS436I-Memofy",
+  "version": "1.0.0",
+  "description": "**Group Members:**",
+  "main": "index.js",
+  "compilerOptions" : {},
+  "scripts": {
+      "start": "ts-node src/server.ts",
+      "dev": "nodemon -x ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhero97/CS436I-Memofy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddhero97/CS436I-Memofy/issues"
+  },
+  "homepage": "https://github.com/siddhero97/CS436I-Memofy#readme",
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.25",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
