@@ -6,6 +6,7 @@ import cors from 'cors';
 import {MONGO_URL} from './utils/constants';
 import {ItemRoutes} from './components/items';
 import {UserRoutes} from './components/users';
+import {FridgeRoutes} from './components/fridges';
 
 export default class Server {
   public app: express.Application;
@@ -35,6 +36,7 @@ export default class Server {
   private routes(): void {
     this.app.use('/api/users', new UserRoutes().router);
     this.app.use('/api/items', new ItemRoutes().router);
+    this.app.use('/api/fridges', new FridgeRoutes().router);
     this.app.get('*', (_req, res) => {
       res.sendFile(path.join(__dirname + '/../client/build/index.html'))
     })

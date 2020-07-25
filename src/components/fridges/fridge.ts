@@ -12,16 +12,16 @@ export const FridgeSchema = new Schema({
     type: String,
     required: true
   },
-  userIds: {
-      type: [String],
+  itemIds: {
+      type: [],
       required: true
   },
   categories: {
-      type: [String],
+      type: [],
       required: true
   },
   filters: {
-      type: [String],
+      type: [],
       required: true
   }
 })

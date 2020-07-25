@@ -1,7 +1,8 @@
 import {Router} from 'express';
 import {CreateItemService, FetchItemService, DeleteItemService, UpdateItemService} from './services';
+import passport from 'passport';
 
-export default class BookRoutes {
+export default class ItemRoutes {
   public router: Router;
   public createItemService: CreateItemService = new CreateItemService();
   public fetchItemService: FetchItemService = new FetchItemService();
@@ -14,9 +15,9 @@ export default class BookRoutes {
   }
 
   routes() {
-    this.router.get('/get', this.fetchItemService.execute);
-    this.router.post('/post', this.createItemService.execute);
-    this.router.put('/put', this.updateItemService.execute);
-    this.router.delete('/del', this.deleteItemService.execute);
+    this.router.get('/get/all', passport.authenticate('jwt', {session: false}), this.fetchItemService.execute);
+    this.router.post('/post', passport.authenticate('jwt', {session: false}), this.createItemService.execute);
+    this.router.put('/edit', passport.authenticate('jwt', {session: false}), this.updateItemService.execute);
+    this.router.delete('/del', passport.authenticate('jwt', {session: false}), this.deleteItemService.execute);
   }
 }

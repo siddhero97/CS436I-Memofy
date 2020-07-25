@@ -104,7 +104,7 @@ function didEditItem(): ItemActionTypes {
 export const thunkFetchItems = (): AppThunk => async dispatch => {
   dispatch(willFetchItems());
 
-  const {data: {items}} = await axios.get<FetchItemResponse>('/api/items/get');
+  const {data: {items}} = await axios.get<FetchItemResponse>('/api/items/get/all');
 
   dispatch(fetchItems(items));
   dispatch(didFetchItems());
@@ -133,7 +133,7 @@ export const thunkDeleteItem = (id: string): AppThunk => async dispatch => {
 export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async dispatch => {
   dispatch(willEditItem());
 
-  const {data: {item}} = await axios.put<EditItemResponse>('/api/items/put', updatedItem);
+  const {data: {item}} = await axios.put<EditItemResponse>('/api/items/edit', updatedItem);
 
   dispatch(editItem(item));
   dispatch(didEditItem());
