@@ -1,7 +1,7 @@
 export interface Fridge {
   _id: string;
   name: String;
-  userIds: String[];
+  userIds: (String | undefined)[];
   categories: String[];
   filters: String[];
 }

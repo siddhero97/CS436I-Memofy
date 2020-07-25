@@ -29,4 +29,5 @@ export interface UserState {
 export interface AppState {
   token?: string;
   isLoggedIn: boolean;
+  selectedFridge: Fridge | undefined;
 }

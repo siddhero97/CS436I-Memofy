@@ -1,46 +1,38 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {thunkAddFridge, thunkFetchFridges} from 'store/fridge/actions';
-import Plus from '../../../icons/plus.png';
-import './Fridgebar.css'
-import FridgeIcon from './FridgeIcon'
+import './Fridgebar.css';
+import FridgeIcon from './FridgeIcon';
 import {selectFridges} from 'store/fridge/selectors';
+import {selectUserId} from 'store/user/selectors'
+import FridgeInput from './FridgeInput';
 
 export default function FridgeBar() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(thunkFetchFridges());
+    dispatch(thunkFetchFridges(activeId));
   }, [dispatch]);
+
+  const activeId: string | undefined = useSelector(selectUserId);
+
+  console.log("activeId: " + activeId);
 
   const fridges = useSelector(selectFridges);
 
-  const displayFridgeIcons = fridges.map((fridge) => {
+  const fridgeIconsMarkup = fridges.map((fridge) => {
     return (
-      <div key={fridge._id}>  
+      <div key={fridge._id}>
         <FridgeIcon></FridgeIcon>
       </div>
     );
   });
 
-  const handleCreateFridge = useCallback(() => {
-    const newFridge = {
-      name: 'fridgeA',
-      userIds: [],
-      categories: [],
-      filters: [],
-    };
-
-    dispatch(thunkAddFridge(newFridge));
-  }, [dispatch]);
-
   return (
     <div className='bar'>
-      <div className='plus-icon' onClick={handleCreateFridge}>
-        <img src={Plus} />
-      </div>
-      {displayFridgeIcons}
+      {fridgeIconsMarkup}
+      
+      <FridgeInput></FridgeInput>
     </div>
   )
 }

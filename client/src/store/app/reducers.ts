@@ -3,7 +3,8 @@ import {LOGIN, LOGOUT, UserActionTypes} from '../user/types';
 
 export const initialState: AppState = {
   token: undefined,
-  isLoggedIn: false
+  isLoggedIn: false,
+  selectedFridge: undefined,
 };
 
 export function appReducer(

@@ -1,11 +1,8 @@
 .bar {
+  margin-top: 1em;
+  grid-area: Fridgebar;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.plus-icon {
-  margin: 5px;
-  cursor: pointer
-}

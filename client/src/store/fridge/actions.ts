@@ -77,11 +77,13 @@ function didDeleteFridge(): FridgeActionTypes {
   };
 }
 
-export const thunkFetchFridges = (): AppThunk => async dispatch => {
+export const thunkFetchFridges = (userId: string | undefined): AppThunk => async dispatch => {
   dispatch(willFetchFridges());
-
-  const {data: {fridges}} = await axios.get<FetchFridgeResponse>('http://localhost:4000/fridges/get');
-
+  const {data: {fridges}} = await axios.get<FetchFridgeResponse>('http://localhost:4000/fridges/get', {
+    params: {
+      userId: userId
+    }
+  });
   dispatch(fetchFridges(fridges));
   dispatch(didFetchFridges());
 };
