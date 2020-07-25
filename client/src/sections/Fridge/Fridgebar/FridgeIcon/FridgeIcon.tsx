@@ -1,22 +1,11 @@
-import React, {useState, useCallback, useEffect} from 'react';
-// import {useSelector} from 'react-redux';
-// import {selectFridge} from 'store/fridge/selectors';
-// import {Fridge as FridgeType} from 'store/fridge/types';
-// import {Item, AddItemModal} from './components';
-// import {thunkFetchItems} from 'store/fridge/actions';
-// import {useDispatch} from 'react-redux';
-
+import React from 'react';
 import './FridgeIcon.css';
 
 export default function FridgeIcon() {
-  // const dispatch = useDispatch();
-
-  
-
+  // going to add some ui features to show active icon later
   const handleClick = () => {
-    console.log('click')
-
-  }
+    // console.log('click');
+  };
 
   return (
     <div className='icon-box' onClick={handleClick}>

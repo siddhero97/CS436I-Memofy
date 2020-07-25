@@ -9,7 +9,7 @@ import {
   DID_ADD_FRIDGE,
   WILL_DEL_FRIDGE,
   DID_DEL_FRIDGE,
-} from './types'; 
+} from './types';
 import {FridgeState} from 'store/types';
 
 const initialState: FridgeState = {
@@ -32,7 +32,7 @@ export function fridgeReducer(
         ...state,
         fridges: [...state.fridges].filter(({_id}) => _id !== action.payload),
       };
-    case FETCH_FRIDGES:      
+    case FETCH_FRIDGES:
       return {
         ...state,
         fridges: action.payload

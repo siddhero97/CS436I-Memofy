@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 import {
   Fridge,
   ADD_FRIDGE,
@@ -11,10 +11,10 @@ import {
   DID_ADD_FRIDGE,
   WILL_DEL_FRIDGE,
   DID_DEL_FRIDGE,
-} from './types'; 
+} from './types';
 import {AppThunk} from 'store';
 import {setActiveFridge} from 'store/app/actions';
-import { thunkFetchItems } from 'store/item/actions';
+import {thunkFetchItems} from 'store/item/actions';
 
 interface FetchFridgeResponse {
   fridges: Fridge[];
@@ -92,9 +92,10 @@ export const thunkFetchFridges = (userId: string | undefined): AppThunk => async
   });
   dispatch(fetchFridges(fridges));
   if (fridges.length > 0) {
-    dispatch(setActiveFridge(fridges[0]))
+    const firstFridge = fridges[0];
+    dispatch(setActiveFridge(firstFridge));
     dispatch(didFetchFridges());
-    dispatch(thunkFetchItems(fridges[0]))
+    dispatch(thunkFetchItems(firstFridge));
   }
 };
 

@@ -1,7 +1,7 @@
 import {AppState} from '../types';
 import {LOGIN, LOGOUT, UserActionTypes} from '../user/types';
 import {AppActionTypes, SET_ACTIVE_FRIDGE} from '../types';
-import { Fridge } from 'store/fridge/types';
+import {Fridge} from 'store/fridge/types';
 
 const initialFridge: Fridge = {
   _id: "",
@@ -9,7 +9,8 @@ const initialFridge: Fridge = {
   userIds: [],
   categories: [],
   filters: [],
-}
+};
+
 export const initialState: AppState = {
   token: undefined,
   isLoggedIn: false,
@@ -33,11 +34,11 @@ export function appReducer(
         token: undefined,
         isLoggedIn: false,
       };
-    case SET_ACTIVE_FRIDGE: 
+    case SET_ACTIVE_FRIDGE:
       return {
         ...state,
         selectedFridge: action.payload
-      }
+      };
     default:
       return state;
   }

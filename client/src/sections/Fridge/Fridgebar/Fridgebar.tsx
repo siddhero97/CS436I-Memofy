@@ -1,29 +1,26 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkFetchFridges} from 'store/fridge/actions';
 import './Fridgebar.css';
 import FridgeIcon from './FridgeIcon';
 import {selectFridges} from 'store/fridge/selectors';
-import {selectUserId} from 'store/user/selectors'
 import FridgeInput from './FridgeInput';
+import {setActiveFridge} from 'store/app/actions';
+import {Fridge} from 'store/fridge/types';
+import {thunkFetchItems} from 'store/item/actions';
 
 export default function FridgeBar() {
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(thunkFetchFridges(activeId));
-  // }, [dispatch]);
-
-  const activeId: string | undefined = useSelector(selectUserId);
-
-  console.log("activeId: " + activeId);
-
   const fridges = useSelector(selectFridges);
+
+  const handleActiveFridgeUpdate = (fridge: Fridge) => {
+    dispatch(setActiveFridge(fridge));
+    dispatch(thunkFetchItems(fridge));
+  };
 
   const fridgeIconsMarkup = fridges.map((fridge) => {
     return (
-      <div key={fridge._id}>
-        <FridgeIcon></FridgeIcon>
+      <div key={fridge._id} onClick={() => handleActiveFridgeUpdate(fridge)}>
+        <FridgeIcon />
       </div>
     );
   });
@@ -31,8 +28,8 @@ export default function FridgeBar() {
   return (
     <div className='bar'>
       {fridgeIconsMarkup}
-      
+
       <FridgeInput></FridgeInput>
     </div>
-  )
+  );
 }

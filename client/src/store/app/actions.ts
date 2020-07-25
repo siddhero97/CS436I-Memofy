@@ -2,13 +2,13 @@ import {
   Fridge,
 } from '../fridge/types';
 import {
-  AppActionTypes, 
+  AppActionTypes,
   SET_ACTIVE_FRIDGE
-} from '../types'
+} from '../types';
 
 export function setActiveFridge(activeFridge: Fridge): AppActionTypes {
   return {
     type: SET_ACTIVE_FRIDGE,
     payload: activeFridge
-  }
+  };
 }

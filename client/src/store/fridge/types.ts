@@ -1,9 +1,9 @@
 export interface Fridge {
   _id: string;
-  name: String;
-  userIds: (String | undefined)[];
-  categories: String[];
-  filters: String[];
+  name: string;
+  userIds: (string | undefined)[];
+  categories: string[];
+  filters: string[];
 }
 
 export const WILL_ADD_FRIDGE = 'WILL_ADD_FRIDGE';

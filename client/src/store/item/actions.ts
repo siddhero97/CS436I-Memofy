@@ -16,7 +16,7 @@ import {
   DID_EDIT_ITEM
 } from './types';
 import {AppThunk} from 'store';
-import { Fridge } from 'store/fridge/types';
+import {Fridge} from 'store/fridge/types';
 
 interface FetchItemResponse {
   items: Item[];
@@ -103,7 +103,6 @@ function didEditItem(): ItemActionTypes {
 }
 
 export const thunkFetchItems = (fridgeId: Fridge): AppThunk => async dispatch => {
-  console.log('fridgeid is: ' + fridgeId._id);
   dispatch(willFetchItems());
 
   const {data: {items}} = await axios.get<FetchItemResponse>('http://localhost:4000/items/get', {
