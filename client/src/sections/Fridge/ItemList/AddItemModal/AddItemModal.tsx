@@ -9,11 +9,6 @@ export default function AddItemModal() {
 
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
-  const fridges = [
-    {label: 'My fridge', value: '0'},
-    {label: 'Home fridge', value: '1'},
-    {label: 'Dorm fridge', value: '2'},
-  ];
   const [category, setCategory] = useState('meats');
   const categories = [
     {label: 'Meats', value: 'meats'},
@@ -51,16 +46,14 @@ export default function AddItemModal() {
     dispatch(thunkAddItem(newItem));
     toggleShowModal();
     setName('');
-    setFridge('0');
     setCategory('meats');
     setCount('0');
     setDate({month: 6, year: 2020});
     setSelectedDates({start: new Date(), end: new Date()});
     setIcon('');
-  }, [dispatch, name, fridge, category, count, month, year, selectedDates, icon, toggleShowModal]);
+  }, [dispatch, name, activeFridge, category, count, month, year, selectedDates, icon, toggleShowModal]);
 
   const handleNameChange = useCallback((name) => setName(name), []);
-  const handleFridgeChange = useCallback((fridge) => setFridge(fridge), []);
   const handleCategoryChange  = useCallback((category) => setCategory(category), []);
   const handleCountChange = useCallback((count) => setCount(count), []);
   const handleMonthChange = useCallback(
@@ -90,7 +83,6 @@ export default function AddItemModal() {
       >
         <Modal.Section>
           <TextField label="Food name" value={name} onChange={handleNameChange} />
-          <Select label="Fridge" options={fridges} onChange={handleFridgeChange} value={fridge} />
           <Select label="Category" options={categories} value={category} onChange={handleCategoryChange} />
           <TextField label="Count" type="number" value={count} onChange={handleCountChange} />
           <header>Expiry date</header>
