@@ -1,17 +1,27 @@
 import {Request, Response} from 'express';
 import {deleteItem} from '../DALs';
+import {findFridge, removeItemFromFridge} from '../../fridges/DALs';
 
 export default class DeleteItemService {
   public async execute(req: Request, res: Response): Promise<void> {
-    const {body: {id}} = req;
+    const {body: {fridgeId, id}} = req;
 
     try {
+      // TODO: Refactor to use transactions
+      const fridge = await findFridge(fridgeId);
+
+      if (!fridge) {
+        res.json({userError: 'Failed to find fridge'});
+
+        return;
+      }
+
       const {deletedCount} = await deleteItem(id);
 
-      // TODO: Create transcation that also removes item from fridge
+      const newFridge = await removeItemFromFridge(fridge, id);
 
       if (deletedCount) {
-        res.status(200).json({message: 'Item deleted', id});
+        res.status(200).json({message: 'Item deleted', id, fridge: newFridge});
     } else {
         res.status(200).json({message: 'No item found with given id', id});
     }

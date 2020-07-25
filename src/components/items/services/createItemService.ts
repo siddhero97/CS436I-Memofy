@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {createItem} from '../DALs';
-import {updateFridge, findFridge} from '../../fridges/DALs';
+import {addItemToFridge, findFridge} from '../../fridges/DALs';
 
 export default class CreateItemService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -24,7 +24,7 @@ export default class CreateItemService {
         return;
       }
 
-      const newFridge = await updateFridge(fridge, item._id);
+      const newFridge = await addItemToFridge(fridge, item._id);
 
       res.status(200).json({item, fridge: newFridge});
     } catch (error) {

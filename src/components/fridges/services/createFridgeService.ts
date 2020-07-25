@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {createFridge} from '../DALs';
-import {findUser, updateUser} from '../../users/DALs';
+import {findUser, addFridgeToUser} from '../../users/DALs';
 
 export default class CreateFridgeService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -32,7 +32,7 @@ export default class CreateFridgeService {
         return;
       }
 
-      const newUser = await updateUser(user, fridge._id);
+      const newUser = await addFridgeToUser(user, fridge._id);
 
       res.status(200).json({fridge, user: newUser});
     } catch (error) {
