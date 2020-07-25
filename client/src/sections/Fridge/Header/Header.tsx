@@ -1,13 +1,16 @@
 import React from 'react';
 import {ProfileMajorMonotone} from '@shopify/polaris-icons';
-import {Icon, Heading} from '@shopify/polaris';
+import {Button, Heading} from '@shopify/polaris';
 import {Navbar} from './components';
-
 import logo from 'icons/logo.png';
-
 import './Header.css';
-
+import {useHistory} from 'react-router-dom';
 export default function Header() {
+  const history = useHistory();
+
+  const handleProfileClick = () => {
+  // console.log(useSelectorS(userInfo));
+    history.push('./profile');};
   return (
     <div className='header'>
       <div className='header-title'>
@@ -18,8 +21,8 @@ export default function Header() {
         <Navbar />
       </div>
       <div className='profile-icon'>
-        <Icon source={ProfileMajorMonotone} />
+        <Button icon={ProfileMajorMonotone} onClick={handleProfileClick
+        }/>
       </div>
     </div>
-  );
-}
+  );}
