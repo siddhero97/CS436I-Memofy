@@ -1,5 +1,5 @@
 import {Fridge} from "..";
 
-export default async function() {
-  return await Fridge.find();
+export default async function(userId: any) {
+  return await Fridge.find({userIds: userId});
 }
