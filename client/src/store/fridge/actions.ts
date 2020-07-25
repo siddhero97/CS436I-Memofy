@@ -13,6 +13,8 @@ import {
   DID_DEL_FRIDGE,
 } from './types'; 
 import {AppThunk} from 'store';
+import {setActiveFridge} from 'store/app/actions';
+import { thunkFetchItems } from 'store/item/actions';
 
 interface FetchFridgeResponse {
   fridges: Fridge[];
@@ -24,6 +26,10 @@ interface AddFridgeResponse {
 
 interface DeleteFridgeResponse {
   id: string;
+}
+
+interface SetSelectedFridgeResponse {
+  selectedFridge: Fridge;
 }
 
 function willFetchFridges(): FridgeActionTypes {
@@ -85,7 +91,11 @@ export const thunkFetchFridges = (userId: string | undefined): AppThunk => async
     }
   });
   dispatch(fetchFridges(fridges));
-  dispatch(didFetchFridges());
+  if (fridges.length > 0) {
+    dispatch(setActiveFridge(fridges[0]))
+    dispatch(didFetchFridges());
+    dispatch(thunkFetchItems(fridges[0]))
+  }
 };
 
 export const thunkAddFridge = (newFridge: Partial<Fridge>): AppThunk => async dispatch => {

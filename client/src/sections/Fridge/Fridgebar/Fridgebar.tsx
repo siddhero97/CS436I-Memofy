@@ -1,6 +1,6 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkAddFridge, thunkFetchFridges} from 'store/fridge/actions';
+import {thunkFetchFridges} from 'store/fridge/actions';
 import './Fridgebar.css';
 import FridgeIcon from './FridgeIcon';
 import {selectFridges} from 'store/fridge/selectors';
@@ -10,9 +10,9 @@ import FridgeInput from './FridgeInput';
 export default function FridgeBar() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(thunkFetchFridges(activeId));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(thunkFetchFridges(activeId));
+  // }, [dispatch]);
 
   const activeId: string | undefined = useSelector(selectUserId);
 

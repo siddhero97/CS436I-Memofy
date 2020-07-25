@@ -1,6 +1,7 @@
 import {UserActionTypes, LOGOUT, LOGIN, WILL_LOGIN, DID_LOGIN, User, WILL_CREATE_USER, DID_CREATE_USER} from './types';
 import {AppThunk} from 'store';
 import axios from 'axios';
+import { thunkFetchFridges } from 'store/fridge/actions';
 
 export interface CreateUserResponse {
   user: User;
@@ -70,9 +71,15 @@ export const thunkLogin = (email: string, password: string): AppThunk => async d
     email,
     password
   });
-
-  dispatch(login(data));
-  dispatch(didLogin());
+  if ('userError' in data) {
+    console.log('error in login')
+  }
+  else {
+    console.log(data)
+    dispatch(login(data));
+    dispatch(didLogin());
+    dispatch(thunkFetchFridges(data.user._id))
+  }
 };
 
 export function logout(): UserActionTypes {

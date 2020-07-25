@@ -4,7 +4,7 @@ import {findItem} from '../DALs';
 export default class FetchItemService {
   public async execute(_req: Request, res: Response): Promise<void> {
     try {
-      const items = await findItem();
+      const items = await findItem(_req.query.fridgeId);
 
       res.status(200).json({items});
     } catch (error) {

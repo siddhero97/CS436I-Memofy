@@ -18,7 +18,6 @@ export const WILL_FETCH_FRIDGES = 'WILL_FETCH_FRIDGES';
 export const FETCH_FRIDGES = 'FETCH_FRIDGES';
 export const DID_FETCH_FRIDGES = 'DID_FETCH_FRIDGES';
 
-
 interface AddFridgeAction {
   type: typeof ADD_FRIDGE;
   payload: Fridge;

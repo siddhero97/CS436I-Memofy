@@ -21,7 +21,6 @@ export function fridgeReducer(
   state = initialState,
   action: FridgeActionTypes,
 ): FridgeState {
-  console.log(action);
   switch (action.type) {
     case ADD_FRIDGE:
       return {

@@ -1,7 +1,8 @@
 import React, {useState, useCallback} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, Modal, TextField, Card} from '@shopify/polaris';
 import {thunkAddItem} from 'store/item/actions';
+import { selectActiveFridge } from 'store/app/selectors';
 
 export default function AddItemModal() {
   const dispatch = useDispatch();
@@ -13,9 +14,12 @@ export default function AddItemModal() {
     setShowModal(!showModal);
   }, [showModal]);
 
+  const activeFridge = useSelector(selectActiveFridge);
+  console.log('active fridge is' +  activeFridge);
+
   const handleSubmit = useCallback(() => {
     const newItem = {
-      fridgeId: 1234,
+      fridgeId: activeFridge,
       count: 1,
       name: value,
       // this will come from the database once setup

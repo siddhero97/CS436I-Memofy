@@ -18,21 +18,18 @@ export default function FridgeInput() {
   const [fridgeName, setFridgeName] = useState('');
 
   const handleCreateFridge = useCallback(() => {
-    console.log(fridgeName)
     const newFridge = {
       name: fridgeName,
       userIds: [activeId],
       categories: [],
       filters: [],
     };
-    console.log(newFridge);
 
     dispatch(thunkAddFridge(newFridge));
   }, [dispatch, fridgeName]);
 
   const handleChange = useCallback((newValue) => {
     setFridgeName(newValue);
-    console.log(fridgeName);
   }, [fridgeName]);
 
   return (

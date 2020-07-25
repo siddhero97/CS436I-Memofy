@@ -5,6 +5,7 @@ import {selectItems} from 'store/item/selectors';
 import {Item as ItemType} from 'store/item/types';
 import {Item, AddItemModal} from './components';
 import {thunkFetchItems} from 'store/item/actions';
+import {selectActiveFridge} from 'store/app/selectors';
 
 import './ItemList.css';
 import ItemSummary from './ItemSummary';
@@ -12,11 +13,15 @@ import ItemSummary from './ItemSummary';
 export default function ItemList() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(thunkFetchItems());
-  }, [dispatch]);
+  const selectedFridge = useSelector(selectActiveFridge);
+  // console.log('selectedFridgey: ' + selectedFridge);
+
+  // useEffect(() => {
+  //   dispatch(thunkFetchItems(selectedFridge));
+  // }, [dispatch]);
 
   const items = useSelector(selectItems);
+
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
   const isOpen = selectedItem !== null;
 
