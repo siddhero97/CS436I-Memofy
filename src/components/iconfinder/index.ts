@@ -1,0 +1,1 @@
+export {default as IconFinderRoutes} from './iconFinderRoutes';

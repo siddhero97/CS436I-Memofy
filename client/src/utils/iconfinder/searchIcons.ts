@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {BASE_ENDPOINT, API_SECRET} from './constants';
 
 interface SearchIconsResponse {
   icons: Icon[];
@@ -22,11 +21,8 @@ export default async function searchIcons(query: string): Promise<SearchIconsRes
   params.append('query', `${query} food`);
   params.append('count', '10');
 
-  const {data} = await axios.get<SearchIconsResponse>(`${BASE_ENDPOINT}/icons/search`, {
-    params,
-    headers: {
-      'Authorization': `Bearer ${API_SECRET}`
-    }
+  const {data} = await axios.get<SearchIconsResponse>('/api/iconfinder/icons/search', {
+    params
   });
 
   return data;
