@@ -27,6 +27,6 @@ export const FridgeSchema = new Schema({
 })
 
 // temporary name to newFridges
-const Fridge: Model<IFridge> = model<IFridge>("newFridges", FridgeSchema);
+const Fridge: Model<IFridge> = model<IFridge>("fridges", FridgeSchema);
 
 export default Fridge;

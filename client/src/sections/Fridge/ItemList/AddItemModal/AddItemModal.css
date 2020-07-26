@@ -1,0 +1,16 @@
+.icon-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spinner {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.icon-result-card {
+  display: flex;
+  flex-direction: column;
+}
