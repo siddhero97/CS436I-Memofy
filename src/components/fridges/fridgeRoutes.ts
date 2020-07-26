@@ -14,7 +14,7 @@ export default class FridgeRoutes {
     }
 
     routes() {
-        this.router.get('/get/all', passport.authenticate('jwt', {session: false}), this.fetchFridgesService.execute);
+        this.router.get('/get', passport.authenticate('jwt', {session: false}), this.fetchFridgesService.execute);
         this.router.post('/post', passport.authenticate('jwt', {session: false}), this.createFridgeService.execute);
         this.router.delete('/del', passport.authenticate('jwt', {session: false}), this.deleteFridgeService.execute);
     }

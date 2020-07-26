@@ -1,0 +1,7 @@
+.bar {
+  margin-top: 1em;
+  grid-area: Fridgebar;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

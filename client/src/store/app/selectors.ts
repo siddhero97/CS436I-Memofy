@@ -12,3 +12,8 @@ export const selectToken = createSelector(
   selectAppState,
   (app: AppState) => app.token
 );
+
+export const selectActiveFridge = createSelector(
+  selectAppState,
+  (app: AppState) => app.selectedFridge
+);
