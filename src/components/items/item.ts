@@ -31,6 +31,6 @@ export const ItemSchema = new Schema({
   }
 })
 
-const Item: Model<IItem> = model<IItem>("newitems", ItemSchema);
+const Item: Model<IItem> = model<IItem>("items", ItemSchema);
 
 export default Item;
