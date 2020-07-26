@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {findUser} from '../DALs';
+import {findUserById} from '../DALs';
 
 export default class FetchUserService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -13,7 +13,7 @@ export default class FetchUserService {
 
     const {_id} = expressUser as any;
 
-    const user = await findUser(_id);
+    const user = await findUserById(_id);
 
     res.json({user});
   }

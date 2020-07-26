@@ -1,7 +1,7 @@
 import passport from 'passport';
 import {Strategy as localStrategy} from 'passport-local';
 import {Strategy as jwtStrategy, ExtractJwt as extractJWT} from 'passport-jwt';
-import {createUser, findUser} from '../components/users/DALs';
+import {createUser, findUserByEmail} from '../components/users/DALs';
 
 passport.use('signup', new localStrategy({
   usernameField: 'email',
@@ -24,7 +24,7 @@ passport.use('login', new localStrategy({
   passwordField: 'password',
 }, async (email, password, done) => {
   try {
-    const user = await findUser(email);
+    const user = await findUserByEmail(email);
 
     if (!user) {
       return done(null, false, {message: 'User not found'});
