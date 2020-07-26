@@ -1,5 +1,6 @@
 import {UserActionTypes, LOGIN, LOGOUT, WILL_LOGIN, DID_LOGIN} from './types';
 import {UserState} from '../types';
+import {FridgeActionTypes, ADD_FRIDGE} from 'store/fridge/types';
 
 const intialState: UserState = {
   isLoading: false,
@@ -7,7 +8,7 @@ const intialState: UserState = {
 
 export function userReducer(
   state = intialState,
-  action: UserActionTypes,
+  action: UserActionTypes | FridgeActionTypes,
 ): UserState {
   switch (action.type) {
     case LOGIN:
@@ -18,6 +19,11 @@ export function userReducer(
     case LOGOUT:
       return {
         ...state
+      };
+    case ADD_FRIDGE:
+      return {
+        ...state,
+        ...action.payload.user
       };
     case WILL_LOGIN:
       return {

@@ -16,8 +16,11 @@ import {
   DID_EDIT_ITEM
 } from './types';
 import {AppThunk} from '..';
+import {selectToken, selectActiveFridge} from 'store/app/selectors';
+import {Fridge} from 'store/fridge/types';
+import {setActiveFridge} from 'store/app/actions';
 
-interface FetchItemResponse {
+interface FetchItemsResponse {
   items: Item[];
 }
 
@@ -101,30 +104,65 @@ function didEditItem(): ItemActionTypes {
   };
 }
 
-export const thunkFetchItems = (): AppThunk => async dispatch => {
+export const thunkInitialItemListLoad = (fridge: Fridge): AppThunk => async (dispatch) => {
+  dispatch(setActiveFridge(fridge));
+};
+
+export const thunkFetchItems = (fridgeId: string): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchItems());
 
-  const {data: {items}} = await axios.get<FetchItemResponse>('/api/items/get/all');
+  const token = selectToken(getState());
+
+  const {data: {items}} = await axios.get<FetchItemsResponse>('/api/items/get', {
+    params: {
+      token,
+      fridgeId: fridgeId
+    }
+  });
 
   dispatch(fetchItems(items));
   dispatch(didFetchItems());
 };
 
-export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async dispatch => {
+export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatch, getState) => {
   dispatch(willAddItem());
 
-  const {data: {item}} = await axios.post<AddItemResponse>('/api/items/post', newItem);
+  const token = selectToken(getState());
+  const {_id} = selectActiveFridge(getState()) as Fridge;
+
+  const {data: {item}} = await axios.post<AddItemResponse>('/api/items/post',
+    {
+      fridgeId: _id,
+      newItem
+    },
+    {
+      params: {
+        token
+      }
+    }
+  );
 
   dispatch(addItem(item));
   dispatch(didAddItem());
 };
 
-export const thunkDeleteItem = (id: string): AppThunk => async dispatch => {
+export const thunkDeleteItem = (id: string): AppThunk => async (dispatch, getState) => {
   dispatch(willDeleteItem());
 
-  const {data: {id: deletedId}} = await axios.delete<DeleteItemResponse>('/api/items/del', {
-    data: {id}
-  });
+  const token = selectToken(getState());
+  const {_id} = selectActiveFridge(getState()) as Fridge;
+
+  const {data: {id: deletedId}} = await axios.delete<DeleteItemResponse>('/api/items/del',
+    {
+      data: {
+        fridgeId: _id,
+        id
+      },
+      params: {
+        token
+      }
+    },
+  );
 
   dispatch(deleteItem(deletedId));
   dispatch(didDeleteItem());

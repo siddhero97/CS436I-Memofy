@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {findFridges} from '../DALs';
-import {findUser} from '../../users/DALs';
+import {findUserById} from '../../users/DALs';
 
 export default class FetchFridgesService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -16,7 +16,7 @@ export default class FetchFridgesService {
 
       const {_id} = expressUser as any;
 
-      const user = await findUser(_id);
+      const user = await findUserById(_id);
 
       if (!user) {
         res.json({userError: 'Coult not find user'});

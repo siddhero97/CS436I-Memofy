@@ -1,25 +1,34 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Card} from '@shopify/polaris';
-import {selectItems} from '../../../store/item/selectors';
-import {Item as ItemType} from '../../../store/item/types';
-import {Item, AddItemModal} from './components';
-import {thunkFetchItems} from '../../../store/item/actions';
-import {useDispatch} from 'react-redux';
+import {Item, AddItemModal, ItemSummary} from './components';
+import {thunkInitialItemListLoad, thunkFetchItems} from 'store/item/actions';
+import {selectFridges} from 'store/fridge/selectors';
+import {selectActiveFridge} from 'store/app/selectors';
+import {selectItems, selectIsLoading} from 'store/item/selectors';
+import {Item as ItemType} from 'store/item/types';
 
 import './ItemList.css';
-import ItemSummary from './ItemSummary';
 
 export default function ItemList() {
   const dispatch = useDispatch();
+  const activeFridge = useSelector(selectActiveFridge);
+  const fridges = useSelector(selectFridges);
+  const items = useSelector(selectItems);
+  const isLoading = useSelector(selectIsLoading);
+  const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
 
   useEffect(() => {
-    dispatch(thunkFetchItems());
-  }, [dispatch]);
+    if (fridges.length) {
+      dispatch(thunkInitialItemListLoad(fridges[0]));
+    }
+  }, [fridges, dispatch]);
 
-  const items = useSelector(selectItems);
-  const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
-  const isOpen = selectedItem !== null;
+  useEffect(() => {
+    if (activeFridge) {
+      dispatch(thunkFetchItems(activeFridge._id));
+    }
+  }, [activeFridge, dispatch]);
 
   const handleShowItem = useCallback((item) =>
     setSelectedItem(item)
@@ -28,6 +37,20 @@ export default function ItemList() {
   const handleHideItem = useCallback(() =>
     setSelectedItem(null)
   , []);
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (!activeFridge) {
+    return (
+      <div>
+        You have no fridges!
+      </div>
+    );
+  }
+
+  const isOpen = selectedItem !== null;
 
   const itemListMarkup = items.map((item) => {
     return (

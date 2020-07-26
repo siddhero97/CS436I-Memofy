@@ -1,17 +1,31 @@
-import React from 'react';
-import {Header, Sidebar, ItemList} from './components';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {Header, Sidebar, ItemList, Fridgebar} from './components';
+import {thunkInitialFridgeLoad} from 'store/fridge/actions';
+import {selectIsLoggedIn} from 'store/app/selectors';
+import {selectIsLoading} from 'store/fridge/selectors';
 
 import './Fridge.css';
-import {useSelector} from 'react-redux';
-import {selectIsLoggedIn} from '../../store/app/selectors';
-import {useHistory} from 'react-router-dom';
 
 export default function Fridge() {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
   const history = useHistory();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectIsLoading);
 
-  if (!isLoggedIn) {
-    history.push('./login');
+  useEffect(() => {
+    if (!isLoggedIn) {
+      history.push('./login');
+
+      return;
+    }
+
+    dispatch(thunkInitialFridgeLoad());
+  }, [isLoggedIn, history, dispatch]);
+
+  if (isLoading) {
+    return null;
   }
 
   return (
@@ -19,6 +33,7 @@ export default function Fridge() {
       <Header />
       <Sidebar />
       <ItemList />
+      <Fridgebar />
     </div>
   );
 }

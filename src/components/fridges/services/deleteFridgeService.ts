@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {deleteFridge} from '../DALs';
-import {removeFridgeFromUser, findUser} from '../../users/DALs';
+import {removeFridgeFromUser, findUserById} from '../../users/DALs';
 
 export default class DeleteFridgeService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -16,7 +16,7 @@ export default class DeleteFridgeService {
 
       const {_id} = expressUser as any;
 
-      const user = await findUser(_id);
+      const user = await findUserById(_id);
 
       if (!user) {
         res.json({userError: 'Coult not find user'});

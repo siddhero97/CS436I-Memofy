@@ -6,7 +6,7 @@ export default class CreateItemService {
   public async execute(req: Request, res: Response): Promise<void> {
     try {
       // TODO: Refactor to use transaction
-      const {body: {fridgeId, ...newItem}} = req;
+      const {body: {fridgeId, newItem}} = req;
 
       const item = await createItem(newItem);
 

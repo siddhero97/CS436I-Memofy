@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {createFridge} from '../DALs';
-import {findUser, addFridgeToUser} from '../../users/DALs';
+import {findUserById, addFridgeToUser} from '../../users/DALs';
 
 export default class CreateFridgeService {
   public async execute(req: Request, res: Response): Promise<void> {
@@ -16,7 +16,7 @@ export default class CreateFridgeService {
 
       const {_id} = expressUser as any;
 
-      const user = await findUser(_id);
+      const user = await findUserById(_id);
 
       if (!user) {
         res.json({userError: 'Coult not find user'});

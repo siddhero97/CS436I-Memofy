@@ -1,0 +1,18 @@
+.input {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.plus-icon {
+  margin: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.fridge-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
