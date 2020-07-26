@@ -27,7 +27,6 @@ export default class ItemService {
       await item.save();
       return res.status(200).json({item: 'Item created'});
     } catch (err) {
-      console.log(err)
       return res.status(500).json({item: err});
     }
   }
@@ -37,7 +36,7 @@ export default class ItemService {
       await itemSchema.findOneAndUpdate(
         {
           _id: req.body._id
-        }, 
+        },
         {
             count: req.body.count
         },
@@ -53,14 +52,13 @@ export default class ItemService {
   public async deleteItem(req: Request, res: Response, next: NextFunction) {
     try {
       const itemDelete = await itemSchema.deleteOne({name: req.body.name});
-      console.log(itemDelete);
+
       if(itemDelete) {
           return res.status(200).json({item: 'Successfully deleted'});
       } else {
           return res.status(500).json({item: 'Could not delete'});
       }
     } catch (err) {
-        console.log(err)
         return res.status(500).send(err);
     }
   };

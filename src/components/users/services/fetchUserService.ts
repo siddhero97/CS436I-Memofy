@@ -11,9 +11,9 @@ export default class FetchUserService {
       return;
     }
 
-    const {email} = expressUser as any;
+    const {_id} = expressUser as any;
 
-    const user = await findUser(email);
+    const user = await findUser(_id);
 
     res.json({user});
   }
