@@ -116,14 +116,14 @@ export default function AddItemModal() {
 
   const iconResultsMarkup = isSearching
     ? (
-    <div className='spinner'>
-      <Spinner accessibilityLabel="Searching icons" size="large" color="teal" />
-    </div>
-  ) : (
-    <div className='icon-results'>
-      {buildIconResultCards}
-    </div>
-  );
+      <div className='spinner'>
+        <Spinner accessibilityLabel="Searching icons" size="large" color="teal" />
+      </div>
+    ) : (
+      <div className='icon-results'>
+        {buildIconResultCards}
+      </div>
+    );
 
   const iconSearchMarkup = iconUrl ? (
     <TextField label="Icon search" value={iconUrl} disabled />

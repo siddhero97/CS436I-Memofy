@@ -27,7 +27,7 @@ export default async function searchIcons(query: string): Promise<SearchIconsRes
     headers: {
       'Authorization': `Bearer ${API_SECRET}`
     }
-  })
+  });
 
   return data;
 }
