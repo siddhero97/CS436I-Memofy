@@ -12,12 +12,12 @@ import {
 } from './types';
 import {FridgeState} from 'store/types';
 
- const initialState: FridgeState = {
+const initialState: FridgeState = {
   fridges: [],
   isLoading: false
 };
 
- export function fridgeReducer(
+export function fridgeReducer(
   state = initialState,
   action: FridgeActionTypes,
 ): FridgeState {

@@ -22,7 +22,7 @@ export default function Fridge() {
     }
 
     dispatch(thunkInitialFridgeLoad());
-  }, [isLoggedIn, history, dispatch])
+  }, [isLoggedIn, history, dispatch]);
 
   if (isLoading) {
     return null;

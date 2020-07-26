@@ -29,8 +29,9 @@ export default function FridgeBar() {
         <div key={_id} onClick={() => handleActiveFridgeUpdate(fridge)}>
           <FridgeIcon />
         </div>
-      )})
-   : null;
+      );
+    })
+    : null;
 
   return (
     <div className='bar'>

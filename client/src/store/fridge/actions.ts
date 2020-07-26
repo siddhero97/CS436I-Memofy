@@ -2,18 +2,14 @@ import axios from 'axios';
 import {
   Fridge,
   ADD_FRIDGE,
-  DEL_FRIDGE,
   FETCH_FRIDGES,
   FridgeActionTypes,
   WILL_FETCH_FRIDGES,
   DID_FETCH_FRIDGES,
   WILL_ADD_FRIDGE,
   DID_ADD_FRIDGE,
-  WILL_DEL_FRIDGE,
-  DID_DEL_FRIDGE,
 } from './types';
 import {AppThunk} from 'store';
-import {setActiveFridge} from 'store/app/actions';
 import {selectToken} from 'store/app/selectors';
 import {User} from 'store/user/types';
 
@@ -24,14 +20,6 @@ interface FetchFridgeResponse {
 export interface AddFridgeResponse {
   fridge: Fridge;
   user: User;
-}
-
-interface DeleteFridgeResponse {
-  id: string;
-}
-
-interface SetSelectedFridgeResponse {
-  selectedFridge: Fridge;
 }
 
 function willFetchFridges(): FridgeActionTypes {
@@ -68,23 +56,6 @@ function didAddFridge(): FridgeActionTypes {
   };
 }
 
-function willDeleteFridge(): FridgeActionTypes {
-  return {
-    type: WILL_DEL_FRIDGE,
-  };
-}
-function deleteFridge(id: string): FridgeActionTypes {
-  return {
-    type: DEL_FRIDGE,
-    payload: id,
-  };
-}
-function didDeleteFridge(): FridgeActionTypes {
-  return {
-    type: DID_DEL_FRIDGE,
-  };
-}
-
 export const thunkInitialFridgeLoad = (): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchFridges());
 
@@ -92,7 +63,7 @@ export const thunkInitialFridgeLoad = (): AppThunk => async (dispatch, getState)
 
   const {data: {fridges}} = await axios.get<FetchFridgeResponse>('/api/fridges/get', {
     params: {
-      secret_token: token
+      token
     }
   });
 
@@ -111,21 +82,11 @@ export const thunkAddFridge = (name: string): AppThunk => async (dispatch, getSt
     },
     {
       params: {
-        secret_token: token
+        token
+      }
     }
-  });
+  );
 
   dispatch(addFridge(data));
   dispatch(didAddFridge());
-};
-
-export const thunkDeleteFridge = (id: string): AppThunk => async dispatch => {
-  // dispatch(willDeleteFridge());
-
-  // const {data: {id: deletedId}} = await axios.delete<DeleteFridgeResponse>('/fridges/del', {
-  //   data: {id}
-  // });
-
-  // dispatch(deleteFridge(deletedId));
-  // dispatch(didDeleteFridge());
 };

@@ -7,7 +7,6 @@ export default class CreateItemService {
     try {
       // TODO: Refactor to use transaction
       const {body: {fridgeId, newItem}} = req;
-      console.log(req);
 
       const item = await createItem(newItem);
 

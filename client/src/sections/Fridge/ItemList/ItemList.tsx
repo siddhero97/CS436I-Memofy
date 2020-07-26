@@ -17,7 +17,7 @@ export default function ItemList() {
   const items = useSelector(selectItems);
   const isLoading = useSelector(selectIsLoading);
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
-  console.log('hi');
+
   useEffect(() => {
     if (fridges.length) {
       dispatch(thunkInitialItemListLoad(fridges[0]));
@@ -47,7 +47,7 @@ export default function ItemList() {
       <div>
         You have no fridges!
       </div>
-    )
+    );
   }
 
   const isOpen = selectedItem !== null;

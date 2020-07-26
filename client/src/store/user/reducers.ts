@@ -24,7 +24,7 @@ export function userReducer(
       return {
         ...state,
         ...action.payload.user
-      }
+      };
     case WILL_LOGIN:
       return {
         ...state,

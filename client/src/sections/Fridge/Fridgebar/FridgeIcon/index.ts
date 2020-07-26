@@ -1,3 +1,3 @@
 import FridgeIcon from './FridgeIcon';
 
-export default FridgeIcon; 
+export default FridgeIcon;

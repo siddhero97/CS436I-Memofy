@@ -17,7 +17,6 @@ import {
 } from './types';
 import {AppThunk} from '..';
 import {selectToken, selectActiveFridge} from 'store/app/selectors';
-import {selectFridges} from 'store/fridge/selectors';
 import {Fridge} from 'store/fridge/types';
 import {setActiveFridge} from 'store/app/actions';
 
@@ -105,7 +104,7 @@ function didEditItem(): ItemActionTypes {
   };
 }
 
-export const thunkInitialItemListLoad = (fridge: Fridge): AppThunk => async (dispatch, getState) => {
+export const thunkInitialItemListLoad = (fridge: Fridge): AppThunk => async (dispatch) => {
   dispatch(setActiveFridge(fridge));
 };
 
@@ -116,7 +115,7 @@ export const thunkFetchItems = (fridgeId: string): AppThunk => async (dispatch, 
 
   const {data: {items}} = await axios.get<FetchItemsResponse>('/api/items/get', {
     params: {
-      secret_token: token,
+      token,
       fridgeId: fridgeId
     }
   });
@@ -138,7 +137,7 @@ export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatc
     },
     {
       params: {
-        secret_token: token
+        token
       }
     }
   );
@@ -160,7 +159,7 @@ export const thunkDeleteItem = (id: string): AppThunk => async (dispatch, getSta
         id
       },
       params: {
-        secret_token: token
+        token
       }
     },
   );
