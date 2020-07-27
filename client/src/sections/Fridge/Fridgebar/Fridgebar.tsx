@@ -5,7 +5,7 @@ import {setActiveFridge} from 'store/app/actions';
 import {selectFridges} from 'store/fridge/selectors';
 import {selectActiveFridge} from 'store/app/selectors';
 import {Fridge} from 'store/fridge/types';
-
+import AddFridgeIconModal from './AddFridgeIconModal'
 import './Fridgebar.css';
 
 export default function FridgeBar() {
@@ -37,6 +37,7 @@ export default function FridgeBar() {
     <div className='bar'>
       {fridgeIconsMarkup}
       <AddFridgeIcon />
+      <AddFridgeIconModal />
     </div>
   );
 }
