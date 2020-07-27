@@ -36,10 +36,6 @@ export default function AddFridgeIcon() {
         <img src={Plus} alt='plusLogo' />
       </div>
 
-      {/* <div className='input'>
-        <TextField label='Add Fridge Name' value={fridgeName} onChange={handleChange} placeholder='fronge'/>
-      </div> */}
-
       <Modal
         open={showModal}
         onClose={toggleShowModal}
