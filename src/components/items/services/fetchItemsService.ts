@@ -10,7 +10,7 @@ export default class FetchItemsService {
       const fridge = await findFridge(fridgeId as string);
 
       if (!fridge) {
-        res.json({userError: 'Coult not find fridge'});
+        res.json({userError: 'Could not find fridge'});
 
         return;
       }
