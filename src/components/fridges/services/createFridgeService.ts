@@ -9,7 +9,7 @@ export default class CreateFridgeService {
       const {body: {name}, user: expressUser} = req;
 
       if (!expressUser) {
-        res.json({userError: 'Coult not find user'});
+        res.json({userError: 'Could not find user'});
 
         return;
       }
@@ -19,7 +19,7 @@ export default class CreateFridgeService {
       const user = await findUserById(_id);
 
       if (!user) {
-        res.json({userError: 'Coult not find user'});
+        res.json({userError: 'Could not find user'});
 
         return;
       }
