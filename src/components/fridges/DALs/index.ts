@@ -4,4 +4,4 @@ export {default as findFridge} from './findFridgeDAL';
 export {default as deleteFridge} from './deleteFridgeDAL';
 export {default as addItemToFridge} from './addItemToFridgeDAL';
 export {default as removeItemFromFridge} from './removeItemFromFridgeDAL';
-export {default as addCategory} from './addCategoryToFridgeDAL';
+export {default as updateFridge} from './updateFridgeDAL';
