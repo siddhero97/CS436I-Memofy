@@ -1,4 +1,13 @@
-import {UserActionTypes, LOGOUT, LOGIN, WILL_LOGIN, DID_LOGIN, User, WILL_CREATE_USER, DID_CREATE_USER} from './types';
+import {
+  User,
+  UserActionTypes,
+  LOGOUT,
+  LOGIN,
+  WILL_LOGIN,
+  DID_LOGIN,
+  WILL_CREATE_USER,
+  DID_CREATE_USER
+} from './types';
 import {AppThunk} from '..';
 import axios from 'axios';
 
@@ -39,6 +48,12 @@ function didLogin(): UserActionTypes {
   };
 }
 
+function logout(): UserActionTypes {
+  return {
+    type: LOGOUT,
+  };
+}
+
 export const thunkCreateUser = (
   firstName: string,
   lastName: string,
@@ -75,8 +90,6 @@ export const thunkLogin = (email: string, password: string): AppThunk => async d
   dispatch(didLogin());
 };
 
-export function logout(): UserActionTypes {
-  return {
-    type: LOGOUT,
-  };
-}
+export const thunkLogout = (): AppThunk => async dispatch => {
+  dispatch(logout());
+};

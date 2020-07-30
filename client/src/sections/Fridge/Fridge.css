@@ -1,8 +1,8 @@
 .fridge {
-    display: grid;
-    grid-template-areas:
-    "Fridgebar Header  Header"
-    "Fridgebar Sidebar ItemList"
-    "Fridgebar Sidebar       .";
-    grid-template-columns: 10rem 20rem auto;
+  display: grid;
+  grid-template-areas:
+    "Header Header"
+    "Fridgebar FridgeDetails";
+    grid-template-columns: 15rem auto;
+    grid-template-rows: 15rem auto;
 }

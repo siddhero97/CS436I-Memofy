@@ -1,7 +1,0 @@
-.sidebar {
-    grid-area: Sidebar;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    margin: 2rem;
-}

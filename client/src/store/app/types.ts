@@ -6,7 +6,7 @@ export const DID_SET_ACTIVE_FRIDGE = 'DID_SET_ACTIVE_FRIDGE';
 
 interface SetActiveAction {
   type: typeof SET_ACTIVE_FRIDGE;
-  payload: Fridge;
+  payload: Fridge | undefined;
 }
 
 interface WillAction {

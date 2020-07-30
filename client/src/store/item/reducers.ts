@@ -13,6 +13,7 @@ import {
   DID_EDIT_ITEM,
   EDIT_ITEM
 } from './types';
+import {UserActionTypes, LOGOUT} from 'store/user/types';
 import {ItemState} from '../types';
 
 const initialState: ItemState = {
@@ -22,7 +23,7 @@ const initialState: ItemState = {
 
 export function itemReducer(
   state = initialState,
-  action: ItemActionTypes,
+  action: ItemActionTypes | UserActionTypes,
 ): ItemState {
   switch (action.type) {
     case ADD_ITEM:
@@ -56,6 +57,8 @@ export function itemReducer(
         ...state,
         isLoading: false,
       };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

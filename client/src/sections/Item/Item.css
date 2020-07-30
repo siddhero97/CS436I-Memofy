@@ -1,0 +1,8 @@
+.item-page {
+    display: grid;
+    grid-template-areas:
+    "Fridgebar Header"
+    "Fridgebar ItemList";
+    grid-template-columns: 15rem auto;
+    grid-template-rows: 15rem auto;
+}

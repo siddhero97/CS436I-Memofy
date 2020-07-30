@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Header, Sidebar, ItemList, Fridgebar} from './components';
 import {thunkInitialFridgeLoad} from 'store/fridge/actions';
+import {setActiveFridge} from 'store/app/actions';
 import {selectIsLoggedIn} from 'store/app/selectors';
 import {selectIsLoading} from 'store/fridge/selectors';
+import {Header, Fridgebar, FridgeDetails} from './components';
 
 import './Fridge.css';
 
@@ -22,6 +23,10 @@ export default function Fridge() {
     }
 
     dispatch(thunkInitialFridgeLoad());
+
+    return () => {
+      dispatch(setActiveFridge(undefined));
+    };
   }, [isLoggedIn, history, dispatch]);
 
   if (isLoading) {
@@ -31,9 +36,8 @@ export default function Fridge() {
   return (
     <div className='fridge'>
       <Header />
-      <Sidebar />
-      <ItemList />
       <Fridgebar />
+      <FridgeDetails />
     </div>
   );
 }

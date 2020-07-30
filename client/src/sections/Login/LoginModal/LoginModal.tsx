@@ -1,7 +1,7 @@
-import {Modal, TextField, Banner} from '@shopify/polaris';
+import {Modal, TextField, Banner, EventListener} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {thunkLogin} from '../../../store/user/actions';
+import {thunkLogin} from 'store/user/actions';
 
 interface Props {
   active: boolean;
@@ -14,13 +14,19 @@ export default function LoginModal({active, handleChange}: Props) {
   const [password, setPassword] = useState('');
   const [showWarning, setShowWarning] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     if (email === "" || password === "") {
       setShowWarning(true);
     } else {
       dispatch(thunkLogin(email, password));
     }
-  };
+  }, [email, password, dispatch]);
+
+  const handleEnterKey = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  }, [handleLogin]);
 
   const handleEmailChange  = useCallback((value) => setEmail(value), []);
   const handlePasswordChange = useCallback((value) => setPassword(value), []);
@@ -35,6 +41,7 @@ export default function LoginModal({active, handleChange}: Props) {
 
   return (
     <div className='login-modal'>
+      <EventListener capture event="keypress" handler={handleEnterKey} />
       <Modal
         open={active}
         onClose={handleChange}

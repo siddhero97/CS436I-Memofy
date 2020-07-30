@@ -11,6 +11,7 @@ import {
   DID_DEL_FRIDGE,
 } from './types';
 import {FridgeState} from 'store/types';
+import {LOGOUT, UserActionTypes} from 'store/user/types';
 
 const initialState: FridgeState = {
   fridges: [],
@@ -19,7 +20,7 @@ const initialState: FridgeState = {
 
 export function fridgeReducer(
   state = initialState,
-  action: FridgeActionTypes,
+  action: FridgeActionTypes | UserActionTypes,
 ): FridgeState {
   switch (action.type) {
     case ADD_FRIDGE:
@@ -47,6 +48,8 @@ export function fridgeReducer(
         ...state,
         isLoading: false,
       };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

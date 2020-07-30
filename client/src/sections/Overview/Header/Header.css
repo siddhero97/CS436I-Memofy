@@ -1,0 +1,13 @@
+.overview-header {
+  grid-area: Header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+
+.overview-header-logo {
+  margin-top: 4rem;
+  height: 11rem;
+  margin-bottom: 3rem;
+}

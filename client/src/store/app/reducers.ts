@@ -24,11 +24,7 @@ export function appReducer(
         isLoggedIn: true,
       };
     case LOGOUT:
-      return {
-        ...state,
-        token: undefined,
-        isLoggedIn: false,
-      };
+      return initialState;
     default:
       return state;
   }
