@@ -73,7 +73,6 @@ export default function FridgeDetails() {
     : ['Name', name, <Button onClick={toggleShowEdit}>Change</Button>];
 
   const rows = [
-    // eslint-disable-next-line react/jsx-key
     nameRow,
     ['# of food items', itemIds.length]
   ];
