@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import {
   Card,
   EmptyState,
@@ -18,6 +18,26 @@ import './FridgeDetails.css';
 
 export default function FridgeDetails() {
   const activeFridge = useSelector(selectActiveFridge);
+  const [newName, setNewName] = useState('');
+  const [showEdit, setShowEdit] = useState(false);
+
+  const toggleShowEdit = useCallback(() => {
+    setShowEdit(true);
+  }, []);
+
+  const handleNewFridgeName = useCallback((value: string) => {
+    setNewName(value);
+  }, []);
+
+  const handleSubmitNewName = useCallback(() => {
+    if (!newName) {
+      return null;
+    }
+
+    // TODO: Call dispatch to call updateFridge API
+    setNewName('');
+    setShowEdit(false);
+  }, [newName]);
 
   if (!activeFridge) {
     return (
@@ -36,9 +56,24 @@ export default function FridgeDetails() {
 
   const {name, itemIds} = activeFridge;
 
+  const nameRow = showEdit
+    ? [
+      'Name',
+      <TextField
+        value={newName}
+        label='name'
+        labelHidden
+        onChange={handleNewFridgeName}
+      />,
+      <Button onClick={handleSubmitNewName}>
+        Submit
+      </Button>
+    ]
+    : ['Name', name, <Button onClick={toggleShowEdit}>Change</Button>];
+
   const rows = [
     // eslint-disable-next-line react/jsx-key
-    ['Name', name, <Button>Rename</Button>],
+    nameRow,
     ['# of food items', itemIds.length]
   ];
 
