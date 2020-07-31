@@ -5,7 +5,7 @@ import {findFridge} from '../../fridges/DALs';
 export default class FetchItemsService {
   public async execute(req: Request, res: Response): Promise<void> {
     try {
-      const {query: {fridgeId, categories}} = req;
+      const {query: {fridgeId, categories, search}} = req;
 
       const fridge = await findFridge(fridgeId as string);
 
@@ -15,7 +15,8 @@ export default class FetchItemsService {
         return;
       }
 
-      const items = await findItemsByIdAndFilter(fridge.itemIds, categories as string[]);
+      const items = await findItemsByIdAndFilter(fridge.itemIds, 
+        categories as string[], search as string);
       
       res.status(200).json({items});
     } catch (error) {
