@@ -14,9 +14,7 @@ export const WILL_LOGIN = 'WILL_LOGIN';
 export const LOGIN = 'LOGIN';
 export const DID_LOGIN = 'DID_LOGIN';
 
-export const WILL_LOGOUT = 'WILL_LOGOUT';
 export const LOGOUT = 'LOGOUT';
-export const DID_LOGOUT = 'DID_LOGOUT';
 
 interface LoginAction {
   type: typeof LOGIN;
@@ -28,11 +26,11 @@ interface LogoutAction {
 }
 
 interface WillAction {
-  type: typeof WILL_LOGIN | typeof WILL_LOGOUT | typeof WILL_CREATE_USER;
+  type: typeof WILL_LOGIN | typeof WILL_CREATE_USER;
 }
 
 interface DidAction {
-  type: typeof DID_LOGIN | typeof DID_LOGOUT | typeof DID_CREATE_USER;
+  type: typeof DID_LOGIN | typeof DID_CREATE_USER;
 }
 
 export type UserActionTypes = LoginAction | LogoutAction | WillAction | DidAction;

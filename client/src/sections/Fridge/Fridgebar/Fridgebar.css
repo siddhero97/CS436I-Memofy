@@ -1,7 +1,7 @@
-.bar {
-  margin-top: 1em;
+.fridgebar {
   grid-area: Fridgebar;
   display: flex;
-  align-items: center;
+  text-align: center;
   flex-direction: column;
+  margin: 2rem;
 }

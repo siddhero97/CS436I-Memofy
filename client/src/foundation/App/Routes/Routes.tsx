@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, RouteProps, Switch} from 'react-router-dom';
-import {Fridge, Login} from '../../../sections';
+import {Item, Login, Overview, Fridge} from 'sections';
 
 interface StrictRouteProp {
   path: string;
@@ -10,19 +10,29 @@ interface StrictRouteProp {
 
 const ROUTE_LIST: StrictRouteProp[] = [
   {
-    path: '/home',
-    exact: true,
-    component: Fridge,
-  },
-  {
     path: '/login',
     exact: true,
     component: Login,
   },
   {
+    path: '/home',
+    exact: true,
+    component: Overview,
+  },
+  {
+    path: '/items',
+    exact: true,
+    component: Item,
+  },
+  {
+    path: '/fridges',
+    exact: true,
+    component: Fridge,
+  },
+  {
     path: '/',
     exact: true,
-    component: Login,
+    component: Overview,
   },
 ];
 

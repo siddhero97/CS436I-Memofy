@@ -4,8 +4,7 @@ import logo from 'icons/logo.png';
 import example from '../example.png';
 
 import './Login.css';
-import LoginModal from './LoginModal/LoginModal';
-import RegisterModal from './RegisterModal/RegisterModal';
+import {RegisterModal, LoginModal} from './components';
 import {selectToken} from '../../store/app/selectors';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';

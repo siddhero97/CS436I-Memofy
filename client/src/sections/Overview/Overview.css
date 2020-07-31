@@ -1,0 +1,8 @@
+.overview {
+  display: grid;
+  grid-template-areas:
+    "Header Header"
+    "Feed PageSelection";
+  grid-template-columns: 60rem auto;
+  grid-template-rows: 15rem auto;
+}

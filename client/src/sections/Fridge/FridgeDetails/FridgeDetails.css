@@ -1,0 +1,8 @@
+.fridge-details {
+  grid-area: FridgeDetails;
+  margin: 5rem;
+}
+
+.emptystate-paragraph {
+  margin-bottom: 4rem;
+}

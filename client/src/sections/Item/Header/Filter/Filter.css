@@ -1,0 +1,7 @@
+.filter {
+  display: flex;
+}
+
+.filter-popover {
+  margin-right: 1rem;
+}
