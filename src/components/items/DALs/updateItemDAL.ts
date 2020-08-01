@@ -1,18 +1,18 @@
 import {Item, IItem} from "..";
 
 export default async function({
-  id,
+  _id,
   ...updatedValues
 }: IItem) {
   return await Item.findOneAndUpdate(
     {
-      _id: id,
+      _id,
     },
     {
       ...updatedValues,
     },
     {
       new: true
-    }
+    },
   );
 }

@@ -21,6 +21,7 @@ import {AppThunk} from '..';
 import {selectToken, selectActiveFridge} from 'store/app/selectors';
 import {Fridge} from 'store/fridge/types';
 import {setActiveFridge} from 'store/app/actions';
+import {selectSelectedCategories} from './selectors';
 
 interface FetchItemsResponse {
   items: Item[];
@@ -192,6 +193,8 @@ export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async (di
   dispatch(willEditItem());
 
   const token = selectToken(getState());
+  const {_id} = selectActiveFridge(getState()) as Fridge;
+  const selectedCategories = selectSelectedCategories(getState());
 
   const {data: {item}} = await axios.put<EditItemResponse>('/api/items/edit',
     updatedItem,
@@ -203,5 +206,6 @@ export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async (di
   );
 
   dispatch(editItem(item));
+  dispatch(thunkFetchItems(_id, selectedCategories));
   dispatch(didEditItem());
 };
