@@ -1,5 +1,6 @@
 import {Item} from "./item/types";
 import {Fridge} from "./fridge/types";
+import {User} from "./user/types";
 
 export type RootState = {
   item: ItemState;
@@ -31,4 +32,5 @@ export interface AppState {
 export interface FridgeState {
   isLoading: boolean;
   fridges: Fridge[];
+  usersSharedWith: User[];
 }

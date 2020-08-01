@@ -138,73 +138,75 @@ export default function AddItemModal() {
   );
 
   return (
-    <Card.Section title="Can't find your item?">
-      <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
-      <Modal
-        open={showModal}
-        onClose={toggleShowModal}
-        title='Add a food item'
-        primaryAction={{
-          content: 'Add',
-          disabled,
-          onAction: handleSubmit,
-        }}
-        secondaryActions={[
-          {
-            content: 'Cancel',
-            onAction: toggleShowModal,
-          }
-        ]}
-      >
-        <Modal.Section>
-          <FormLayout>
-            <TextField
-              label="Name of food"
-              value={name}
-              placeholder={'Apples'}
-              onChange={handleNameChange}
-              autoFocus
+    <div className='add-item-section'>
+      <Card.Section title="Can't find your item?">
+        <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
+        <Modal
+          open={showModal}
+          onClose={toggleShowModal}
+          title='Add a food item'
+          primaryAction={{
+            content: 'Add',
+            disabled,
+            onAction: handleSubmit,
+          }}
+          secondaryActions={[
+            {
+              content: 'Cancel',
+              onAction: toggleShowModal,
+            }
+          ]}
+        >
+          <Modal.Section>
+            <FormLayout>
+              <TextField
+                label="Name of food"
+                value={name}
+                placeholder={'Apples'}
+                onChange={handleNameChange}
+                autoFocus
+              />
+              <Select
+                label="Pick a category"
+                options={categories}
+                value={category}
+                disabled={newCategory.length > 0}
+                onChange={handleCategoryChange}
+              />
+              <TextField
+                label="Add new category"
+                labelHidden
+                type="text"
+                helpText="Can't find the category you're looking for? Add a new one by typing it in the text above."
+                value={newCategory}
+                onChange={handleNewCategoryChange}
+              />
+              <TextField
+                label="How many do you want to add?"
+                type="number"
+                value={count}
+                onChange={handleCountChange}
+              />
+            </FormLayout>
+          </Modal.Section>
+          <Modal.Section>
+            <header>Pick expiry date:</header>
+            <DatePicker
+              month={month}
+              year={year}
+              onChange={setSelectedDates}
+              onMonthChange={handleMonthChange}
+              selected={selectedDates}
+              allowRange={false}
+              disableDatesBefore={today}
             />
-            <Select
-              label="Pick a category"
-              options={categories}
-              value={category}
-              disabled={newCategory.length > 0}
-              onChange={handleCategoryChange}
-            />
-            <TextField
-              label="Add new category"
-              labelHidden
-              type="text"
-              helpText="Can't find the category you're looking for? Add a new one by typing it in the text above."
-              value={newCategory}
-              onChange={handleNewCategoryChange}
-            />
-            <TextField
-              label="How many do you want to add?"
-              type="number"
-              value={count}
-              onChange={handleCountChange}
-            />
-          </FormLayout>
-        </Modal.Section>
-        <Modal.Section>
-          <header>Pick expiry date:</header>
-          <DatePicker
-            month={month}
-            year={year}
-            onChange={setSelectedDates}
-            onMonthChange={handleMonthChange}
-            selected={selectedDates}
-            allowRange={false}
-            disableDatesBefore={today}
-          />
-        </Modal.Section>
-        <Modal.Section>
-          {iconSearchMarkup}
-        </Modal.Section>
-      </Modal>
-    </Card.Section>
+          </Modal.Section>
+          <Modal.Section>
+            {iconSearchMarkup}
+          </Modal.Section>
+        </Modal>
+      </Card.Section>
+    </div>
   );
 }
 

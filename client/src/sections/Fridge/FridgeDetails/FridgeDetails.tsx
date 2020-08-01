@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   Card,
   EmptyState,
@@ -10,35 +10,65 @@ import {
   TextStyle,
   TextField,
   Button,
-  FormLayout
+  FormLayout,
+  ButtonGroup
 } from '@shopify/polaris';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {selectActiveFridge} from 'store/app/selectors';
+import {thunkEditFridge, thunkDeleteFridge, thunkFetchUsersSharedWith, thunkAddUsersSharedWith} from 'store/fridge/actions';
+import {selectUsersSharedWith} from 'store/fridge/selectors';
 
 import './FridgeDetails.css';
 
 export default function FridgeDetails() {
+  const dispatch = useDispatch();
   const activeFridge = useSelector(selectActiveFridge);
+  const usersSharedWith = useSelector(selectUsersSharedWith);
   const [newName, setNewName] = useState('');
   const [showEdit, setShowEdit] = useState(false);
+  const [newSharedUserEmail, setNewSharedUserEmail] = useState('');
+
+  useEffect(() => {
+    setShowEdit(false);
+
+    if (activeFridge) {
+      dispatch(thunkFetchUsersSharedWith(activeFridge._id));
+    }
+  }, [activeFridge, dispatch]);
 
   const toggleShowEdit = useCallback(() => {
-    setShowEdit(true);
-  }, []);
+    setShowEdit(!showEdit);
+  }, [showEdit]);
 
   const handleNewFridgeName = useCallback((value: string) => {
     setNewName(value);
   }, []);
 
-  const handleSubmitNewName = useCallback(() => {
-    if (!newName) {
-      return null;
-    }
+  const handleNewSharedUserChange = useCallback((value: string) => {
+    setNewSharedUserEmail(value);
+  }, []);
 
-    // TODO: Call dispatch to call updateFridge API
+  const handleSubmitNewName = useCallback(() => {
+    const newFridge = {
+      ...activeFridge,
+      name: newName,
+    };
+
+    dispatch(thunkEditFridge(newFridge));
     setNewName('');
     setShowEdit(false);
-  }, [newName]);
+  }, [newName, activeFridge, dispatch]);
+
+  const handleSubmitNewSharedUser = useCallback(() => {
+    dispatch(thunkAddUsersSharedWith(newSharedUserEmail));
+    setNewSharedUserEmail('');
+  }, [newSharedUserEmail, dispatch]);
+
+  const handleDeleteFridge = useCallback(() => {
+    if (activeFridge) {
+      dispatch(thunkDeleteFridge(activeFridge._id));
+    }
+  }, [activeFridge, dispatch]);
 
   if (!activeFridge) {
     return (
@@ -66,9 +96,14 @@ export default function FridgeDetails() {
         labelHidden
         onChange={handleNewFridgeName}
       />,
-      <Button onClick={handleSubmitNewName}>
-        Submit
-      </Button>
+      <ButtonGroup segmented>
+        <Button onClick={toggleShowEdit}>
+          Cancel
+        </Button>
+        <Button onClick={handleSubmitNewName} disabled={newName.length === 0}>
+          Submit
+        </Button>
+      </ButtonGroup>
     ]
     : ['Name', name, <Button onClick={toggleShowEdit}>Change</Button>];
 
@@ -77,11 +112,24 @@ export default function FridgeDetails() {
     ['# of food items', itemIds.length]
   ];
 
+  const userResourceList = usersSharedWith.map(({_id, firstName, lastName}) => {
+    return {
+      id: _id,
+      url: '',
+      name: `${firstName} ${lastName}`
+    };
+  });
+
   return (
     <div className='fridge-details'>
       <Card
         title="Fridge Management"
-        primaryFooterAction={{content: 'Delete fridge', destructive: true}}
+        primaryFooterAction={{
+          content: 'Delete fridge',
+          onAction: handleDeleteFridge,
+          disabled: !activeFridge,
+          destructive: true
+        }}
       >
         <Card.Section title="Summary">
           <DataTable
@@ -96,18 +144,7 @@ export default function FridgeDetails() {
         <Card.Section title="Shared with">
           <ResourceList
             resourceName={{singular: 'customer', plural: 'customers'}}
-            items={[
-              {
-                id: '341',
-                url: '',
-                name: 'Mae Jemison'
-              },
-              {
-                id: '256',
-                url: '',
-                name: 'Ellen Ochoa'
-              },
-            ]}
+            items={userResourceList}
             renderItem={(item) => {
               const {id, url, name} = item;
               const media = <Avatar customer size="medium" name={name} />;
@@ -130,8 +167,8 @@ export default function FridgeDetails() {
         <Card.Section title='Share'>
           <FormLayout>
             <TextField
-              value={''}
-              onChange={() => null}
+              value={newSharedUserEmail}
+              onChange={handleNewSharedUserChange}
               label="Email"
               type="email"
               helpText={
@@ -140,7 +177,7 @@ export default function FridgeDetails() {
                 </span>
               }
             />
-            <Button>Add</Button>
+            <Button onClick={handleSubmitNewSharedUser}>Add</Button>
           </FormLayout>
         </Card.Section>
       </Card>

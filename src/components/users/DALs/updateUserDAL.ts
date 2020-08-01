@@ -1,10 +1,10 @@
-import {Fridge, IFridge} from "..";
+import {User, IUser} from "..";
 
 export default async function({
   _id,
   ...updatedValues
-}: IFridge) {
-  return await Fridge.findOneAndUpdate(
+}: IUser) {
+  return await User.findOneAndUpdate(
     {
       _id,
     },
@@ -13,6 +13,6 @@ export default async function({
     },
     {
       new: true
-    }
+    },
   );
 }

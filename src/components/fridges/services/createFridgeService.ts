@@ -32,7 +32,7 @@ export default class CreateFridgeService {
         return;
       }
 
-      const newUser = await addFridgeToUser(user, fridge._id);
+      const newUser = await addFridgeToUser(user, fridge._id.toString());
 
       res.status(200).json({fridge, user: newUser});
     } catch (error) {
