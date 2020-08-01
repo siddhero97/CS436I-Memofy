@@ -76,7 +76,7 @@ export default function ItemList() {
   return (
     <div className='item-list'>
       <div className='item-add'>
-        <Card sectioned>
+        <Card sectioned title="Getting started">
           <AddItemModal />
         </Card>
       </div>

@@ -1,19 +1,13 @@
 import {Request, Response} from 'express';
-import {deleteFridge} from '../DALs';
-import {removeFridgeFromUser, findUserById} from '../../users/DALs';
+import {deleteFridge, findFridge} from '../DALs';
+import {removeFridgeFromUser, findUserById, findUsersByFridgeId} from '../../users/DALs';
+import {deleteItems} from '../../items/DALs';
 
 export default class DeleteFridgeService {
   public async execute(req: Request, res: Response): Promise<void> {
     const {body: {id}, user: expressUser} = req;
 
     try {
-      // TODO: Refactor to use transactions
-      if (!expressUser) {
-        res.json({userError: 'Coult not find user'});
-
-        return;
-      }
-
       const {_id} = expressUser as any;
 
       const user = await findUserById(_id);
@@ -24,12 +18,26 @@ export default class DeleteFridgeService {
         return;
       }
 
-      const {deletedCount} = await deleteFridge(id);
+      const fridge = await findFridge(id);
+
+      if (!fridge) {
+        res.json({userError: 'Coult not find fridge'});
+
+        return;
+      }
+      const sharedUsers = await findUsersByFridgeId(id);
+      const {deletedCount: deletedFridgeCount} = await deleteFridge(id);
 
       const newUser = await removeFridgeFromUser(user, id);
 
-      if (deletedCount) {
-        res.status(200).json({message: 'Fridge deleted', id, user: newUser});
+      for (const sharedUser of sharedUsers) {
+        await removeFridgeFromUser(sharedUser, id);
+      }
+
+      const {deletedCount: deletedItemsCount} = await deleteItems(fridge.itemIds);
+
+      if (deletedFridgeCount) {
+        res.status(200).json({message: `Fridge deleted, ${deletedItemsCount} food items deleted`, id, user: newUser});
     } else {
         res.status(200).json({message: 'No Fridge found with given id', id});
     }
