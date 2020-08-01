@@ -9,3 +9,14 @@
   padding: 2rem 3rem;
   width: 100%;
 }
+
+.item-logo {
+  margin-left: auto;
+  display: flex;
+  margin-right: auto;
+}
+
+.icon-buttons {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

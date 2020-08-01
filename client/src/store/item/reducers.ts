@@ -42,11 +42,16 @@ export function itemReducer(
         ...state,
         items: action.payload
       };
-    case EDIT_ITEM:
+    case EDIT_ITEM: {
+      const updatedItemIndex = state.items.findIndex(({_id}) => _id === action.payload._id);
+
+      state.items[updatedItemIndex] = action.payload;
+
       return {
         ...state,
-        items: [...state.items.filter(({_id}) => _id !== action.payload._id), action.payload]
+        items: [...state.items]
       };
+    }
     case WILL_FETCH_ITEMS || WILL_ADD_ITEM || WILL_DEL_ITEM || WILL_EDIT_ITEM:
       return {
         ...state,
