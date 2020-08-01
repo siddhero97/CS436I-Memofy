@@ -12,6 +12,9 @@ export default function Searchbar() {
 
   const handleClearButtonClick = useCallback(() => setTextFieldValue(''), []);
 
+  const handleSubmit = () => console.log('searching');
+  // useCallback(() => )
+
 
   return (
     <div className='search-box'>
@@ -23,7 +26,9 @@ export default function Searchbar() {
         clearButton
         onClearButtonClick={handleClearButtonClick}
       />
-      <Button >Search</Button>
+      <Button 
+        onClick={handleSubmit}
+      >Search</Button>
     </div>
   )
 }
