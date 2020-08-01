@@ -19,8 +19,8 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
 
   const dispatch = useDispatch();
   const activeFridge = useSelector(selectActiveFridge);
-  const [isEditMode, setEditMode] = useState(false);
-  const [isChangeIcon, setChangeIcon] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isChangeIcon, setIsChangeIcon] = useState(false);
   const [name, setName] = useState(item.name);
   const [category, setCategory] = useState(item.category);
   const [count, setCount] = useState(item.count.toString());
@@ -66,19 +66,37 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
     (month, year) => setDate({month, year}),
     [],
   );
-  const handleChangeIconMode = useCallback(() => setChangeIcon(true), []);
+  const handleChangeIconMode = useCallback(() => setIsChangeIcon(true), []);
   const handleSelectIconUrl = useCallback((iconUrl) => {
     setIconUrl(iconUrl);
-    setChangeIcon(false);
+    setIsChangeIcon(false);
     setIconSearchTerm('');
   }, []);
   const handleRevertIcon = useCallback(() => {
     setIconUrl(item.icon);
-    setChangeIcon(false);
+    setIsChangeIcon(false);
     setIconSearchTerm('');
   }, [item.icon]);
 
-  const handleEdit = useCallback(() => setEditMode(true), []);
+  const toggleEditMode = useCallback(() => {
+    if (isEditMode) {
+      setName(item.name);
+      setCategory(item.category);
+      setCount(item.count.toString());
+      setDate({
+        month: oldExpiry.getMonth(),
+        year: oldExpiry.getFullYear(),
+      });
+      setSelectedDates({
+        start: oldExpiry,
+        end: oldExpiry,
+      });
+      setIconUrl(item.icon);
+    }
+
+    setIsEditMode(!isEditMode);
+  }, [isEditMode, item, oldExpiry]);
+
   const handleSaveEdit = useCallback(() => {
     const newItem: Item = {
       _id: item._id,
@@ -88,8 +106,9 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
       icon: iconUrl === '' ? item.icon : iconUrl,
       expiryDate: selectedDates.end
     };
+
     dispatch(thunkEditItem(newItem));
-    setEditMode(false);
+    setIsEditMode(false);
     onClose();
   }, [item._id, name, category, count, iconUrl, item.icon, selectedDates.end, dispatch, onClose]);
 
@@ -169,12 +188,12 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
 
   const footerMarkup = isEditMode ?
     <div className='project-summary-footer'>
-      <Button onClick={onClose}>Cancel</Button>
+      <Button onClick={toggleEditMode}>Cancel</Button>
       <Button primary onClick={handleSaveEdit}>
         Save
       </Button>
     </div> :
-    <ItemSummaryFooter onClose={onClose} onEdit={handleEdit} />;
+    <ItemSummaryFooter onClose={onClose} onEdit={toggleEditMode} />;
 
   return (
     <div className='item-summary-layout'>

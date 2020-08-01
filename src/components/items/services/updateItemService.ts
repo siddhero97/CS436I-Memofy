@@ -6,7 +6,7 @@ export default class UpdateItemService {
     const {body} = req;
 
     const item = await updateItem(body);
-
+    
     if (!item) {
       res.status(200).json({message: 'No item found with given id', id: body.id});
     } else {
