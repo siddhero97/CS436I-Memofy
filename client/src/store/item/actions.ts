@@ -168,10 +168,19 @@ export const thunkDeleteItem = (id: string): AppThunk => async (dispatch, getSta
   dispatch(didDeleteItem());
 };
 
-export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async dispatch => {
+export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async (dispatch, getState) => {
   dispatch(willEditItem());
 
-  const {data: {item}} = await axios.put<EditItemResponse>('/api/items/edit', updatedItem);
+  const token = selectToken(getState());
+
+  const {data: {item}} = await axios.put<EditItemResponse>('/api/items/edit',
+    updatedItem,
+    {
+      params: {
+        token
+      }
+    }
+  );
 
   dispatch(editItem(item));
   dispatch(didEditItem());
