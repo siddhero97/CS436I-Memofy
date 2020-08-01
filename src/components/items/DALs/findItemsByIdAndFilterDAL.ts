@@ -1,9 +1,16 @@
 import {Item} from "..";
 
-export default async function(_ids: String[], categories: String[]) {
+interface LooseObject {
+  [key: string]: any;
+}
 
-  return await Item.find({
-    '_id': { $in: _ids},
-    category: { $in: categories}
-  });
+export default async function(_ids: String[], categoriesSelected: String[]) {
+  let query: LooseObject = {
+    '_id': { $in: _ids}
+  };
+
+  if (categoriesSelected) {
+    query['category'] = { $in: categoriesSelected}
+  }
+  return await Item.find(query);
 }

@@ -24,7 +24,7 @@ export default class CreateItemService {
         return;
       }
 
-      const newFridge = await addItemToFridge(fridge, item._id);
+      const newFridge = await addItemToFridge(fridge, item._id, item.category);
 
       res.status(200).json({item, fridge: newFridge});
     } catch (error) {

@@ -13,7 +13,9 @@ import {
   WILL_DEL_ITEM,
   DID_DEL_ITEM,
   WILL_EDIT_ITEM,
-  DID_EDIT_ITEM
+  DID_EDIT_ITEM,
+  CHANGE_SELECTED_CATEGORIES,
+  CLEAR_SELECTED_CATEGORIES
 } from './types';
 import {AppThunk} from '..';
 import {selectToken, selectActiveFridge} from 'store/app/selectors';
@@ -26,6 +28,7 @@ interface FetchItemsResponse {
 
 interface AddItemResponse {
   item: Item;
+  fridge: Fridge;
 }
 
 interface DeleteItemResponse {
@@ -58,10 +61,10 @@ function willAddItem(): ItemActionTypes {
     type: WILL_ADD_ITEM,
   };
 }
-function addItem(item: Item): ItemActionTypes {
+function addItem(item: Item, fridge: Fridge): ItemActionTypes {
   return {
     type: ADD_ITEM,
-    payload: item,
+    payload: {item, fridge},
   };
 }
 function didAddItem(): ItemActionTypes {
@@ -104,11 +107,27 @@ function didEditItem(): ItemActionTypes {
   };
 }
 
+export function changeSelectedCategories(selectedCategories: string[]): ItemActionTypes {
+  return {
+    type: CHANGE_SELECTED_CATEGORIES,
+    payload: selectedCategories,
+  };
+}
+
+export function clearSelectedCategories(): ItemActionTypes {
+  return {
+    type: CLEAR_SELECTED_CATEGORIES,
+  };
+}
+
 export const thunkInitialItemListLoad = (fridge: Fridge): AppThunk => async (dispatch) => {
   dispatch(setActiveFridge(fridge));
 };
 
-export const thunkFetchItems = (fridgeId: string): AppThunk => async (dispatch, getState) => {
+export const thunkFetchItems = (
+  fridgeId: string,
+  categoriesSelected: string[],
+): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchItems());
 
   const token = selectToken(getState());
@@ -116,7 +135,8 @@ export const thunkFetchItems = (fridgeId: string): AppThunk => async (dispatch, 
   const {data: {items}} = await axios.get<FetchItemsResponse>('/api/items/get', {
     params: {
       token,
-      fridgeId: fridgeId
+      fridgeId: fridgeId,
+      categoriesSelected,
     }
   });
 
@@ -130,7 +150,7 @@ export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatc
   const token = selectToken(getState());
   const {_id} = selectActiveFridge(getState()) as Fridge;
 
-  const {data: {item}} = await axios.post<AddItemResponse>('/api/items/post',
+  const {data: {item, fridge}} = await axios.post<AddItemResponse>('/api/items/post',
     {
       fridgeId: _id,
       newItem
@@ -142,7 +162,7 @@ export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatc
     }
   );
 
-  dispatch(addItem(item));
+  dispatch(addItem(item, fridge));
   dispatch(didAddItem());
 };
 

@@ -3,6 +3,6 @@
   grid-template-areas:
     "Header Header"
     "Feed PageSelection";
-  grid-template-columns: 60rem auto;
+  grid-template-columns: auto 60rem;
   grid-template-rows: 15rem auto;
 }
