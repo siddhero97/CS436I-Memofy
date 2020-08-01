@@ -18,7 +18,11 @@ export default function LoginModal({active, handleChange}: Props) {
     if (email === "" || password === "") {
       setShowWarning(true);
     } else {
-      dispatch(thunkLogin(email, password));
+      try {
+        dispatch(thunkLogin(email, password));
+      } catch (error) {
+        setShowWarning(true);
+      }
     }
   }, [email, password, dispatch]);
 
@@ -34,7 +38,7 @@ export default function LoginModal({active, handleChange}: Props) {
   const warningMarkup = showWarning ? (
     <Banner status="warning">
       <p>
-        Please enter all fields.
+        Sorry, an error occured. Please enter all fields and try again.
       </p>
     </Banner>
   ) : null;

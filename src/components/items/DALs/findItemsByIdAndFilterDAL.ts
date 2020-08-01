@@ -1,16 +1,21 @@
 import {Item} from "..";
 
-export default async function(_ids: String[], categories: String[], search: string) {
-  if(search) {
-    return await Item.find({
-      '_id': { $in: _ids},
-      category: { $in: categories},
-      name: new RegExp(search, "i")
-    });
-  } else {
-    return await Item.find({
-      '_id': { $in: _ids},
-      category: { $in: categories},
-    });
+interface LooseObject {
+  [key: string]: any;
+}
+
+export default async function(_ids: String[], categoriesSelected: String[]) {
+  let query: LooseObject = {
+    '_id': { $in: _ids}
+  };
+
+  if (categoriesSelected) {
+    query['category'] = { $in: categoriesSelected}
   }
+  
+  if (search) {
+      
+      query['name'] = new RegExp(search, 'i');
+  }
+  return await Item.find(query);
 }

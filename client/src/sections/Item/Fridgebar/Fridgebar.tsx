@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Card, Button, Tooltip} from '@shopify/polaris';
 import {AddFridgeModal} from './components';
 import {setActiveFridge} from 'store/app/actions';
 import {selectFridges} from 'store/fridge/selectors';
@@ -8,7 +9,6 @@ import {Fridge} from 'store/fridge/types';
 import logo from 'icons/logo.png';
 
 import './Fridgebar.css';
-import {Card, Button} from '@shopify/polaris';
 
 export default function FridgeBar() {
   const dispatch = useDispatch();
@@ -32,9 +32,11 @@ export default function FridgeBar() {
 
       return (
         <Card.Section key={_id}>
-          <Button pressed={_id === activeFridge?._id} onClick={() => handleActiveFridgeUpdate(fridge)}>
-            {name}
-          </Button>
+          <Tooltip content={name}>
+            <Button pressed={_id === activeFridge?._id} onClick={() => handleActiveFridgeUpdate(fridge)}>
+              {name.charAt(0).toUpperCase()}
+            </Button>
+          </Tooltip>
         </Card.Section>
       );
     })

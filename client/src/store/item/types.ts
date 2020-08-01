@@ -1,3 +1,5 @@
+import {Fridge} from "store/fridge/types";
+
 export interface Item {
   _id: string;
   name: string;
@@ -5,6 +7,11 @@ export interface Item {
   icon: string | undefined;
   count: number;
   expiryDate: Date;
+}
+
+interface AddItemPayload {
+  item: Item;
+  fridge: Fridge;
 }
 
 export const WILL_ADD_ITEM = 'WILL_ADD_ITEM';
@@ -23,9 +30,12 @@ export const WILL_EDIT_ITEM = 'WILL_EDIT_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const DID_EDIT_ITEM = 'DID_EDIT_ITEM';
 
+export const CHANGE_SELECTED_CATEGORIES = 'CHANGE_SELECTED_CATEGORIES';
+export const CLEAR_SELECTED_CATEGORIES = 'CLEAR_SELECTED_CATEGORIES';
+
 interface AddItemAction {
   type: typeof ADD_ITEM;
-  payload: Item;
+  payload: AddItemPayload;
 }
 
 interface DeleteItemAction {
@@ -43,6 +53,15 @@ interface EditItemAction {
   payload: Item;
 }
 
+interface ChangeSelectedCategoriesAction {
+  type: typeof CHANGE_SELECTED_CATEGORIES;
+  payload: string[];
+}
+
+interface ClearSelectedCategoriesAction {
+  type: typeof CLEAR_SELECTED_CATEGORIES;
+}
+
 interface WillAction {
   type: typeof WILL_ADD_ITEM | typeof WILL_DEL_ITEM | typeof WILL_FETCH_ITEMS | typeof WILL_EDIT_ITEM;
 }
@@ -51,4 +70,4 @@ interface DidAction {
   type: typeof DID_ADD_ITEM | typeof DID_DEL_ITEM | typeof DID_FETCH_ITEMS | typeof DID_EDIT_ITEM;
 }
 
-export type ItemActionTypes = AddItemAction | DeleteItemAction | FetchItemsAction | EditItemAction | WillAction | DidAction;
+export type ItemActionTypes = AddItemAction | DeleteItemAction | FetchItemsAction | EditItemAction | ChangeSelectedCategoriesAction | ClearSelectedCategoriesAction | WillAction | DidAction;

@@ -13,3 +13,8 @@ export const selectFridges = createSelector(
   (fridge: FridgeState) => fridge.fridges
 );
 
+export const selectUsersSharedWith = createSelector(
+  selectFridgeState,
+  (fridge: FridgeState) => fridge.usersSharedWith
+);
+

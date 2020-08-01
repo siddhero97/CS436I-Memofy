@@ -1,19 +1,11 @@
 import {Request, Response} from 'express';
-import {findUserById} from '../DALs';
+import {findUserByEmail} from '../DALs';
 
 export default class FetchUserService {
   public async execute(req: Request, res: Response): Promise<void> {
-    const {user: expressUser} = req;
+    const {query: {email}} = req;
 
-    if (!expressUser) {
-      res.json({userError: 'Coult not find user'});
-
-      return;
-    }
-
-    const {_id} = expressUser as any;
-
-    const user = await findUserById(_id);
+    const user = await findUserByEmail(email as string);
 
     res.json({user});
   }

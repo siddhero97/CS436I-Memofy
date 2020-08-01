@@ -18,8 +18,10 @@ export default function AddFridgeModal({active, handleClose}: Props) {
       setShowWarning(true);
     } else {
       dispatch(thunkAddFridge(fridgeName));
+      setFridgeName('');
+      handleClose();
     }
-  }, [fridgeName, dispatch]);
+  }, [fridgeName, dispatch, handleClose]);
 
   const handleFridgeNameChange = useCallback((newValue) => {
     setShowWarning(newValue === '');

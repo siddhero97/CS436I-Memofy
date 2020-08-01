@@ -1,15 +1,15 @@
 import {User, IUser} from "..";
 
 export default async function(
-  {id, fridgeIds}: IUser,
+  {id: userId, fridgeIds}: IUser,
   fridgeId: String,
 ) {
-  return await User.findOneAndUpdate(
+  return await User.updateMany(
     {
-      _id: id,
+      _id: userId,
     },
     {
-      fridgeIds: [...fridgeIds].filter((id) => id === fridgeId),
+      fridgeIds: [...fridgeIds].filter((id) => id.toString() !== fridgeId),
     },
     {
       new: true

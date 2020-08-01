@@ -65,6 +65,7 @@ export default class Server {
           connectTimeoutMS: 3000,
           useUnifiedTopology: true,
           useNewUrlParser: true,
+          useFindAndModify: false,
         });
       }, 3000);
     });

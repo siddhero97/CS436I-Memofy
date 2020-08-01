@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   Button,
   Modal,
@@ -7,24 +7,20 @@ import {
   Card,
   DatePicker,
   Select,
-  Spinner
+  Spinner,
+  FormLayout
 } from '@shopify/polaris';
 import {thunkAddItem} from 'store/item/actions';
 import {searchIcons, useDebounce} from 'utils';
 
 import './AddItemModal.css';
-
-// TODO: Should be based off of fridge
-const categories = [
-  {label: 'Meats', value: 'meats'},
-  {label: 'Fruits', value: 'fruits'},
-  {label: 'Veggies', value: 'veggies'},
-];
+import {selectActiveFridge} from 'store/app/selectors';
 
 export default function AddItemModal() {
   const today = new Date();
 
   const dispatch = useDispatch();
+  const activeFridge = useSelector(selectActiveFridge);
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
   const [category, setCategory] = useState('meats');
@@ -41,6 +37,7 @@ export default function AddItemModal() {
   const [iconSearchTerm, setIconSearchTerm] = useState('');
   const [iconResults, setIconResults] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
 
   const debouncedIconSearchTerm = useDebounce(iconSearchTerm, 1000);
 
@@ -68,7 +65,7 @@ export default function AddItemModal() {
   const handleSubmit = useCallback(() => {
     const newItem = {
       name,
-      category,
+      category: newCategory ? newCategory : category,
       count: parseInt(count),
       icon: iconUrl,
       expiryDate: selectedDates.end,
@@ -86,10 +83,11 @@ export default function AddItemModal() {
     setIconSearchTerm('');
     setIconResults([]);
     setIsSearching(false);
-  }, [name, category, count, selectedDates.end, iconUrl, today, dispatch, toggleShowModal]);
+    setNewCategory('');
+  }, [name, category, count, selectedDates.end, iconUrl, today, newCategory, dispatch, toggleShowModal]);
 
   const handleNameChange = useCallback((name) => setName(name), []);
-  const handleCategoryChange  = useCallback((category) => setCategory(category), []);
+  const handleCategoryChange = useCallback((category) => setCategory(category), []);
   const handleCountChange = useCallback((count) => setCount(count), []);
   const handleIconChange = useCallback((searchTerm) => {
     setIconSearchTerm(searchTerm);
@@ -99,6 +97,11 @@ export default function AddItemModal() {
     [],
   );
   const handleSelectIconUrl = useCallback((iconUrl) => setIconUrl(iconUrl), []);
+  const handleNewCategoryChange =useCallback((newCategory) => setNewCategory(newCategory), []);
+
+  const categories = activeFridge
+    ? activeFridge.categories
+    : [];
 
   const disabled = name === ''
     || category === ''
@@ -135,46 +138,75 @@ export default function AddItemModal() {
   );
 
   return (
-    <Card.Section title="Can't find your item?">
-      <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
-      <Modal
-        open={showModal}
-        onClose={toggleShowModal}
-        title='Add an item'
-        primaryAction={{
-          content: 'Add',
-          disabled,
-          onAction: handleSubmit,
-        }}
-        secondaryActions={[
-          {
-            content: 'Cancel',
-            onAction: toggleShowModal,
-          }
-        ]}
-      >
-        <Modal.Section>
-          <TextField label="Name of food" value={name} placeholder={'Apples'} onChange={handleNameChange} autoFocus />
-          <Select label="What type of food is it?" options={categories} value={category} onChange={handleCategoryChange} />
-          <TextField label="How many do you want to add?" type="number" value={count} onChange={handleCountChange} />
-        </Modal.Section>
-        <Modal.Section>
-          <header>Pick expiry date:</header>
-          <DatePicker
-            month={month}
-            year={year}
-            onChange={setSelectedDates}
-            onMonthChange={handleMonthChange}
-            selected={selectedDates}
-            allowRange={false}
-            disableDatesBefore={today}
-          />
-        </Modal.Section>
-        <Modal.Section>
-          {iconSearchMarkup}
-        </Modal.Section>
-      </Modal>
-    </Card.Section>
+    <div className='add-item-section'>
+      <Card.Section title="Can't find your item?">
+        <Button fullWidth primary onClick={toggleShowModal}>Add Item</Button>
+        <Modal
+          open={showModal}
+          onClose={toggleShowModal}
+          title='Add a food item'
+          primaryAction={{
+            content: 'Add',
+            disabled,
+            onAction: handleSubmit,
+          }}
+          secondaryActions={[
+            {
+              content: 'Cancel',
+              onAction: toggleShowModal,
+            }
+          ]}
+        >
+          <Modal.Section>
+            <FormLayout>
+              <TextField
+                label="Name of food"
+                value={name}
+                placeholder={'Apples'}
+                onChange={handleNameChange}
+                autoFocus
+              />
+              <Select
+                label="Pick a category"
+                options={categories}
+                value={category}
+                disabled={newCategory.length > 0}
+                onChange={handleCategoryChange}
+              />
+              <TextField
+                label="Add new category"
+                labelHidden
+                type="text"
+                helpText="Can't find the category you're looking for? Add a new one by typing it in the text above."
+                value={newCategory}
+                onChange={handleNewCategoryChange}
+              />
+              <TextField
+                label="How many do you want to add?"
+                type="number"
+                value={count}
+                onChange={handleCountChange}
+              />
+            </FormLayout>
+          </Modal.Section>
+          <Modal.Section>
+            <header>Pick expiry date:</header>
+            <DatePicker
+              month={month}
+              year={year}
+              onChange={setSelectedDates}
+              onMonthChange={handleMonthChange}
+              selected={selectedDates}
+              allowRange={false}
+              disableDatesBefore={today}
+            />
+          </Modal.Section>
+          <Modal.Section>
+            {iconSearchMarkup}
+          </Modal.Section>
+        </Modal>
+      </Card.Section>
+    </div>
   );
 }
 
