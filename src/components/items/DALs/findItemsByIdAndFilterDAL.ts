@@ -4,7 +4,7 @@ interface LooseObject {
   [key: string]: any;
 }
 
-export default async function(_ids: String[], categoriesSelected: String[]) {
+export default async function(_ids: String[], categoriesSelected: String[], search: string) {
   let query: LooseObject = {
     '_id': { $in: _ids}
   };

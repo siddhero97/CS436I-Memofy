@@ -128,6 +128,7 @@ export const thunkInitialItemListLoad = (fridge: Fridge): AppThunk => async (dis
 export const thunkFetchItems = (
   fridgeId: string,
   categoriesSelected: string[],
+  search?: string 
 ): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchItems());
 
@@ -138,6 +139,7 @@ export const thunkFetchItems = (
       token,
       fridgeId: fridgeId,
       categoriesSelected,
+      search
     }
   });
 
