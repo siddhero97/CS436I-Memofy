@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {findFeedAlertsByIdAndFilter} from '../DALs';
+import {findFeedAlerts} from '../DALs';
 import {findUserById} from '../../users/DALs';
 
 export default class FetchFeedAlertsService {
@@ -15,7 +15,7 @@ export default class FetchFeedAlertsService {
         return;
       }
 
-      const feedAlerts = await findFeedAlertsByIdAndFilter(user.feedAlertIds);
+      const feedAlerts = await findFeedAlerts(user._id);
 
       res.status(200).json({feedAlerts});
     } catch (error) {
