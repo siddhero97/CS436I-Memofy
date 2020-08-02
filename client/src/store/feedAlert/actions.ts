@@ -64,7 +64,7 @@ export const thunkFetchFeedAlerts = (
 
   const token = selectToken(getState());
 
-  const {data: {feedAlerts}} = await axios.get<FetchFeedAlertsResponse>('/api/items/get', {
+  const {data: {feedAlerts}} = await axios.get<FetchFeedAlertsResponse>('/api/feedalert/get', {
     params: {
       token,
       userId: userId,
@@ -81,7 +81,7 @@ export const thunkAddFeedAlert = (newFeedAlert: Partial<FeedAlert>): AppThunk =>
   const token = selectToken(getState());
   const _id = selectUserId(getState());
 
-  const {data: {feedAlert, user}} = await axios.post<AddFeedAlertResponse>('/api/feedalerts/post',
+  const {data: {feedAlert, user}} = await axios.post<AddFeedAlertResponse>('/api/feedalert/post',
     {
       userId: _id,
       newFeedAlert
