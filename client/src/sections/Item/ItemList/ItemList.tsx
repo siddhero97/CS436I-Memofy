@@ -63,7 +63,7 @@ export default function ItemList() {
 
   const itemListMarkup = items.map((item) => {
     return (
-      <div key={item.name}>
+      <div key={item._id}>
         <Item item={item} showDetails={isOpen} onShowDetails={handleShowItem} onHideDetails={handleHideItem} />
       </div>
     );

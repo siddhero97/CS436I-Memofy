@@ -4,9 +4,9 @@ interface LooseObject {
   [key: string]: any;
 }
 
-export default async function(_ids: String[]) {
+export default async function(feedAlertIds: String[]) {
   let query: LooseObject = {
-    '_id': { $in: _ids}
+    '_id': { $in: feedAlertIds}
   };
 
   return await FeedAlert.find(query);

@@ -48,7 +48,7 @@ function willAddFeedAlert(): FeedAlertActionTypes {
 function addFeedAlert(feedAlert: FeedAlert, user: User): FeedAlertActionTypes {
   return {
     type: ADD_FEED_ALERT,
-    payload: {feedAlert, user},
+    payload: {feedAlert, user}, 
   };
 }
 function didAddFeedAlert(): FeedAlertActionTypes {
@@ -57,17 +57,17 @@ function didAddFeedAlert(): FeedAlertActionTypes {
   };
 }
 
-export const thunkFetchFeedAlerts = (
-  userId: string,
-): AppThunk => async (dispatch, getState) => {
+export const thunkFetchFeedAlerts = (feedAlertIds: string[] | undefined): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchFeedAlerts());
 
   const token = selectToken(getState());
+  const _id = selectUserId(getState());
 
   const {data: {feedAlerts}} = await axios.get<FetchFeedAlertsResponse>('/api/feedalert/get', {
     params: {
       token,
-      userId: userId,
+      userId: _id,
+      feedAlertIds,
     }
   });
 

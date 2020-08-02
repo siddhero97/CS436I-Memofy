@@ -5,7 +5,7 @@ import {findUserById} from '../../users/DALs';
 export default class FetchFeedAlertsService {
   public async execute(req: Request, res: Response): Promise<void> {
     try {
-      const {query: {userId}} = req;
+      const {query: {userId, feedAlertIds}} = req;
 
       const user = await findUserById(userId as string);
 
@@ -15,7 +15,7 @@ export default class FetchFeedAlertsService {
         return;
       }
 
-      const feedAlerts = await findFeedAlerts(user._id);
+      const feedAlerts = await findFeedAlerts(feedAlertIds as string[]);
 
       res.status(200).json({feedAlerts});
     } catch (error) {

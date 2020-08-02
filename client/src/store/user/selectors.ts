@@ -22,3 +22,8 @@ export const selectUserLastName = createSelector(
   selectUserState,
   (user: UserState) => user.lastName,
 );
+
+export const selectUserFeedAlerts = createSelector(
+  selectUserState,
+  (user: UserState) => user.feedAlertIds,
+)
