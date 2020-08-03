@@ -5,7 +5,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  feedAlertIds: string[]
+  feedAlertIds: string[];
 }
 
 export const WILL_CREATE_USER = 'WILL_CREATE_USER';
