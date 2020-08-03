@@ -5,3 +5,8 @@
     align-items: center;
     margin: 2rem;
 }
+
+.interactive {
+  display: flex;
+  flex-direction: row;
+}

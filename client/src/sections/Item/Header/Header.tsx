@@ -7,8 +7,10 @@ import './Header.css';
 export default function Header() {
   return (
     <div className='header'>
-      <Searchbar />
-      <Filter />
+      <div className='interactive'>
+        <Searchbar />
+        <Filter />
+      </div>
       <SettingsPopover />
     </div>
   );
