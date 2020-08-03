@@ -8,8 +8,12 @@ export default function Header() {
   return (
     <div className='header'>
       <div className='interactive'>
-        <Searchbar />
-        <Filter />
+        <div className='search'>
+          <Searchbar />
+        </div>
+        <div>
+          <Filter />
+        </div>
       </div>
       <SettingsPopover />
     </div>
