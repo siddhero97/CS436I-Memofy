@@ -1,7 +1,7 @@
 import {Document, Schema, Model, model} from 'mongoose';
 
 export interface IItem extends Document {
-  name: String;
+  name: String | RegExp;
   count: String;
   category: String;
   icon: String;
