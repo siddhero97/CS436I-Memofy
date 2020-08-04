@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 import {Card} from '@shopify/polaris';
-import {thunkDeleteItem} from '../../../../store/item/actions';
-import {Item as ItemType} from '../../../../store/item/types';
+import {thunkDeleteItem} from 'store/item/actions';
+import {Item as ItemType} from 'store/item/types';
 
 import './Item.css';
 interface Props {

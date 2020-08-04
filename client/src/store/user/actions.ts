@@ -6,12 +6,20 @@ import {
   WILL_LOGIN,
   DID_LOGIN,
   WILL_CREATE_USER,
-  DID_CREATE_USER
+  DID_CREATE_USER,
+  WILL_EDIT_USER,
+  EDIT_USER,
+  DID_EDIT_USER
 } from './types';
 import {AppThunk} from '..';
 import axios from 'axios';
+import {selectToken} from 'store/app/selectors';
 
 export interface CreateUserResponse {
+  user: User;
+}
+
+export interface EditUserResponse {
   user: User;
 }
 
@@ -28,6 +36,23 @@ function willCreateUser(): UserActionTypes {
 function didCreateUser(): UserActionTypes {
   return {
     type: DID_CREATE_USER,
+  };
+}
+
+function willEditUser(): UserActionTypes {
+  return {
+    type: WILL_EDIT_USER,
+  };
+}
+function editUser(user: User): UserActionTypes {
+  return {
+    type: EDIT_USER,
+    payload: user,
+  };
+}
+function didEditUser(): UserActionTypes {
+  return {
+    type: DID_EDIT_USER,
   };
 }
 
@@ -92,4 +117,22 @@ export const thunkLogin = (email: string, password: string): AppThunk => async d
 
 export const thunkLogout = (): AppThunk => async dispatch => {
   dispatch(logout());
+};
+
+export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (dispatch, getState) => {
+  dispatch(willEditUser());
+
+  const token = selectToken(getState());
+
+  const {data: {user}} = await axios.put<EditUserResponse>('/api/users/edit',
+    updatedUser,
+    {
+      params: {
+        token
+      }
+    }
+  );
+
+  dispatch(editUser(user));
+  dispatch(didEditUser());
 };

@@ -1,4 +1,4 @@
-import {UserActionTypes, LOGIN, LOGOUT, WILL_LOGIN, DID_LOGIN} from './types';
+import {UserActionTypes, LOGIN, LOGOUT, WILL_LOGIN, DID_LOGIN, EDIT_USER} from './types';
 import {UserState} from '../types';
 import {FridgeActionTypes, ADD_FRIDGE} from 'store/fridge/types';
 
@@ -15,6 +15,11 @@ export function userReducer(
       return {
         ...state,
         ...action.payload.user
+      };
+    case EDIT_USER:
+      return {
+        ...state,
+        ...action.payload
       };
     case LOGOUT:
       return intialState;

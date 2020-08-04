@@ -1,8 +1,8 @@
-import {Modal, TextField, Banner} from '@shopify/polaris';
+import {Modal, TextField, Banner, EventListener} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {thunkCreateUser} from '../../../store/user/actions';
+import {thunkCreateUser} from 'store/user/actions';
 
 interface Props {
   active: boolean;
@@ -18,7 +18,7 @@ export default function RegisterModal({active, handleChange}: Props) {
   const [password, setPassword] = useState('');
   const [showWarning, setShowWarning] = useState(false);
 
-  const handleLogin = () => {
+  const handleRegister = useCallback(() => {
     if (email === "" || password === "") {
       setShowWarning(true);
     } else {
@@ -30,7 +30,13 @@ export default function RegisterModal({active, handleChange}: Props) {
       ));
       history.push('/home');
     }
-  };
+  }, [firstName, lastName, email, password, history, dispatch]);
+
+  const handleEnterKey = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleRegister();
+    }
+  }, [handleRegister]);
 
   const handleFirstNameChange = useCallback((value) => setFirstName(value), []);
   const handleLastNameChange = useCallback((value) => setLastName(value), []);
@@ -47,13 +53,14 @@ export default function RegisterModal({active, handleChange}: Props) {
 
   return (
     <div className='login-modal'>
+      <EventListener capture event="keypress" handler={handleEnterKey} />
       <Modal
         open={active}
         onClose={handleChange}
         title="Register"
         primaryAction={{
           content: 'Register',
-          onAction: handleLogin,
+          onAction: handleRegister,
         }}
         secondaryActions={[
           {

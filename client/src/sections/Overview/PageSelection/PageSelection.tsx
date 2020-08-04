@@ -22,6 +22,12 @@ const mediaCardItems: MediaCardItem[] = [
     description: "Manage your fridges here.",
     path: '/fridges',
     imgPath: "https://burst.shopifycdn.com/photos/modern-updated-kitchen-interior-home.jpg?width=1850"
+  },
+  {
+    title: 'Profile',
+    description: "View and edit your profile details here.",
+    path: '/profile',
+    imgPath: "https://burst.shopifycdn.com/photos/bearded-young-man.jpg?width=1850"
   }
 ];
 
@@ -40,10 +46,6 @@ export default function PageSelection() {
         primaryAction={{
           content: 'Enter',
           onAction: () => handleEnter(path),
-        }}
-        secondaryAction={{
-          content: 'Learn more',
-          onAction: () => null,
         }}
         description={description}
       >
