@@ -3,6 +3,11 @@ import {createSelector} from 'reselect';
 
 const selectUserState = (state: RootState) => state.user;
 
+export const selectActiveUser = createSelector(
+  selectUserState,
+  (user: UserState) => user,
+);
+
 export const selectUserId = createSelector(
   selectUserState,
   (user: UserState) => user._id,

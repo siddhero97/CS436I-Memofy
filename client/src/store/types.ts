@@ -23,7 +23,7 @@ export interface UserState {
   firstName?: string;
   lastName?: string;
   email?: string;
-  feedAlertIds?: string[];
+  feedAlertIds: string[];
 }
 
 export interface AppState {
