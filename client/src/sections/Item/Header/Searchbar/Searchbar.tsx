@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectActiveFridge} from 'store/app/selectors';
-import {TextField, Button} from '@shopify/polaris';
+import {TextField, Button, EventListener} from '@shopify/polaris';
 import {thunkFetchItems} from 'store/item/actions';
 import {selectSelectedCategories} from 'store/item/selectors';
 
@@ -26,8 +26,15 @@ export default function Searchbar() {
     }
   }, [activeFridge, selectedCategories, searchValue, dispatch]);
 
+  const handleEnterKey = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  }, [handleSubmit]);
+
   return (
     <div className='search-box'>
+      <EventListener capture event="keypress" handler={handleEnterKey} />
       <TextField
         label=''
         placeholder="Search an item..."
@@ -36,9 +43,11 @@ export default function Searchbar() {
         clearButton
         onClearButtonClick={handleClearButtonClick}
       />
-      <Button
-        onClick={handleSubmit}
-      >Search</Button>
+      <div className='search-button'>
+        <Button primary onClick={handleSubmit}>
+          Search
+        </Button>
+      </div>
     </div>
   );
 }
