@@ -1,43 +1,49 @@
-import React, {useState, useCallback} from 'react';
-import {Button, ButtonGroup} from '@shopify/polaris';
+import React, {useState, useCallback, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {Button, ButtonGroup, TextContainer} from '@shopify/polaris';
+import {selectIsLoggedIn} from 'store/app/selectors';
+import {RegisterModal, LoginModal} from './components';
 import logo from 'icons/logo.png';
 import example from '../example.png';
 
 import './Login.css';
-import {RegisterModal, LoginModal} from './components';
-import {selectToken} from '../../store/app/selectors';
-import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
 
 export default function Login() {
-  // the below 2 lines should not be here, we need to rethink the structure of our app
-  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
   const history = useHistory();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('./home');
+
+      return;
+    }
+  }, [isLoggedIn, history, dispatch]);
+
 
   const toggleShowLoginModal = useCallback(() => setShowLoginModal(!showLoginModal), [showLoginModal]);
   const toggleShowRegisterModal = useCallback(() => setShowRegisterModal(!showRegisterModal), [showRegisterModal]);
 
-  if (token) {
-    history.push('/home');
-  }
-
   return (
-    <div className='login'>
+    <div>
       <div className='top-bar'>
-        <img src={logo} className="logo" alt={'Not found'} />
+        <img className='login-logo' src={logo} alt={'Not found'} />
         <div className="title">Memofy</div>
       </div>
-
-      <div className="main-page">
+      <div className="intro-section">
         <div className="text-content">
-          <div className="intro">Keep an ease of mind</div>
-          <h1 className="main-content">One Fridge, Two Fridge, Shared Fridge, Memofy Tracks it all.</h1>
-          <div className="additional-content">Let Memofy keep track of your food, so you can focus on enjoying it. </div>
+          <TextContainer spacing="tight">
+            <div className="intro">Keep an ease of mind</div>
+            <h1 className="main-content">One Fridge, Two Fridge, Shared Fridge, Memofy Tracks it all.</h1>
+            <div className="additional-content">Let Memofy keep track of your food, so you can focus on enjoying it. </div>
+          </TextContainer>
           <ButtonGroup fullWidth>
             <Button primary onClick={toggleShowLoginModal} fullWidth={false}>Login</Button>
-            <Button outline onClick={toggleShowRegisterModal}>Register</Button>
+            <Button onClick={toggleShowRegisterModal}>Register</Button>
           </ButtonGroup>
         </div>
         <div className="example-content">

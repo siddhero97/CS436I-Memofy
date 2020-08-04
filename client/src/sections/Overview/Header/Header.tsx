@@ -8,6 +8,7 @@ export default function Header() {
   return (
     <div className='overview-header'>
       <img className='overview-header-logo' src={logo} alt='no-logo' />
+      <div className="title">Memofy</div>
       <SettingsPopover />
     </div>
   );
