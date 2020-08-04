@@ -1,7 +1,7 @@
 import React from 'react';
 import {Sheet} from '@shopify/polaris';
 import {ItemSummaryLayout} from './components';
-import {Item} from '../../../../store/item/types';
+import {Item} from 'store/item/types';
 
 interface Props {
   item: Item;

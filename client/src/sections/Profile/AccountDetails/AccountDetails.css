@@ -1,0 +1,4 @@
+.account-details {
+  grid-area: AccountDetails;
+  margin: 2rem 5rem 5rem 5rem;
+}
