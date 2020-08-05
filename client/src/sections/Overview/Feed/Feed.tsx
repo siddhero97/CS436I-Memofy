@@ -11,9 +11,7 @@ import {FeedAlert} from 'store/feedAlert/types';
 export default function Feed() {
   const dispatch = useDispatch();
   const feedAlertIds = useSelector(selectUserFeedAlerts);
-  console.log('ids: ' + feedAlertIds);
   const feedAlerts = useSelector(selectFeedAlerts);
-  console.log(feedAlerts)
   const activeUser = useSelector(selectActiveUser);
 
   useEffect(() => {
