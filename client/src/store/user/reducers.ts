@@ -38,7 +38,7 @@ export function userReducer(
       return {
         ...state,
         feedAlertIds: action.payload.feedAlertIds
-      }
+      };
     }
     default:
       return state;

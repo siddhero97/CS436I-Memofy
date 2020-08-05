@@ -67,14 +67,14 @@ function logout(): UserActionTypes {
 function willEditUser(): UserActionTypes {
   return {
     type: WILL_EDIT_USER
-  }
+  };
 }
 
 function editUser(user: User): UserActionTypes {
   return {
     type: EDIT_USER,
     payload: user
-  }
+  };
 }
 
 function didEditUser(): UserActionTypes {
@@ -126,20 +126,18 @@ export const thunkLogout = (): AppThunk => async dispatch => {
 export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (dispatch, getState) => {
   dispatch(willEditUser());
 
-  const token = selectToken(getState()); 
+  const token = selectToken(getState());
 
-  const {data: {user}} = await axios.put<EditUserResponse>('api/users/edit', 
-  updatedUser,
+  const {data: {user}} = await axios.put<EditUserResponse>('api/users/edit',
+    updatedUser,
     {
       params: {
         token
       }
     }
   );
-  console.log("user is: ")
-  console.log(user)
- 
+
   dispatch(editUser(user));
-  dispatch(thunkFetchFeedAlerts(updatedUser.feedAlertIds))
+  dispatch(thunkFetchFeedAlerts(updatedUser.feedAlertIds));
   dispatch(didEditUser());
-}
+};
