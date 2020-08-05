@@ -13,6 +13,7 @@ import {AppThunk} from '..';
 import {selectToken} from 'store/app/selectors';
 import {User} from 'store/user/types';
 import {selectUserId} from 'store/user/selectors';
+import {thunkEditUser} from 'store/user/actions';
 
 interface FetchFeedAlertsResponse {
   feedAlerts: FeedAlert[];
@@ -57,7 +58,9 @@ function didAddFeedAlert(): FeedAlertActionTypes {
   };
 }
 
-export const thunkFetchFeedAlerts = (feedAlertIds: string[] | undefined): AppThunk => async (dispatch, getState) => {
+export const thunkFetchFeedAlerts = (
+  feedAlertIds: string[] | undefined
+  ): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchFeedAlerts());
 
   const token = selectToken(getState());
@@ -94,5 +97,6 @@ export const thunkAddFeedAlert = (newFeedAlert: Partial<FeedAlert>): AppThunk =>
   );
 
   dispatch(addFeedAlert(feedAlert, user));
+  dispatch(thunkEditUser(user));
   dispatch(didAddFeedAlert());
 };

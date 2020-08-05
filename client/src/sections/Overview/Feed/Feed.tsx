@@ -12,12 +12,14 @@ import {FeedAlert} from 'store/feedAlert/types';
 export default function Feed() {
   const dispatch = useDispatch();
   const feedAlertIds = useSelector(selectUserFeedAlerts);
+  console.log('ids: ' + feedAlertIds);
   const feedAlerts = useSelector(selectFeedAlerts);
+  console.log(feedAlerts)
   const activeUser = useSelector(selectActiveUser);
 
   useEffect(() => {
     dispatch(thunkFetchFeedAlerts(feedAlertIds));
-  });
+  }, [feedAlertIds, dispatch]);
 
   const removeFeedAlertFromUser = useCallback((feedAlert: FeedAlert) => {
     const userFeedAlerts = feedAlertIds?.filter(id => id !== feedAlert._id);
@@ -29,7 +31,7 @@ export default function Feed() {
     dispatch(thunkEditUser(editedActiveUser));
   }, [activeUser, dispatch, feedAlertIds]);
 
-  const feedMarkup = feedAlerts.map((feedAlert) => {
+  const feedAlertMarkup = feedAlerts.map((feedAlert) => {
     return (
       <div key={feedAlert._id}>
         <Banner onDismiss={() => removeFeedAlertFromUser(feedAlert)}>
@@ -44,7 +46,7 @@ export default function Feed() {
   return (
     <div className='feed'>
       <Card title='Activity Log'>
-        {feedMarkup}
+        {feedAlertMarkup}
       </Card>
     </div>
   );

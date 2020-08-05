@@ -37,7 +37,7 @@ export function userReducer(
     case EDIT_USER: {
       return {
         ...state,
-        // feedAlertIds: action.payload.feedAlertIds
+        feedAlertIds: action.payload.feedAlertIds
       }
     }
     default:

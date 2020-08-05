@@ -136,6 +136,8 @@ export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (di
       }
     }
   );
+  console.log("user is: ")
+  console.log(user)
  
   dispatch(editUser(user));
   dispatch(thunkFetchFeedAlerts(updatedUser.feedAlertIds))
