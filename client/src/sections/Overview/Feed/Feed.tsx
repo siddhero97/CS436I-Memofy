@@ -8,7 +8,6 @@ import {thunkFetchFeedAlerts} from 'store/feedAlert/actions';
 import {thunkEditUser} from 'store/user/actions';
 import {FeedAlert} from 'store/feedAlert/types';
 
-
 export default function Feed() {
   const dispatch = useDispatch();
   const feedAlertIds = useSelector(selectUserFeedAlerts);
@@ -33,7 +32,7 @@ export default function Feed() {
 
   const feedAlertMarkup = feedAlerts.map((feedAlert) => {
     return (
-      <div key={feedAlert._id}>
+      <div className='alert' key={feedAlert._id}>
         <Banner onDismiss={() => removeFeedAlertFromUser(feedAlert)}>
           <p>
             {feedAlert.message + feedAlert.timestamp}
