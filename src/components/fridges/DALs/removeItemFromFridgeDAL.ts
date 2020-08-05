@@ -9,7 +9,7 @@ export default async function(
       _id: id,
     },
     {
-      itemIds: [...itemIds].filter((id) => id === itemId),
+      itemIds: [...itemIds].filter((id) => id !== itemId),
     },
     {
       new: true
