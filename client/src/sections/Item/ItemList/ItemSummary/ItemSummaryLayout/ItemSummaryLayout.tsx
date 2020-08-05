@@ -109,7 +109,7 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
     };
 
     const newFeedAlert = {
-      message: name + " was updated in your fridge: " + activeFridge?.name,
+      message: name + " was updated in your fridge: " + activeFridge?.name + " on ",
       timestamp: new Date(),
     }
 

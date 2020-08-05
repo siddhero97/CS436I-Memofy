@@ -27,7 +27,7 @@ export default function AddItemModal() {
   const [category, setCategory] = useState('meats');
   const [count, setCount] = useState('0');
   const [{month, year}, setDate] = useState({
-    month: 6,
+    month: today.getMonth(),
     year: 2020,
   });
   const [selectedDates, setSelectedDates] = useState({
@@ -73,7 +73,7 @@ export default function AddItemModal() {
     };
 
     const newFeedAlert = {
-      message: name + " was added to your fridge: " + activeFridge?.name,
+      message: name + " was added to your fridge: " + activeFridge?.name + " on ",
       timestamp: new Date(),
     };
 

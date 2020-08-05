@@ -19,6 +19,7 @@ import {thunkEditFridge, thunkDeleteFridge, thunkFetchUsersSharedWith, thunkAddU
 import {selectUsersSharedWith} from 'store/fridge/selectors';
 
 import './FridgeDetails.css';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 export default function FridgeDetails() {
   const dispatch = useDispatch();
@@ -53,19 +54,36 @@ export default function FridgeDetails() {
       ...activeFridge,
       name: newName,
     };
+    const newFeedAlert = {
+      message: activeFridge?.name + " was updated to a new name: " + newName + " on ",
+      timestamp: new Date(),
+    };
 
+    dispatch(thunkAddFeedAlert(newFeedAlert));
     dispatch(thunkEditFridge(newFridge));
     setNewName('');
     setShowEdit(false);
   }, [newName, activeFridge, dispatch]);
 
   const handleSubmitNewSharedUser = useCallback(() => {
+    const newFeedAlert = {
+      message: newSharedUserEmail + " was added to " + activeFridge?.name + " on ",
+      timestamp: new Date(),
+    };
+
+    dispatch(thunkAddFeedAlert(newFeedAlert));
     dispatch(thunkAddUsersSharedWith(newSharedUserEmail));
     setNewSharedUserEmail('');
   }, [newSharedUserEmail, dispatch]);
 
   const handleDeleteFridge = useCallback(() => {
     if (activeFridge) {
+      const newFeedAlert = {
+        message: activeFridge.name + " was deleted on ",
+        timestamp: new Date(),
+      };
+
+      dispatch(thunkAddFeedAlert(newFeedAlert));
       dispatch(thunkDeleteFridge(activeFridge._id));
     }
   }, [activeFridge, dispatch]);

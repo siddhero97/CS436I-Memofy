@@ -33,7 +33,7 @@ export default function Item({
       onHideDetails();
     }
     const newFeedAlert = {
-      message: name + " was deleted in your fridge: " + activeFridge?.name,
+      message: name + " was deleted in your fridge: " + activeFridge?.name + " on ",
       timestamp: new Date(),
     }
     dispatch(thunkAddFeedAlert(newFeedAlert));

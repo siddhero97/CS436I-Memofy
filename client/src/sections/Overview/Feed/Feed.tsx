@@ -31,11 +31,14 @@ export default function Feed() {
   }, [activeUser, dispatch, feedAlertIds]);
 
   const feedAlertMarkup = feedAlerts.map((feedAlert) => {
+    const readableTimestamp = new Date(feedAlert.timestamp).toDateString();
+    const splitFeedAlert = feedAlert.message.split("was", 2);
+
     return (
       <div className='alert' key={feedAlert._id}>
         <Banner onDismiss={() => removeFeedAlertFromUser(feedAlert)}>
           <p>
-            {feedAlert.message + feedAlert.timestamp}
+            <b>{splitFeedAlert[0]}</b> was {splitFeedAlert[1]} <i>{readableTimestamp}</i>
           </p>
         </Banner>
       </div>

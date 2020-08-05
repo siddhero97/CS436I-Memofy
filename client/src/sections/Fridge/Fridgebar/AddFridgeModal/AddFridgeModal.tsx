@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {TextField, Banner, Modal} from '@shopify/polaris';
 import {useDispatch} from 'react-redux';
 import {thunkAddFridge} from 'store/fridge/actions';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 interface Props {
   active: boolean;
@@ -17,6 +18,12 @@ export default function AddFridgeModal({active, handleClose}: Props) {
     if (fridgeName === "") {
       setShowWarning(true);
     } else {
+      const newFeedAlert = {
+        message: fridgeName + " was created on ",
+        timestamp: new Date(),
+      };
+
+      dispatch(thunkAddFeedAlert(newFeedAlert));
       dispatch(thunkAddFridge(fridgeName));
       setFridgeName('');
       handleClose();
