@@ -2,3 +2,7 @@
   grid-area: Feed;
   margin: 5rem;
 }
+
+.alert {
+  padding-top: 1rem;
+}

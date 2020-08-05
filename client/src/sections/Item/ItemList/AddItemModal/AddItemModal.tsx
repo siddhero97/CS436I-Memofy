@@ -15,7 +15,7 @@ import {searchIcons, useDebounce} from 'utils';
 
 import './AddItemModal.css';
 import {selectActiveFridge} from 'store/app/selectors';
-import { thunkAddFeedAlert } from 'store/feedAlert/actions';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 export default function AddItemModal() {
   const today = new Date();
@@ -75,10 +75,10 @@ export default function AddItemModal() {
     const newFeedAlert = {
       message: name + " was added to your fridge: " + activeFridge?.name,
       timestamp: new Date(),
-    }
+    };
 
     dispatch(thunkAddItem(newItem));
-    dispatch(thunkAddFeedAlert(newFeedAlert))
+    dispatch(thunkAddFeedAlert(newFeedAlert));
 
     toggleShowModal();
     setName('');
