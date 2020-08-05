@@ -78,7 +78,7 @@ export default function FridgeDetails() {
             heading="Getting started"
             image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
           >
-            <p className='emptystate-paragraph'>To create a new fridge, click the "+" button on the left bar. View and edit a fridge by clicking it on the same bar.</p>
+            <p className='emptystate-paragraph'>To create a new fridge, click the &quot;+&quot; button on the left bar. View and edit a fridge by clicking it on the same bar.</p>
           </EmptyState>
         </Card>
       </div>

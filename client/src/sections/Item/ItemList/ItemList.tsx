@@ -59,7 +59,7 @@ export default function ItemList() {
             heading="Oops! You have no fridges"
             image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
           >
-            <p>Create a new fridge by clicking the "+" button on the left bar.</p>
+            <p>Create a new fridge by clicking the &quot;+&quot; button on the left bar.</p>
           </EmptyState>
         </Card>
       </div>
