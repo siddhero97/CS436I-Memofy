@@ -73,7 +73,7 @@ export default function AddItemModal() {
     };
 
     const newFeedAlert = {
-      message: name + " was added to your fridge",
+      message: name + " was added to your fridge: " + activeFridge?.name,
       timestamp: new Date(),
     }
 
