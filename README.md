@@ -7,37 +7,36 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 **Project Goals:**
 
 - **Minimal requirements**
-  - Landing Page
-  - Login page
-  - Users can add/remove items
-  - Users can see their items
-  - User data is saved/stored
-  - Responsive UI
-  - Users can see their account + settings
+  - Overview Page ✅
+  - Login page ✅
+  - Users can add/remove items ✅
+  - Users can see their items ✅
+  - User data is saved/stored ✅
+  - Responsive UI ✅❌
+  - Users can see their account + settings ✅
 - **Standard requirements**
-  - Sorting/filter/Search items
-  - Feed (for expiry dates/sales?)
-  - Email notification (for adding/removing food, etc.)
-  - Users can collaborate/share Memofy lists of items with other users
-  - Users can set minimum food counts
-  - \*Users can add/collaborate recipes
+  - Sort/Filter/Search items ✅
+  - Feed (for adding/removing food, etc.) ✅
+  - Email notification (for adding/removing food, etc.) ❌
+  - Users can collaborate/share Memofy lists of items with other users ✅
+  - Users can add/collaborate recipes ❌
 - **Stretch requirements**
-  - Mobile app
-  - Delivery service
-  - Nutrition tracking
-  - Subscription service
+  - Mobile app ❌
+  - Delivery service ❌
+  - Nutrition tracking ❌
+  - Subscription service ❌
 
 **How Course Material were used in project**
 
-Unit 1
+Unit 1 - HTML, CSS, JS
 
-Unit 2
+Unit 2 - React & Redux
 
-Unit 3
+Unit 3 - MongoDB
 
-Unit 4
+Unit 4 - Node & Express
 
-Unit 5
+Unit 5 - Release Engineering
 
 **Above and Beyond functionality**
 
@@ -45,9 +44,11 @@ JWT Token authentication
 
 Using Typescript
 
+Using modern React and Redux tooling and patterns
+
 Using Reduxthunk
 
-Exercising modern methodologies to format project file structure
+Exercising modern backend patterns to format project file structure
 
 **Next Steps**
 
