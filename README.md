@@ -6,6 +6,10 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 
 **Project Goals:**
 
+✅ - Complete
+❌ - Incomplete
+✅❌ - Partially complete
+
 - **Minimal requirements**
   - Overview Page ✅
   - Login page ✅
