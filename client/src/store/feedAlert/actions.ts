@@ -14,7 +14,6 @@ import {selectToken} from 'store/app/selectors';
 import {User} from 'store/user/types';
 import {selectUserId} from 'store/user/selectors';
 import {selectActiveFridge} from 'store/app/selectors';
-import {thunkEditUser} from 'store/user/actions';
 
 interface FetchFeedAlertsResponse {
   feedAlerts: FeedAlert[];
@@ -63,9 +62,7 @@ function didAddFeedAlert(): FeedAlertActionTypes {
   };
 }
 
-export const thunkFetchFeedAlerts = (
-  feedAlertIds: string[] | undefined
-): AppThunk => async (dispatch, getState) => {
+export const thunkFetchFeedAlerts = (): AppThunk => async (dispatch, getState) => {
   dispatch(willFetchFeedAlerts());
 
   const token = selectToken(getState());
@@ -74,8 +71,7 @@ export const thunkFetchFeedAlerts = (
   const {data: {feedAlerts}} = await axios.get<FetchFeedAlertsResponse>('/api/feedalert/get', {
     params: {
       token,
-      userId: _id,
-      feedAlertIds,
+      userId: _id
     }
   });
 
@@ -104,6 +100,5 @@ export const thunkAddFeedAlert = (newFeedAlert: Partial<FeedAlert>): AppThunk =>
   );
 
   dispatch(addFeedAlert(feedAlert, user));
-  dispatch(thunkEditUser(user));
   dispatch(didAddFeedAlert());
 };

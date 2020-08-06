@@ -15,7 +15,7 @@ export default class FetchFeedAlertsService {
         return;
       }
 
-      const feedAlerts = await findFeedAlerts(feedAlertIds as string[]);
+      const feedAlerts = await findFeedAlerts(user.feedAlertIds as string[]);
 
       res.status(200).json({feedAlerts});
     } catch (error) {

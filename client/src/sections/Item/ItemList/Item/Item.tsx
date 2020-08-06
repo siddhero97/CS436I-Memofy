@@ -2,11 +2,10 @@ import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Card} from '@shopify/polaris';
 import {thunkDeleteItem} from 'store/item/actions';
+import {selectActiveFridge} from 'store/app/selectors';
 import {Item as ItemType} from 'store/item/types';
 
 import './Item.css';
-import {thunkAddFeedAlert} from 'store/feedAlert/actions';
-import {selectActiveFridge} from 'store/app/selectors';
 interface Props {
   item: ItemType;
   showDetails: boolean;
@@ -38,8 +37,7 @@ export default function Item({
       timestamp: new Date(),
     };
 
-    dispatch(thunkAddFeedAlert(newFeedAlert));
-    dispatch(thunkDeleteItem(_id));
+    dispatch(thunkDeleteItem(_id, newFeedAlert));
   }, [dispatch, showDetails, _id, activeFridge, name, onHideDetails]);
 
   return (

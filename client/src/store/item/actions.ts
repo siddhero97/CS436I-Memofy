@@ -22,6 +22,8 @@ import {selectToken, selectActiveFridge} from 'store/app/selectors';
 import {Fridge} from 'store/fridge/types';
 import {setActiveFridge} from 'store/app/actions';
 import {selectSelectedCategories} from './selectors';
+import {FeedAlert} from 'store/feedAlert/types';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 interface FetchItemsResponse {
   items: Item[];
@@ -147,7 +149,7 @@ export const thunkFetchItems = (
   dispatch(didFetchItems());
 };
 
-export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatch, getState) => {
+export const thunkAddItem = (newItem: Partial<Item>, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willAddItem());
 
   const token = selectToken(getState());
@@ -166,10 +168,11 @@ export const thunkAddItem = (newItem: Partial<Item>): AppThunk => async (dispatc
   );
 
   dispatch(addItem(item, fridge));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didAddItem());
 };
 
-export const thunkDeleteItem = (id: string): AppThunk => async (dispatch, getState) => {
+export const thunkDeleteItem = (id: string, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willDeleteItem());
 
   const token = selectToken(getState());
@@ -188,10 +191,11 @@ export const thunkDeleteItem = (id: string): AppThunk => async (dispatch, getSta
   );
 
   dispatch(deleteItem(deletedId));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didDeleteItem());
 };
 
-export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async (dispatch, getState) => {
+export const thunkEditItem = (updatedItem: Partial<Item>, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willEditItem());
 
   const token = selectToken(getState());
@@ -209,5 +213,6 @@ export const thunkEditItem = (updatedItem: Partial<Item>): AppThunk => async (di
 
   dispatch(editItem(item));
   dispatch(thunkFetchItems(_id, selectedCategories));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didEditItem());
 };

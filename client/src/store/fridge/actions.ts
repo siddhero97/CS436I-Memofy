@@ -25,6 +25,8 @@ import {AppThunk} from 'store';
 import {selectToken, selectActiveFridge} from 'store/app/selectors';
 import {User} from 'store/user/types';
 import {setActiveFridge} from 'store/app/actions';
+import {FeedAlert} from 'store/feedAlert/types';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 interface FetchFridgeResponse {
   fridges: Fridge[];
@@ -169,7 +171,7 @@ export const thunkInitialFridgeLoad = (): AppThunk => async (dispatch, getState)
   dispatch(didFetchFridges());
 };
 
-export const thunkAddFridge = (name: string): AppThunk => async (dispatch, getState) => {
+export const thunkAddFridge = (name: string, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willAddFridge());
 
   const token = selectToken(getState());
@@ -185,12 +187,14 @@ export const thunkAddFridge = (name: string): AppThunk => async (dispatch, getSt
     }
   );
 
+
   dispatch(addFridge(data));
   dispatch(setActiveFridge(data.fridge));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didAddFridge());
 };
 
-export const thunkEditFridge = (fridge: Partial<Fridge>): AppThunk => async (dispatch, getState) => {
+export const thunkEditFridge = (fridge: Partial<Fridge>, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willEditFridge());
 
   const token = selectToken(getState());
@@ -206,11 +210,14 @@ export const thunkEditFridge = (fridge: Partial<Fridge>): AppThunk => async (dis
 
   dispatch(editFridge(updatedFridge));
   dispatch(setActiveFridge(updatedFridge));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didEditFridge());
 };
 
-export const thunkDeleteFridge = (id: string): AppThunk => async (dispatch, getState) => {
+export const thunkDeleteFridge = (id: string, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willDeleteFridge());
+
+  dispatch(thunkAddFeedAlert(newFeedAlert));
 
   const token = selectToken(getState());
 
@@ -246,7 +253,7 @@ export const thunkFetchUsersSharedWith = (id: string): AppThunk => async (dispat
   dispatch(didFetchUsersSharedWith());
 };
 
-export const thunkAddUsersSharedWith = (email: string): AppThunk => async (dispatch, getState) => {
+export const thunkAddUsersSharedWith = (email: string, newFeedAlert: Partial<FeedAlert>): AppThunk => async (dispatch, getState) => {
   dispatch(willAddUsersSharedWith());
 
   const token = selectToken(getState());
@@ -272,5 +279,6 @@ export const thunkAddUsersSharedWith = (email: string): AppThunk => async (dispa
   );
 
   dispatch(addUsersSharedWith(updatedUser));
+  dispatch(thunkAddFeedAlert(newFeedAlert));
   dispatch(didAddUsersSharedWith());
 };

@@ -1,14 +1,13 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {Heading, Scrollable, Button, Card, TextField, Select, DatePicker, Spinner, FormLayout} from '@shopify/polaris';
-import {Item} from 'store/item/types';
-
-import './ItemSummaryLayout.css';
 import {ItemSummaryContent, ItemSummaryFooter} from './components';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkEditItem} from 'store/item/actions';
 import {searchIcons, useDebounce} from 'utils';
 import {selectActiveFridge} from 'store/app/selectors';
-import {thunkAddFeedAlert} from 'store/feedAlert/actions';
+import {Item} from 'store/item/types';
+
+import './ItemSummaryLayout.css';
 
 interface Props {
   item: Item;
@@ -113,8 +112,7 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
       timestamp: new Date(),
     };
 
-    dispatch(thunkEditItem(newItem));
-    dispatch(thunkAddFeedAlert(newFeedAlert));
+    dispatch(thunkEditItem(newItem, newFeedAlert));
     setIsEditMode(false);
     onClose();
   }, [item._id, name, category, count, iconUrl, item.icon, selectedDates.end, activeFridge, dispatch, onClose]);

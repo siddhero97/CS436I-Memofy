@@ -17,7 +17,12 @@ export default function AddFridgeModal({active, handleClose}: Props) {
     if (fridgeName === "") {
       setShowWarning(true);
     } else {
-      dispatch(thunkAddFridge(fridgeName));
+      const newFeedAlert = {
+        message: fridgeName + " was created on ",
+        timestamp: new Date(),
+      };
+
+      dispatch(thunkAddFridge(fridgeName, newFeedAlert));
       setFridgeName('');
       handleClose();
     }

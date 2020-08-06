@@ -19,7 +19,6 @@ import {thunkEditFridge, thunkDeleteFridge, thunkFetchUsersSharedWith, thunkAddU
 import {selectUsersSharedWith} from 'store/fridge/selectors';
 
 import './FridgeDetails.css';
-import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 export default function FridgeDetails() {
   const dispatch = useDispatch();
@@ -59,8 +58,7 @@ export default function FridgeDetails() {
       timestamp: new Date(),
     };
 
-    dispatch(thunkEditFridge(newFridge));
-    dispatch(thunkAddFeedAlert(newFeedAlert));
+    dispatch(thunkEditFridge(newFridge, newFeedAlert));
     setNewName('');
     setShowEdit(false);
   }, [newName, activeFridge, dispatch]);
@@ -71,8 +69,7 @@ export default function FridgeDetails() {
       timestamp: new Date(),
     };
 
-    dispatch(thunkAddUsersSharedWith(newSharedUserEmail));
-    dispatch(thunkAddFeedAlert(newFeedAlert));
+    dispatch(thunkAddUsersSharedWith(newSharedUserEmail, newFeedAlert));
     setNewSharedUserEmail('');
   }, [newSharedUserEmail, activeFridge, dispatch]);
 
@@ -83,8 +80,7 @@ export default function FridgeDetails() {
         timestamp: new Date(),
       };
 
-      dispatch(thunkDeleteFridge(activeFridge._id));
-      dispatch(thunkAddFeedAlert(newFeedAlert));
+      dispatch(thunkDeleteFridge(activeFridge._id, newFeedAlert));
     }
   }, [activeFridge, dispatch]);
 

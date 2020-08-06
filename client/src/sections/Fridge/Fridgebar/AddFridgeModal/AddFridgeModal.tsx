@@ -2,7 +2,6 @@ import React, {useState, useCallback} from 'react';
 import {TextField, Banner, Modal} from '@shopify/polaris';
 import {useDispatch} from 'react-redux';
 import {thunkAddFridge} from 'store/fridge/actions';
-import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 interface Props {
   active: boolean;
@@ -23,8 +22,7 @@ export default function AddFridgeModal({active, handleClose}: Props) {
         timestamp: new Date(),
       };
 
-      dispatch(thunkAddFridge(fridgeName));
-      dispatch(thunkAddFeedAlert(newFeedAlert));
+      dispatch(thunkAddFridge(fridgeName, newFeedAlert));
       setFridgeName('');
       handleClose();
     }

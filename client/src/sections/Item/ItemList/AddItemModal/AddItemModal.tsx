@@ -11,11 +11,10 @@ import {
   FormLayout
 } from '@shopify/polaris';
 import {thunkAddItem} from 'store/item/actions';
+import {selectActiveFridge} from 'store/app/selectors';
 import {searchIcons, useDebounce} from 'utils';
 
 import './AddItemModal.css';
-import {selectActiveFridge} from 'store/app/selectors';
-import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 export default function AddItemModal() {
   const today = new Date();
@@ -77,8 +76,7 @@ export default function AddItemModal() {
       timestamp: new Date(),
     };
 
-    dispatch(thunkAddItem(newItem));
-    dispatch(thunkAddFeedAlert(newFeedAlert));
+    dispatch(thunkAddItem(newItem, newFeedAlert));
 
     toggleShowModal();
     setName('');

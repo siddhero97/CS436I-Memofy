@@ -14,7 +14,6 @@ import {
 import {AppThunk} from '..';
 import axios from 'axios';
 import {selectToken} from 'store/app/selectors';
-import {thunkFetchFeedAlerts} from 'store/feedAlert/actions';
 
 export interface CreateUserResponse {
   user: User;
@@ -141,6 +140,5 @@ export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (di
   );
 
   dispatch(editUser(user));
-  dispatch(thunkFetchFeedAlerts(updatedUser.feedAlertIds));
   dispatch(didEditUser());
 };

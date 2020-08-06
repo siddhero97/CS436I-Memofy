@@ -15,7 +15,7 @@ export default function Feed() {
   const activeUser = useSelector(selectActiveUser);
 
   useEffect(() => {
-    dispatch(thunkFetchFeedAlerts(feedAlertIds));
+    dispatch(thunkFetchFeedAlerts());
   }, [feedAlertIds, dispatch]);
 
   const removeFeedAlertFromUser = useCallback((feedAlert: FeedAlert) => {
