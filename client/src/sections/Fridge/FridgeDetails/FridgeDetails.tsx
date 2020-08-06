@@ -59,8 +59,8 @@ export default function FridgeDetails() {
       timestamp: new Date(),
     };
 
-    dispatch(thunkAddFeedAlert(newFeedAlert));
     dispatch(thunkEditFridge(newFridge));
+    dispatch(thunkAddFeedAlert(newFeedAlert));
     setNewName('');
     setShowEdit(false);
   }, [newName, activeFridge, dispatch]);
@@ -70,9 +70,9 @@ export default function FridgeDetails() {
       message: newSharedUserEmail + " was added to " + activeFridge?.name + " on ",
       timestamp: new Date(),
     };
-
-    dispatch(thunkAddFeedAlert(newFeedAlert));
+    
     dispatch(thunkAddUsersSharedWith(newSharedUserEmail));
+    dispatch(thunkAddFeedAlert(newFeedAlert));
     setNewSharedUserEmail('');
   }, [newSharedUserEmail, dispatch]);
 
@@ -83,8 +83,8 @@ export default function FridgeDetails() {
         timestamp: new Date(),
       };
 
-      dispatch(thunkAddFeedAlert(newFeedAlert));
       dispatch(thunkDeleteFridge(activeFridge._id));
+      dispatch(thunkAddFeedAlert(newFeedAlert));
     }
   }, [activeFridge, dispatch]);
 
