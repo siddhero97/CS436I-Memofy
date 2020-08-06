@@ -48,11 +48,13 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 
 **JWT Token authentication**
 
-**Using Typescript**
+**Using TypeScript**
 
 **Using modern React and Redux tooling and patterns**
 
-**Using Reduxthunk**
+**Using ReduxThunk**
+
+**Using Debouncer for searching**
 
 **Exercising modern backend patterns to format project file structure**
 
