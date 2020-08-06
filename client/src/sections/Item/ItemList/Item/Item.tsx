@@ -1,10 +1,12 @@
 import React, {useCallback} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Card} from '@shopify/polaris';
 import {thunkDeleteItem} from 'store/item/actions';
 import {Item as ItemType} from 'store/item/types';
 
 import './Item.css';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
+import {selectActiveFridge} from 'store/app/selectors';
 interface Props {
   item: ItemType;
   showDetails: boolean;
@@ -20,6 +22,7 @@ export default function Item({
 }: Props) {
   const dispatch = useDispatch();
   const {_id, name, icon} = item;
+  const activeFridge = useSelector(selectActiveFridge);
 
   const handleShowDetails = useCallback(() =>
     onShowDetails(item), [item, onShowDetails]
@@ -29,8 +32,15 @@ export default function Item({
     if (showDetails) {
       onHideDetails();
     }
+
+    const newFeedAlert = {
+      message: name + " was deleted in your fridge: " + activeFridge?.name + " on ",
+      timestamp: new Date(),
+    };
+
+    dispatch(thunkAddFeedAlert(newFeedAlert));
     dispatch(thunkDeleteItem(_id));
-  }, [dispatch, showDetails, _id, onHideDetails]);
+  }, [dispatch, showDetails, _id, activeFridge, name, onHideDetails]);
 
   return (
     <div className='item'>

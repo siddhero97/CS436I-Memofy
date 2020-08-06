@@ -15,6 +15,7 @@ import {searchIcons, useDebounce} from 'utils';
 
 import './AddItemModal.css';
 import {selectActiveFridge} from 'store/app/selectors';
+import {thunkAddFeedAlert} from 'store/feedAlert/actions';
 
 export default function AddItemModal() {
   const today = new Date();
@@ -26,7 +27,7 @@ export default function AddItemModal() {
   const [category, setCategory] = useState('meats');
   const [count, setCount] = useState('0');
   const [{month, year}, setDate] = useState({
-    month: 6,
+    month: today.getMonth(),
     year: 2020,
   });
   const [selectedDates, setSelectedDates] = useState({
@@ -71,7 +72,13 @@ export default function AddItemModal() {
       expiryDate: selectedDates.end,
     };
 
+    const newFeedAlert = {
+      message: name + " was added to your fridge: " + activeFridge?.name + " on ",
+      timestamp: new Date(),
+    };
+
     dispatch(thunkAddItem(newItem));
+    dispatch(thunkAddFeedAlert(newFeedAlert));
 
     toggleShowModal();
     setName('');
@@ -84,7 +91,7 @@ export default function AddItemModal() {
     setIconResults([]);
     setIsSearching(false);
     setNewCategory('');
-  }, [name, category, count, selectedDates.end, iconUrl, today, newCategory, dispatch, toggleShowModal]);
+  }, [name, category, count, selectedDates.end, iconUrl, today, newCategory, activeFridge, dispatch, toggleShowModal]);
 
   const handleNameChange = useCallback((name) => setName(name), []);
   const handleCategoryChange = useCallback((category) => setCategory(category), []);

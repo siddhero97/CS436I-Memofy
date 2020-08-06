@@ -5,6 +5,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
+  feedAlertIds: string[];
 }
 
 export const WILL_CREATE_USER = 'WILL_CREATE_USER';
@@ -34,6 +35,11 @@ interface LogoutAction {
   type: typeof LOGOUT;
 }
 
+interface EditAction {
+  type: typeof EDIT_USER;
+  payload: User;
+}
+
 interface WillAction {
   type: typeof WILL_LOGIN | typeof WILL_CREATE_USER | typeof WILL_EDIT_USER;
 }
@@ -42,4 +48,4 @@ interface DidAction {
   type: typeof DID_LOGIN | typeof DID_CREATE_USER | typeof DID_EDIT_USER;
 }
 
-export type UserActionTypes = LoginAction | LogoutAction | EditUserAction | WillAction | DidAction;
+export type UserActionTypes = LoginAction | LogoutAction | WillAction | DidAction | EditAction;

@@ -4,6 +4,7 @@ import {userReducer} from './user/reducers';
 import {appReducer} from './app/reducers';
 import {ThunkAction} from 'redux-thunk';
 import {fridgeReducer} from './fridge/reducers';
+import {feedAlertReducer} from './feedAlert/reducers';
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   user: userReducer,
   app: appReducer,
   fridge: fridgeReducer,
+  feedAlert: feedAlertReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

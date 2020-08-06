@@ -24,6 +24,7 @@ export default class LoginUserService {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
+            feedAlertIds: user.feedAlertIds
           }, token});
         })
       } catch (error) {

@@ -14,6 +14,7 @@ import {
 import {AppThunk} from '..';
 import axios from 'axios';
 import {selectToken} from 'store/app/selectors';
+import {thunkFetchFeedAlerts} from 'store/feedAlert/actions';
 
 export interface CreateUserResponse {
   user: User;
@@ -28,6 +29,10 @@ export interface LoginResponse {
   token: string;
 }
 
+export interface EditUserResponse {
+  user: User;
+}
+
 function willCreateUser(): UserActionTypes {
   return {
     type: WILL_CREATE_USER,
@@ -36,23 +41,6 @@ function willCreateUser(): UserActionTypes {
 function didCreateUser(): UserActionTypes {
   return {
     type: DID_CREATE_USER,
-  };
-}
-
-function willEditUser(): UserActionTypes {
-  return {
-    type: WILL_EDIT_USER,
-  };
-}
-function editUser(user: User): UserActionTypes {
-  return {
-    type: EDIT_USER,
-    payload: user,
-  };
-}
-function didEditUser(): UserActionTypes {
-  return {
-    type: DID_EDIT_USER,
   };
 }
 
@@ -76,6 +64,25 @@ function didLogin(): UserActionTypes {
 function logout(): UserActionTypes {
   return {
     type: LOGOUT,
+  };
+}
+
+function willEditUser(): UserActionTypes {
+  return {
+    type: WILL_EDIT_USER
+  };
+}
+
+function editUser(user: User): UserActionTypes {
+  return {
+    type: EDIT_USER,
+    payload: user
+  };
+}
+
+function didEditUser(): UserActionTypes {
+  return {
+    type: DID_EDIT_USER,
   };
 }
 
@@ -124,7 +131,7 @@ export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (di
 
   const token = selectToken(getState());
 
-  const {data: {user}} = await axios.put<EditUserResponse>('/api/users/edit',
+  const {data: {user}} = await axios.put<EditUserResponse>('api/users/edit',
     updatedUser,
     {
       params: {
@@ -134,5 +141,6 @@ export const thunkEditUser = (updatedUser: Partial<User>): AppThunk => async (di
   );
 
   dispatch(editUser(user));
+  dispatch(thunkFetchFeedAlerts(updatedUser.feedAlertIds));
   dispatch(didEditUser());
 };

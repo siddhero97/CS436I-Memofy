@@ -7,6 +7,7 @@ export interface IUser extends Document {
   email: String;
   password: String;
   fridgeIds: String[];
+  feedAlertIds: String[];
   isValidPassword(password: String): Promise<boolean>;
 }
 
@@ -31,7 +32,11 @@ export const UserSchema = new Schema({
   fridgeIds: {
     type: [],
     required: true,
-  }
+  },
+  feedAlertIds: {
+    type: [],
+    required: true,
+  },
 })
 
 UserSchema.pre<IUser>('save', async function(next) {
