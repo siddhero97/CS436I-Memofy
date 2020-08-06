@@ -28,25 +28,26 @@ export default function Feed() {
     dispatch(thunkEditUser(editedActiveUser));
   }, [activeUser, dispatch, feedAlertIds]);
 
-  const feedAlertMarkup = feedAlerts.map((feedAlert) => {
-    const readableTimestamp = new Date(feedAlert.timestamp).toDateString();
-    const splitFeedAlert = feedAlert.message.split("was", 2);
+  const feedAlertMarkup = feedAlerts.length
+    ? feedAlerts.map((feedAlert) => {
+      const readableTimestamp = new Date(feedAlert.timestamp).toDateString();
+      const splitFeedAlert = feedAlert.message.split("was", 2);
 
-    return (
-      <div className='alert' key={feedAlert._id}>
-        <Banner onDismiss={() => removeFeedAlertFromUser(feedAlert)}>
-          <p>
-            <b>{splitFeedAlert[0]}</b> was {splitFeedAlert[1]} <i>{readableTimestamp}</i>
-          </p>
-        </Banner>
-      </div>
-    );
-  });
+      return (
+        <div className='alert' key={feedAlert._id}>
+          <Banner onDismiss={() => removeFeedAlertFromUser(feedAlert)}>
+            <p>
+              <b>{splitFeedAlert[0]}</b> was {splitFeedAlert[1]} <i>{readableTimestamp}</i>
+            </p>
+          </Banner>
+        </div>
+      );
+    }) : "You are up to date.";
 
   return (
     <div className='feed'>
       <Card title='Activity Log' sectioned>
-        {feedAlertMarkup && "You are up to date."}
+        {feedAlertMarkup}
       </Card>
     </div>
   );
