@@ -70,14 +70,13 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 ## Next Steps
 
 **Recipes**
+  - Allow users to store different recipes on their account so they can easily determine whether or not they have all the necessary ingredients in their fridge.
 
 **Order food (Subscription service)**
+  - Implement the ability for users to directly order the groceries they would like through the application.
 
 **Email/Push notifications**
-
-**Barcode scanner**
-
-**Fridge sensor**
+  - Introduce an email service that notifies users when their fridges/items are being modified.
 
 ## List of Contributions
 
