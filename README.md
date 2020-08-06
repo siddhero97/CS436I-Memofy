@@ -77,6 +77,4 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 
 ## Links
 
-**Repo:** [**https://github.com/siddhero97/CS436I-Memofy**](https://github.com/siddhero97/CS436I-Memofy)
-
 **Figma Design** https://www.figma.com/file/JsjFPCDJiZp0jOZbW7zU8l/Memofy?node-id=0%3A1
