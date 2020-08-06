@@ -35,14 +35,23 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 ## Tech used from Course
 
 **Unit 1 - HTML, CSS, JS**
+  - HTML fundamentals are used for creating the Memofy client UI into separate components. 
+  - CSS is used to stylize various ui components.
+  - JS fundamentals are used for implementing both client and server side logic for this application.
 
 **Unit 2 - React & Redux**
+  - React is used as the client framework for this application for designing unique, reusable UI components. 
+  - Redux is used for storing/retrieving Memofy's client side state logic.
 
 **Unit 3 - MongoDB**
+  - MongoDB is used to store persistent data such as users, fridges and items for the Memofy server application. 
 
 **Unit 4 - Node & Express**
+  - Node is used as the main server side language for Memofy and connects all our endpoint and DB logic together. 
+  - Express is used in this application to create server endpoints that can be called from the Memofy client application.
 
 **Unit 5 - Release Engineering**
+  - Heroku is used as Memofy's cloud hosting platform.
 
 ## 'Above and Beyond' functionality
 
