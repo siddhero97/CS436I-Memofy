@@ -30,12 +30,14 @@ function willFetchFeedAlerts(): FeedAlertActionTypes {
     type: WILL_FETCH_FEED_ALERTS,
   };
 }
+
 function fetchFeedAlerts(feedAlerts: FeedAlert[]): FeedAlertActionTypes {
   return {
     type: FETCH_FEED_ALERTS,
     payload: feedAlerts,
   };
 }
+
 function didFetchFeedAlerts(): FeedAlertActionTypes {
   return {
     type: DID_FETCH_FEED_ALERTS,
@@ -47,12 +49,14 @@ function willAddFeedAlert(): FeedAlertActionTypes {
     type: WILL_ADD_FEED_ALERT,
   };
 }
+
 function addFeedAlert(feedAlert: FeedAlert, user: User): FeedAlertActionTypes {
   return {
     type: ADD_FEED_ALERT,
     payload: {feedAlert, user},
   };
 }
+
 function didAddFeedAlert(): FeedAlertActionTypes {
   return {
     type: DID_ADD_FEED_ALERT,
@@ -85,6 +89,7 @@ export const thunkAddFeedAlert = (newFeedAlert: Partial<FeedAlert>): AppThunk =>
   const token = selectToken(getState());
   const _id = selectUserId(getState());
   const fridge = selectActiveFridge(getState());
+  console.log(fridge);
 
   const {data: {feedAlert, user}} = await axios.post<AddFeedAlertResponse>('/api/feedalert/post',
     {

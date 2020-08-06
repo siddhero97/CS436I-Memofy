@@ -22,9 +22,9 @@ export default function AddFridgeModal({active, handleClose}: Props) {
         message: fridgeName + " was created on ",
         timestamp: new Date(),
       };
-
-      dispatch(thunkAddFeedAlert(newFeedAlert));
+      
       dispatch(thunkAddFridge(fridgeName));
+      dispatch(thunkAddFeedAlert(newFeedAlert));
       setFridgeName('');
       handleClose();
     }
