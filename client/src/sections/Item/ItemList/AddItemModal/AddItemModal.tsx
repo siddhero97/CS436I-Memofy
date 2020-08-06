@@ -91,7 +91,7 @@ export default function AddItemModal() {
     setIconResults([]);
     setIsSearching(false);
     setNewCategory('');
-  }, [name, category, count, selectedDates.end, iconUrl, today, newCategory, dispatch, toggleShowModal]);
+  }, [name, category, count, selectedDates.end, iconUrl, today, newCategory, activeFridge, dispatch, toggleShowModal]);
 
   const handleNameChange = useCallback((name) => setName(name), []);
   const handleCategoryChange = useCallback((category) => setCategory(category), []);

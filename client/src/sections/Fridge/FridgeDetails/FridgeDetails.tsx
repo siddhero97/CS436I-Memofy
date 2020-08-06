@@ -70,11 +70,11 @@ export default function FridgeDetails() {
       message: newSharedUserEmail + " was added to " + activeFridge?.name + " on ",
       timestamp: new Date(),
     };
-    
+
     dispatch(thunkAddUsersSharedWith(newSharedUserEmail));
     dispatch(thunkAddFeedAlert(newFeedAlert));
     setNewSharedUserEmail('');
-  }, [newSharedUserEmail, dispatch]);
+  }, [newSharedUserEmail, activeFridge, dispatch]);
 
   const handleDeleteFridge = useCallback(() => {
     if (activeFridge) {

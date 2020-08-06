@@ -39,12 +39,6 @@ export function userReducer(
         ...state,
         isLoading: false,
       };
-    case EDIT_USER: {
-      return {
-        ...state,
-        feedAlertIds: action.payload.feedAlertIds
-      };
-    }
     default:
       return state;
   }

@@ -44,23 +44,6 @@ function didCreateUser(): UserActionTypes {
   };
 }
 
-function willEditUser(): UserActionTypes {
-  return {
-    type: WILL_EDIT_USER,
-  };
-}
-function editUser(user: User): UserActionTypes {
-  return {
-    type: EDIT_USER,
-    payload: user,
-  };
-}
-function didEditUser(): UserActionTypes {
-  return {
-    type: DID_EDIT_USER,
-  };
-}
-
 function willLogin(): UserActionTypes {
   return {
     type: WILL_LOGIN,

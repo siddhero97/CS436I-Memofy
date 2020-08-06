@@ -111,13 +111,13 @@ export default function ItemSummaryLayout({item, onClose}: Props) {
     const newFeedAlert = {
       message: name + " was updated in your fridge: " + activeFridge?.name + " on ",
       timestamp: new Date(),
-    }
+    };
 
     dispatch(thunkEditItem(newItem));
     dispatch(thunkAddFeedAlert(newFeedAlert));
     setIsEditMode(false);
     onClose();
-  }, [item._id, name, category, count, iconUrl, item.icon, selectedDates.end, dispatch, onClose]);
+  }, [item._id, name, category, count, iconUrl, item.icon, selectedDates.end, activeFridge, dispatch, onClose]);
 
   const buildIconResultCards = iconResults.map((iconResult) => (
     <Card.Section key={iconResult}>

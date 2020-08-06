@@ -89,7 +89,6 @@ export const thunkAddFeedAlert = (newFeedAlert: Partial<FeedAlert>): AppThunk =>
   const token = selectToken(getState());
   const _id = selectUserId(getState());
   const fridge = selectActiveFridge(getState());
-  console.log(fridge);
 
   const {data: {feedAlert, user}} = await axios.post<AddFeedAlertResponse>('/api/feedalert/post',
     {

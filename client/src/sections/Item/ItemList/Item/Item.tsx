@@ -32,13 +32,15 @@ export default function Item({
     if (showDetails) {
       onHideDetails();
     }
+
     const newFeedAlert = {
       message: name + " was deleted in your fridge: " + activeFridge?.name + " on ",
       timestamp: new Date(),
-    }
+    };
+
     dispatch(thunkAddFeedAlert(newFeedAlert));
     dispatch(thunkDeleteItem(_id));
-  }, [dispatch, showDetails, _id, onHideDetails]);
+  }, [dispatch, showDetails, _id, activeFridge, name, onHideDetails]);
 
   return (
     <div className='item'>

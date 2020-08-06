@@ -36,7 +36,7 @@ export default function Login() {
       </div>
       <div className="intro-section">
         <div className="text-content">
-          <TextContainer spacing="tight">
+          <TextContainer spacing="loose">
             <div className="intro">Keep an ease of mind</div>
             <h1 className="main-content">One Fridge, Two Fridge, Shared Fridge, Memofy Tracks it all.</h1>
             <div className="additional-content">Let Memofy keep track of your food, so you can focus on enjoying it. </div>
