@@ -45,8 +45,8 @@ export default function Feed() {
 
   return (
     <div className='feed'>
-      <Card title='Activity Log'>
-        {feedAlertMarkup}
+      <Card title='Activity Log' sectioned>
+        {feedAlertMarkup && "You are up to date."}
       </Card>
     </div>
   );
