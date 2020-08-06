@@ -32,7 +32,7 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
   - Nutrition tracking ❌
   - Subscription service ❌
 
-## How course material was used in project
+## Tech used from Course
 
 **Unit 1 - HTML, CSS, JS**
 
@@ -44,7 +44,7 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 
 **Unit 5 - Release Engineering**
 
-## Above and Beyond functionality
+## 'Above and Beyond' functionality
 
 **JWT Token authentication**
 
@@ -64,7 +64,7 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 **Barcode scanner**
 **Fridge sensor**
 
-## List of contributions
+## List of Contributions
 
 ## Group Members
 
