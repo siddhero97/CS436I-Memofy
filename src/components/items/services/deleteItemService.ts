@@ -7,7 +7,6 @@ export default class DeleteItemService {
     const {body: {fridgeId, id}} = req;
 
     try {
-      // TODO: Refactor to use transactions
       const fridge = await findFridge(fridgeId);
 
       if (!fridge) {

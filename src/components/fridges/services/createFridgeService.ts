@@ -5,7 +5,6 @@ import {findUserById, addFridgeToUser} from '../../users/DALs';
 export default class CreateFridgeService {
   public async execute(req: Request, res: Response): Promise<void> {
     try {
-      // TODO: Refactor to use transactions
       const {body: {name}, user: expressUser} = req;
 
       if (!expressUser) {

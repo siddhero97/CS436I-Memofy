@@ -5,7 +5,6 @@ import {findUserById} from '../../users/DALs';
 export default class FetchFridgesService {
   public async execute(req: Request, res: Response): Promise<void> {
     try {
-      // TODO: Refactor to use transactions
       const {user: expressUser} = req;
 
       if (!expressUser) {
