@@ -1,10 +1,10 @@
-**Project Name: Memofy**
+# Memofy
 
-**Project Description:**
+## Project Description
 
 Memofy's mission is to help users easily keep track of their kitchen inventory by providing detailed information for every food item and also ways to search for items. The application also allows users to share inventory so it doesn't matter who is shopping, everyone can keep the inventory updated!
 
-**Project Goals:**
+## Project Goals
 
 ✅ - Complete
 
@@ -32,41 +32,41 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
   - Nutrition tracking ❌
   - Subscription service ❌
 
-**How Course Material were used in project**
+## How course material was used in project
 
-Unit 1 - HTML, CSS, JS
+**Unit 1 - HTML, CSS, JS**
 
-Unit 2 - React & Redux
+**Unit 2 - React & Redux**
 
-Unit 3 - MongoDB
+**Unit 3 - MongoDB**
 
-Unit 4 - Node & Express
+**Unit 4 - Node & Express**
 
-Unit 5 - Release Engineering
+**Unit 5 - Release Engineering**
 
-**Above and Beyond functionality**
+## Above and Beyond functionality
 
-JWT Token authentication
+**JWT Token authentication**
 
-Using Typescript
+**Using Typescript**
 
-Using modern React and Redux tooling and patterns
+**Using modern React and Redux tooling and patterns**
 
-Using Reduxthunk
+**Using Reduxthunk**
 
-Exercising modern backend patterns to format project file structure
+**Exercising modern backend patterns to format project file structure**
 
-**Next Steps**
+## Next Steps
 
-Recipes
-Order food (Subscription service)
-Email/Push notifications
-Barcode scanner
-Fridge sensor
+**Recipes**
+**Order food (Subscription service)**
+**Email/Push notifications**
+**Barcode scanner**
+**Fridge sensor**
 
-**List of contributions**
+## List of contributions
 
-**Group Members:**
+## Group Members
 
 | **First Name** | **Last Name** | **Student Number** | **CS-ID** |
 | --- | --- | --- | --- |
@@ -74,6 +74,8 @@ Fridge sensor
 | Kwan | Lam | 42151100 | e6e8 |
 | Jaehun | Song | 39131164 | h8u0b |
 | Vincent | Chiang | 14316160 | m9y0b |
+
+## Links
 
 **Repo:** [**https://github.com/siddhero97/CS436I-Memofy**](https://github.com/siddhero97/CS436I-Memofy)
 
