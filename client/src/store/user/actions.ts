@@ -9,8 +9,7 @@ import {
   DID_CREATE_USER,
   WILL_EDIT_USER,
   EDIT_USER,
-  DID_EDIT_USER,
-
+  DID_EDIT_USER
 } from './types';
 import {AppThunk} from '..';
 import axios from 'axios';
@@ -18,6 +17,10 @@ import {selectToken} from 'store/app/selectors';
 import {thunkFetchFeedAlerts} from 'store/feedAlert/actions';
 
 export interface CreateUserResponse {
+  user: User;
+}
+
+export interface EditUserResponse {
   user: User;
 }
 
@@ -38,6 +41,23 @@ function willCreateUser(): UserActionTypes {
 function didCreateUser(): UserActionTypes {
   return {
     type: DID_CREATE_USER,
+  };
+}
+
+function willEditUser(): UserActionTypes {
+  return {
+    type: WILL_EDIT_USER,
+  };
+}
+function editUser(user: User): UserActionTypes {
+  return {
+    type: EDIT_USER,
+    payload: user,
+  };
+}
+function didEditUser(): UserActionTypes {
+  return {
+    type: DID_EDIT_USER,
   };
 }
 

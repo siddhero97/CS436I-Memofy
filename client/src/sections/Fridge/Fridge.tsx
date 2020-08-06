@@ -5,7 +5,8 @@ import {thunkInitialFridgeLoad} from 'store/fridge/actions';
 import {setActiveFridge} from 'store/app/actions';
 import {selectIsLoggedIn} from 'store/app/selectors';
 import {selectIsLoading} from 'store/fridge/selectors';
-import {Header, Fridgebar, FridgeDetails} from './components';
+import {Header} from 'components';
+import {Fridgebar, FridgeDetails} from './components';
 
 import './Fridge.css';
 

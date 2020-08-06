@@ -17,6 +17,11 @@ export function userReducer(
         ...state,
         ...action.payload.user
       };
+    case EDIT_USER:
+      return {
+        ...state,
+        ...action.payload
+      };
     case LOGOUT:
       return intialState;
     case ADD_FRIDGE:

@@ -7,7 +7,10 @@ import './Header.css';
 export default function Header() {
   return (
     <div className='overview-header'>
-      <img className='overview-header-logo' src={logo} alt='no-logo' />
+      <div className='overview-header-left'>
+        <img className='overview-header-logo' src={logo} alt='no-logo' />
+        <div className="overview-header-title">Memofy</div>
+      </div>
       <SettingsPopover />
     </div>
   );

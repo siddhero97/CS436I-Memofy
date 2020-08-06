@@ -1,0 +1,8 @@
+.profile {
+  display: grid;
+  grid-template-areas:
+    "Header Header"
+    "PersonalInfo PersonalInfo"
+    "AccountDetails AccountDetails";
+  grid-template-rows: 15rem auto auto;
+}

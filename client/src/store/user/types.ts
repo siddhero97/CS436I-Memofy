@@ -11,6 +11,10 @@ export interface User {
 export const WILL_CREATE_USER = 'WILL_CREATE_USER';
 export const DID_CREATE_USER = 'DID_CREATE_USER';
 
+export const WILL_EDIT_USER = 'WILL_EDIT_USER';
+export const EDIT_USER = 'EDIT_USER';
+export const DID_EDIT_USER = 'DID_EDIT_USER';
+
 export const WILL_LOGIN = 'WILL_LOGIN';
 export const LOGIN = 'LOGIN';
 export const DID_LOGIN = 'DID_LOGIN';
@@ -24,6 +28,11 @@ export const LOGOUT = 'LOGOUT';
 interface LoginAction {
   type: typeof LOGIN;
   payload: LoginResponse;
+}
+
+interface EditUserAction {
+  type: typeof EDIT_USER;
+  payload: User;
 }
 
 interface LogoutAction {

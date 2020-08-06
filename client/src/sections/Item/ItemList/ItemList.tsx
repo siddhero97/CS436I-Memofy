@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Card} from '@shopify/polaris';
+import {Card, EmptyState} from '@shopify/polaris';
 import {Item, AddItemModal, ItemSummary} from './components';
 import {thunkInitialItemListLoad, thunkFetchItems, clearSelectedCategories} from 'store/item/actions';
 import {selectFridges} from 'store/fridge/selectors';
@@ -53,8 +53,15 @@ export default function ItemList() {
 
   if (!activeFridge) {
     return (
-      <div>
-        You have no fridges!
+      <div className='item-emptystate'>
+        <Card>
+          <EmptyState
+            heading="Oops! You have no fridges"
+            image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
+          >
+            <p>Create a new fridge by clicking the &quot;+&quot; button on the left bar.</p>
+          </EmptyState>
+        </Card>
       </div>
     );
   }

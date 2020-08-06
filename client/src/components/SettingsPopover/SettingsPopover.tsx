@@ -30,7 +30,8 @@ const navItems: NavItems[] = [
   }
 ];
 
-export default function SettingsPopover() {
+export default function
+SettingsPopover() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [popoverActive, setPopoverActive] = useState(false);
