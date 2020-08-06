@@ -1,3 +1,9 @@
+**Project Name: Memofy**
+
+**Project Description:**
+
+Memofy's mission is to help users easily keep track of their kitchen inventory by providing detailed information for every food item and also ways to search for items. The application also allows users to share inventory so it doesn't matter who is shopping, everyone can keep the inventory updated!
+
 **Group Members:**
 
 | **First Name** | **Last Name** | **Student Number** | **CS-ID** |
@@ -7,31 +13,11 @@
 | Jaehun | Song | 39131164 | h8u0b |
 | Vincent | Chiang | 14316160 | m9y0b |
 
-**Ideas:** Fridge Tracker Application
-
 **Repo:** [**https://github.com/siddhero97/CS436I-Memofy**](https://github.com/siddhero97/CS436I-Memofy)
 
 **Figma Design** https://www.figma.com/file/JsjFPCDJiZp0jOZbW7zU8l/Memofy?node-id=0%3A1
 
-**Project Name: Memofy**
-
-**Project Description:**
-
-Provide an application for grocery shoppers that will help track their kitchen inventory. The app will store the inventory data such as the types of food product, quantity, purchase date, expiration date, costs, and different users. Features include adding and removing items, suggesting recipes and notifications for low inventory
-
-- **Grocery shoppers**
-- **Track kitchen inventory**
-- **Types of food, quantity, date of purchase, expiry date, cost, users**
-- **Keep track of their food**
-- **Cool features:**
-  - **Recipes**
-  - **Delivery from supermarkets**
-  - **Notify of sales for commonly purchased food**
-  - **Alert for incoming expiry dates**
-  - **Subscription service for regularly bought food**
-  - **Nutrition**
-
-**Project task requirements:**
+**Project Goals:**
 
 - **Minimal requirements**
   - Landing Page
@@ -54,28 +40,34 @@ Provide an application for grocery shoppers that will help track their kitchen i
   - Nutrition tracking
   - Subscription service
 
-**Breakdown of 2 minimal requirements:**
+**How Course Material were used in project**
 
-- **Users can add/remove items**
-  - **Frontend**
-    - Buttons on the &quot;display&quot; page to add/remove items
-    - A page to add item
-  - **Backend**
-    - API to POST/DEL user items
+Unit 1
 
-- **Users can see their items**
-  - **Frontend**
-    - A page to display user items
-  - **Backend**
-    - Create models to support users, items (MongoDB)
-    - API to GET user items
+Unit 2
 
-**Designs**
+Unit 3
 
-![](designIdeas/1.png)
+Unit 4
 
-![](designIdeas/2.png)
+Unit 5
 
-![](designIdeas/3.png)
+**Above and Beyond functionality**
 
-![](designIdeas/4.png)
+JWT Token authentication
+
+Using Typescript
+
+Using Reduxthunk
+
+Exercising modern methodologies to format project file structure
+
+**Next Steps**
+
+Recipes
+Order food (Subscription service)
+Email/Push notifications
+Barcode scanner
+Fridge sensor
+
+**List of contributions**
