@@ -59,9 +59,13 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 ## Next Steps
 
 **Recipes**
+
 **Order food (Subscription service)**
+
 **Email/Push notifications**
+
 **Barcode scanner**
+
 **Fridge sensor**
 
 ## List of Contributions
