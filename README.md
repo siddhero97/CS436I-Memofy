@@ -82,7 +82,7 @@ When dispatching actions, it is very important to keep in mind to make them asyn
 
 **Using Debouncer hook**
 
-In our application, we call a third-party API called IconFinder to search up icons. For our searchbar, we track the changes of a text input and use that input in a request to the third-party API. However, we don't want to be calling the API everytime the text changes (and we also want to make it "cool" by not requiring the user to click a button to trigger the search). In order to do this, we created a debouncer hook called `useDebouncer`. When used, when the text input changes, only when the text input has not changed for at least 1 second will we trigger the third-party API call. This makes our app much more performant and also saves us potential cost by not making unnecessary third-party API calls.
+In our application, we call a third-party API called IconFinder to search up icons. In our icon search bar, we track the changes of a text input and use that input in a request to the third-party API. However, we don't want to be calling the API everytime the text changes (and we also want to make it "cool" by not requiring the user to click a button to trigger the search). In order to do this, we created a debouncer hook called `useDebouncer`. When used, when the text input changes, only when the text input has not changed for at least 1 second will we trigger the third-party API call. This makes our app much more performant and also saves us potential cost by not making unnecessary third-party API calls.
 
 **Exercising modern backend patterns to format project file structure**
 
