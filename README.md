@@ -155,6 +155,6 @@ The idea is simple. In the traditional approach, we organize the project structu
 
 ## Links
 
-**Memofy Website** https://obscure-beyond-80726.herokuapp.com/fridges
+**Memofy Website** https://obscure-beyond-80726.herokuapp.com
 
 **Figma Designs** https://www.figma.com/file/JsjFPCDJiZp0jOZbW7zU8l/Memofy?node-id=0%3A1
