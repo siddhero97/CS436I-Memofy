@@ -78,7 +78,7 @@ In our frontend code, we only use functional components as it reduces a lot of b
 
 **Using ReduxThunk**
 
-When dispatching actions, it is very important to keep in mind to make them asynchronous if the action involves promises. Doing so means that you will need to add asynchronous functions within your components, which could raise problems such as race-conditions. ReduxThunk solves this by hiding the asynchronous characteristic from the components, while at the same time we took advantage of ReduxThunk to "gate" components from changing based on states until the the action has been resolved. This makes components extremely predictable (which is awesome!) as it is ALWAYS controlled by state and not by asynchronous details.
+When dispatching actions, it is very important to keep in mind to make them asynchronous if the action involves promises. Doing so means that you will need to add asynchronous functions within your components, which could raise problems such as race-conditions. ReduxThunk solves this by hiding the asynchronous characteristic from the components, while at the same time we took advantage of ReduxThunk to "gate" components from changing until the the action has been resolved. This makes components extremely predictable (which is awesome!) as it is ALWAYS controlled by state and not by asynchronous details.
 
 **Using Debouncer hook**
 
