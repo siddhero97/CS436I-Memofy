@@ -118,6 +118,14 @@ The idea is simple. In the traditional approach, we organize the project structu
 
 ## List of Contributions
 
+**Vincent**
+  - Implement add food item to fridge functionality (Frontend/Backend)
+  - Implement edit item functionality (Frontend/Backend)
+  - Implement Item and User schema setup in MongoDB (Backend)
+  - Implement activity log feed alert feature (Frontend/Backend)
+  - Set up and implement routes and backend API for food Item (Backend)
+  - Set up Redux state for User (Frontend)
+  
 **Jaehun**
   - Implement Login page (Frontend)
   - Implement Food Searchbar (Frontend/Backend)
