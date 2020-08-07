@@ -151,6 +151,12 @@ The idea is simple. In the traditional approach, we organize the project structu
   - Hook up IconFinder third-party API (Frontend/Backend)
   - Setup eslinting, Github CI builds and also PR templates
   - An unofficial leadership role, usually the one to setup the field for others to easily start their tasks and to setup/lead meetings
+**Siddhartha Gupta**
+  - Implement Item and User Schema with Mongoose. (Backend)
+  - Initialize Database (Backend)
+  - Made initial navbar (Frontend)
+  - Made initial Profile (Frontend)
+  - Implement Register Module (Frontend)
 
 ## Group Members
 
