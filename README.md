@@ -57,7 +57,7 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
 
 **JWT Token Authentication/Authorization**
 
-For our application, we built our own authorization and authentication strategies using PassportJS and JWT tokens. As such, we have our own registration process, storing user data in our database (hashing sensitive data such as passwords). When logging in, we **authenticate** the user by validating the password and, if successful, returning a JWT token to the browser to be stored in redux. All backend API routes are protected by a middleware that checks that the request has a valid JWT token in its URL query param. Since we store the JWT token in redux, whenever we need to call a backend API route we **authorize** ourselves by always adding the JWT token in the query param.
+For our application, we built our own authorization and authentication strategies using PassportJS and JWT tokens. As such, we have our own registration process, storing user data in our database (hashing sensitive data such as passwords). When logging in, we **authenticate** the user by validating the password and, if successful, returning a JWT token to the browser to be stored in redux. All backend API routes except for `/login` and `/signup` are protected by a middleware that checks that the request has a valid JWT token in its URL query param. Since we store the JWT token in redux, whenever we need to call a backend API route we **authorize** ourselves by always adding the JWT token in the query param.
 
 **Using TypeScript and other developer tools**
 
