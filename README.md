@@ -79,6 +79,7 @@ Memofy's mission is to help users easily keep track of their kitchen inventory b
   - Introduce an email service that notifies users when their fridges/items are being modified.
 
 ## List of Contributions
+  Jaehun - Landing Page UI, SearchBar ui and server logic, FeedAlert ui and server logic, figma designs, initial server logic for CRUD for fridges and items.
 
 ## Group Members
 
