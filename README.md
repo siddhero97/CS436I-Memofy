@@ -132,6 +132,8 @@ The idea is simple. In the traditional approach, we organize the project structu
   - Implement FeedAlert (Frontend/Backend)
   - Create Figma designs
   - Implement initial CRUD setup for Fridges and Items (Backend)
+  - Implementation of Fridge/User/Item relationship schema and setup for CRUD functionality on the server side. 
+  - Implementation of FridgeBar Client and server. 
   
 **Kwan**
   - Setup React code and npm libraries (Frontend)
